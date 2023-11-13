@@ -8,7 +8,7 @@
         </div>
         
         <button>
-            <router-link to="/">Done</router-link>
+            <router-link to="/" @click="logfunction">Done</router-link>
         </button>
 
 
@@ -19,6 +19,13 @@
 <script>
 export default {
   name: 'Header',
+  methods: {
+    //when done is clicked, console log the final options from selection menu component
+    logfunction(){
+      console.log(this.$root.finalOptions);
+    }
+
+  },
 };
 </script>
 
