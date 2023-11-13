@@ -32,6 +32,37 @@ export default{
         
         scene.background = new THREE.Color(0xffffff);
 
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1.7);
+        directionalLight.position.set(0, 0, 1);
+        directionalLight2.position.set(0, 0, -1);
+        directionalLight3.position.set(0, 1, 0);
+        scene.add(directionalLight);
+        scene.add(directionalLight2);
+        scene.add(directionalLight3);
+        
+
+        let shoe;
+
+        //add shoe model
+        gltfLoader.load('src/assets/models/new-shoe.glb', (gltf) => {
+            shoe = gltf.scene;
+            shoe.scale.set(2.5, 2.5, 2.5);
+            shoe.rotation.y = 1.5;
+            shoe.position.z = 0;
+            shoe.position.y = -0.5;
+            shoe.position.x = -0.5;
+            scene.add(shoe);
+        });        
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            
+            renderer.render(scene, camera);
+        };
+
+        animate();
     },
 }
 </script>
