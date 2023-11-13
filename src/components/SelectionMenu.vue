@@ -3,7 +3,7 @@
       <div id="arrows">
         <button @click="selectPage('left')" class="arrows-item">left</button>
         <h2 class="arrows-item">{{ pageName }}</h2>
-        <h3 class="arrows-item">{{ currentPage }} / 4</h3>
+        <h2 class="arrows-item">{{ currentPage }} / 4</h2>
         <button @click="selectPage('right')" class="arrows-item">right</button>
       </div>
 
