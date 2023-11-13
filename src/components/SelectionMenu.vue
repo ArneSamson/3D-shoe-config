@@ -78,5 +78,128 @@
 </script>
 
 <style>
+menu{
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-color: #000;
+    border-width: 2px 0 0 0;
+    border-style: solid;
+  }
 
+  #arrows {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .arrows-item{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .shoe-desc{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 43px;
+    background-color: #D6FF38;
+  }
+
+  .selections{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    max-width: 500px;
+  }
+  .options{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+
+  }
+  .circles{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px 0;
+    border: 2px solid #fff;
+  }
+
+  h1{
+    color: #000;
+    font-size: 1.5rem;
+    margin: 0;
+    font-family: 'cooper-black-std', serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.6px;
+  }
+  h2{
+    color: #000;
+    font-family: 'inter', sans-serif;
+    font-size: 1§px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  h3{
+    color: #000;
+    font-family: 'inter', sans-serif;
+    font-size: 1§px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  p{
+    font-family: 'inter', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: #000;
+  }
+
+  button{
+    color: #D6FF38;
+    background-color: #000;
+    margin: 43px;
+    width: 300px;
+    height: 68px;
+    font-family: 'inter', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+
+  }
+
+.selected-circle {
+  border: 2px solid red; /* Apply red border for the selected circle */
+}
+
+.black {
+  background-color: #000;
+}
+
+.dark-red {
+  background-color: #AC0202;
+}
+
+.yellow {
+  background-color: #D6FF38;
+}
+
+.grey {
+  background-color: #C9C9C9;
+}
 </style>
