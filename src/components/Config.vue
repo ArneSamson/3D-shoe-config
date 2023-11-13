@@ -66,3 +66,11 @@ export default{
     },
 }
 </script>
+
+<style scoped>
+
+#threeContainers{
+    width: 100%;
+    height: 50vh;
+}
+</style>
