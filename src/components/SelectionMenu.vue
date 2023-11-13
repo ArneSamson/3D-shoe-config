@@ -83,7 +83,6 @@
         },
         methods: {
 
-            //function that gets called when a color is selected, gets a hex code via the color parameter and also which part of the shoe is being colored
             selectColor(color, part) {
                 let notConvertedColor = color;
                 let convertedColor = null;
@@ -105,11 +104,11 @@
 
                 switch(part) {
                     case 'sole':
-                        this.selectSoleColor(color);
+                        this.assignColor(color);
                         this.finalOptions.shoeColorSole = convertedColor;
                     break;
                     case 'laces':
-                        this.selectLacesColor(color);
+                        this.assignColor(color);
                         this.finalOptions.shoeColorLaces = convertedColor;
                     break;
                 }
@@ -120,7 +119,8 @@
                 console.log('💕', this.finalOptions);
 
             },
-            selectSoleColor(color) {
+
+            assignColor(color) {
                 const previouslySelectedCircle = document.querySelector('.selected-circle');
                 if (previouslySelectedCircle) {
                 previouslySelectedCircle.classList.remove('selected-circle');
@@ -132,28 +132,10 @@
                 }  
 
                 this.selectedOption = color;
-
-                // console.log('🌻', color);
-                // console.log('🌻', this.finalOptions);
-
             },
-            selectLacesColor(color) {
-                const previouslySelectedCircle = document.querySelector('.selected-circle');
-                if (previouslySelectedCircle) {
-                previouslySelectedCircle.classList.remove('selected-circle');
-                }
 
-                const newlySelectedCircle = document.querySelector(`.circles.${color}`);
-                if (newlySelectedCircle) {
-                newlySelectedCircle.classList.add('selected-circle');
-                }  
 
-                this.selectedOption = color;
-
-                // console.log('🌻', color);
-                // console.log('🌻', this.finalOptions);
-
-            },
+            //page selection_______________________________________________________
             selectPage(direction) {
                 if (direction === 'left') {
                 if (this.currentPage !== '1') {
@@ -181,6 +163,7 @@
                 }
 
             },
+            //page selection_______________________________________________________
     },
   };
 </script>
