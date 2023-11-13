@@ -72,12 +72,12 @@
             pageName: 'Sole',
             currentPage: '1',
             finalOptions: {
-            shoeColorSole: null,
-            shoeColorLaces: null,
-            shoeColorPanelUp: null,
-            shoeColorMaterialUp: null,
-            shoeColorPanelDown: null,
-            shoeColorMaterialDown: null,
+              shoeColorSole: null,
+              shoeColorLaces: null,
+              shoeColorPanelUp: null,
+              shoeColorMaterialUp: null,
+              shoeColorPanelDown: null,
+              shoeColorMaterialDown: null,
             },
         };
         },
