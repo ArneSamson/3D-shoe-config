@@ -159,52 +159,103 @@
         </div>
       </div>
 
-      <div id="bottommaterial">
+      <div id="topmaterial">
         <p class="subtitle">Panel one material</p>
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop(leatherTexture)"
+          @click="updateMaterialTop('/src/assets/textures/leather.jpg')"
         >
           <div
             :class="{
               circles: true,
-              yellow: true,
+              leather: true,
             }"
           ></div>
         </div>
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop(holesTexture)"
+          @click="updateMaterialTop('/src/assets/textures/holes.jpg')"
         >
           <div
             :class="{
               circles: true,
-              red: true,
+              holes: true,
             }"
           ></div>
         </div>
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop(leatherTexture)"
+          @click="updateMaterialTop('/src/assets/textures/latex.jpg')"
         >
           <div
             :class="{
               circles: true,
-              black: true,
+              latex: true,
             }"
           ></div>
         </div>
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop(leatherTexture)"
+          @click="updateMaterialTop('/src/assets/textures/fabric.jpg')"
         >
           <div
             :class="{
               circles: true,
-              grey: true,
+              fabric: true,
+            }"
+          ></div>
+        </div>
+      </div>
+
+      <div id="bottommaterial">
+        <p class="subtitle">Panel two material</p>
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialBottom('/src/assets/textures/leather.jpg')"
+        >
+          <div
+            :class="{
+              circles: true,
+              leather: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialBottom('/src/assets/textures/holes.jpg')"
+        >
+          <div
+            :class="{
+              circles: true,
+              holes: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialBottom('/src/assets/textures/latex.jpg')"
+        >
+          <div
+            :class="{
+              circles: true,
+              latex: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialBottom('/src/assets/textures/fabric.jpg')"
+        >
+          <div
+            :class="{
+              circles: true,
+              fabric: true,
             }"
           ></div>
         </div>
@@ -337,30 +388,43 @@ export default {
 
     this.updateColorTop = updateColorTopFromDiv;
 
-    const textureLoaderLeather = new THREE.TextureLoader();
-    const leatherTexture = textureLoaderLeather.load(
-      "src/assets/textures/leather.jpg"
-    );
-
-    const holesTexture = textureLoaderHoles.load(
-      "src/assets/textures/holes.jpg"
-    );
-
-    const updateMaterialTopFromDiv = (texture) => {
+    const updateMaterialTopFromDiv = (textureUrl) => {
       if (shoe) {
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(textureUrl);
+
         console.log("💕", texture);
-        this.selectedOption = texture;
+
         const MaterialTop = shoe.getObjectByName("outside_1").material;
         const MaterialBottom = shoe.getObjectByName("outside_2").material;
+
         MaterialTop.map = texture;
         MaterialTop.needsUpdate = true;
+
         MaterialBottom.map = texture;
         MaterialBottom.needsUpdate = true;
       }
     };
 
-    this.updateMaterialTop = (event) =>
-      updateMaterialTopFromDiv(leatherTexture);
+    this.updateMaterialTop = (textureUrl) =>
+      updateMaterialTopFromDiv(textureUrl);
+
+    const updateMaterialBottomFromDiv = (textureUrl) => {
+      if (shoe) {
+        const textureLoader = new THREE.TextureLoader();
+        const texture = textureLoader.load(textureUrl);
+
+        console.log("💕", texture);
+
+        const MaterialTop = shoe.getObjectByName("inside").material;
+
+        MaterialTop.map = texture;
+        MaterialTop.needsUpdate = true;
+      }
+    };
+
+    this.updateMaterialBottom = (textureUrl) =>
+      updateMaterialBottomFromDiv(textureUrl);
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -498,6 +562,26 @@ button {
 
 .grey {
   background-color: #c9c9c9;
+}
+
+.leather {
+  background-image: url("/src/assets/textures/leather.jpg");
+  background-size: cover;
+}
+
+.holes {
+  background-image: url("/src/assets/textures/holes.jpg");
+  background-size: cover;
+}
+
+.latex {
+  background-image: url("/src/assets/textures/latex.jpg");
+  background-size: cover;
+}
+
+.fabric {
+  background-image: url("/src/assets/textures/fabric.jpg");
+  background-size: cover;
 }
 
 #configurator {
