@@ -64,6 +64,8 @@
 </template>
 
 <script>
+import store from '../store';
+
     export default {
         name: 'Menu',
         data() {
@@ -117,7 +119,6 @@
                 console.log('💕', part);
 
                 console.log('💕', this.finalOptions);
-
             },
 
             assignColor(color) {

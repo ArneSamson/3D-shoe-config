@@ -11,6 +11,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 
 export default{
+    
     mounted(){
         const windowWidth = window.innerWidth*2;
         const ratio = windowWidth / window.innerHeight;
