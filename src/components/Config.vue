@@ -23,37 +23,50 @@ export default{
         renderer.setPixelRatio(window.devicePixelRatio);
         this.$refs.canvasContainer.appendChild(renderer.domElement);
         
-        camera.position.z = 5;
+        camera.position.z = 7;
 
         const loadingManager = new THREE.LoadingManager();
 
         const gltfLoader = new GLTFLoader(loadingManager);
 
         const controls = new OrbitControls(camera, renderer.domElement);
+        controls.maxPolarAngle = Math.PI / 2;
+        controls.enablePan = false;
         
         scene.background = new THREE.Color(0xffffff);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
         const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
         const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight4 = new THREE.DirectionalLight(0xffffff, 1);
         directionalLight.position.set(0, 0, 1);
         directionalLight2.position.set(0, 0, -1);
         directionalLight3.position.set(0, 1, 0);
+        directionalLight4.position.set(-1, 0, 0);
         scene.add(directionalLight);
         scene.add(directionalLight2);
         scene.add(directionalLight3);
+        scene.add(directionalLight4);
         
+        // const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+        // scene.add(ambientLight);
+
 
         let shoe;
 
-        //add shoe model
         gltfLoader.load('src/assets/models/new-shoe.glb', (gltf) => {
             shoe = gltf.scene;
             shoe.scale.set(2.5, 2.5, 2.5);
+
+            shoe.rotation.order = 'YXZ';
+
+            shoe.rotation.x = 0.5;
             shoe.rotation.y = 1.5;
+
             shoe.position.z = 0;
             shoe.position.y = -0.5;
             shoe.position.x = -0.5;
+
             scene.add(shoe);
         });        
 
