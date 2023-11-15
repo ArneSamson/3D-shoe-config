@@ -1,49 +1,100 @@
 <template>
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
-    <div id="colors">
-      <div :class="{ options: true }" @click="updateColor('#FFFF00')">
-        <div
-          :class="{
-            circles: true,
-            'selected-circle': selectedOption === '#FFFF00',
-            yellow: true,
-          }"
-        ></div>
-        <p v-if="selectedOption === '#FFFF00'">Yellow</p>
+
+    <div id="configurator">
+      <div id="lacecolor">
+        <p class="subtitle">Laces color</p>
+        <div :class="{ options: true }" @click="updateColorLaces('#FFFF00')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FFFF00',
+              yellow: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FFFF00'">Yellow</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorLaces('#FF0000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FF0000',
+              red: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FF0000'">Red</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorLaces('#000000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#000000',
+              black: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#000000'">Black</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorLaces('#C9C9C9')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#C9C9C9',
+              grey: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#C9C9C9'">Grey</p>
+        </div>
       </div>
 
-      <div :class="{ options: true }" @click="updateColor('#FF0000')">
-        <div
-          :class="{
-            circles: true,
-            'selected-circle': selectedOption === '#FF0000',
-            red: true,
-          }"
-        ></div>
-        <p v-if="selectedOption === '#FF0000'">Red</p>
-      </div>
+      <div id="solecolor">
+        <p class="subtitle">Sole color</p>
+        <div :class="{ options: true }" @click="updateColorSole('#FFFF00')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FFFF00',
+              yellow: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FFFF00'">Yellow</p>
+        </div>
 
-      <div :class="{ options: true }" @click="updateColor('#000000')">
-        <div
-          :class="{
-            circles: true,
-            'selected-circle': selectedOption === '#000000',
-            black: true,
-          }"
-        ></div>
-        <p v-if="selectedOption === '#000000'">Black</p>
-      </div>
+        <div :class="{ options: true }" @click="updateColorSole('#FF0000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FF0000',
+              red: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FF0000'">Red</p>
+        </div>
 
-      <div :class="{ options: true }" @click="updateColor('#C9C9C9')">
-        <div
-          :class="{
-            circles: true,
-            'selected-circle': selectedOption === '#C9C9C9',
-            grey: true,
-          }"
-        ></div>
-        <p v-if="selectedOption === '#C9C9C9'">Grey</p>
+        <div :class="{ options: true }" @click="updateColorSole('#000000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#000000',
+              black: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#000000'">Black</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorSole('#C9C9C9')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#C9C9C9',
+              grey: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#C9C9C9'">Grey</p>
+        </div>
       </div>
     </div>
   </div>
@@ -112,7 +163,7 @@ export default {
       scene.add(shoe);
     });
 
-    const updateColorFromDiv = (hexColor) => {
+    const updateColorLacesFromDiv = (hexColor) => {
       console.log("💕");
       if (shoe) {
         console.log("💕", hexColor);
@@ -123,7 +174,23 @@ export default {
       }
     };
 
-    this.updateColor = updateColorFromDiv;
+    this.updateColorLaces = updateColorLacesFromDiv;
+
+    const updateColorSoleFromDiv = (hexColor) => {
+      console.log("💕");
+      if (shoe) {
+        console.log("💕", hexColor);
+        this.selectedOption = hexColor;
+        const soleMaterialTop = shoe.getObjectByName("sole_1").material;
+        const soleMaterialBottom = shoe.getObjectByName("sole_2").material;
+        soleMaterialTop.color.setStyle(hexColor);
+        soleMaterialTop.needsUpdate = true;
+        soleMaterialBottom.color.setStyle(hexColor);
+        soleMaterialBottom.needsUpdate = true;
+      }
+    };
+
+    this.updateColorSole = updateColorSoleFromDiv;
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -183,11 +250,9 @@ menu {
   max-width: 500px;
 }
 .options {
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px;
 }
 .circles {
   width: 50px;
@@ -264,5 +329,17 @@ button {
 
 .grey {
   background-color: #c9c9c9;
+}
+
+#configurator {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.subtitle {
+  color: white;
 }
 </style>
