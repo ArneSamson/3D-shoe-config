@@ -96,6 +96,100 @@
           <p v-if="selectedOption === '#C9C9C9'">Grey</p>
         </div>
       </div>
+
+      <div id="bottomcolor">
+        <p class="subtitle">Panel one color</p>
+        <div :class="{ options: true }" @click="updateColorinside('#FFFF00')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FFFF00',
+              yellow: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FFFF00'">Yellow</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorinside('#FF0000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FF0000',
+              red: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FF0000'">Red</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorinside('#000000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#000000',
+              black: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#000000'">Black</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorinside('#C9C9C9')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#C9C9C9',
+              grey: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#C9C9C9'">Grey</p>
+        </div>
+      </div>
+
+      <div id="topcolor">
+        <p class="subtitle">Panel two color</p>
+        <div :class="{ options: true }" @click="updateColorTop('#FFFF00')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FFFF00',
+              yellow: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FFFF00'">Yellow</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorTop('#FF0000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#FF0000',
+              red: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#FF0000'">Red</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorTop('#000000')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#000000',
+              black: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#000000'">Black</p>
+        </div>
+
+        <div :class="{ options: true }" @click="updateColorTop('#C9C9C9')">
+          <div
+            :class="{
+              circles: true,
+              'selected-circle': selectedOption === '#C9C9C9',
+              grey: true,
+            }"
+          ></div>
+          <p v-if="selectedOption === '#C9C9C9'">Grey</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -191,6 +285,35 @@ export default {
     };
 
     this.updateColorSole = updateColorSoleFromDiv;
+
+    const updateColorinsideFromDiv = (hexColor) => {
+      console.log("💕");
+      if (shoe) {
+        console.log("💕", hexColor);
+        this.selectedOption = hexColor;
+        const insideMaterial = shoe.getObjectByName("inside").material;
+        insideMaterial.color.setStyle(hexColor);
+        insideMaterial.needsUpdate = true;
+      }
+    };
+
+    this.updateColorinside = updateColorinsideFromDiv;
+
+    const updateColorTopFromDiv = (hexColor) => {
+      console.log("💕");
+      if (shoe) {
+        console.log("💕", hexColor);
+        this.selectedOption = hexColor;
+        const topMaterialTop = shoe.getObjectByName("outside_1").material;
+        const topMaterialBottom = shoe.getObjectByName("outside_2").material;
+        topMaterialTop.color.setStyle(hexColor);
+        topMaterialTop.needsUpdate = true;
+        topMaterialBottom.color.setStyle(hexColor);
+        topMaterialBottom.needsUpdate = true;
+      }
+    };
+
+    this.updateColorTop = updateColorTopFromDiv;
 
     const animate = () => {
       requestAnimationFrame(animate);
