@@ -158,6 +158,57 @@
           ></div>
         </div>
       </div>
+
+      <div id="bottommaterial">
+        <p class="subtitle">Panel one material</p>
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialTop(leatherTexture)"
+        >
+          <div
+            :class="{
+              circles: true,
+              yellow: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialTop(holesTexture)"
+        >
+          <div
+            :class="{
+              circles: true,
+              red: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialTop(leatherTexture)"
+        >
+          <div
+            :class="{
+              circles: true,
+              black: true,
+            }"
+          ></div>
+        </div>
+
+        <div
+          :class="{ options: true }"
+          @click="updateMaterialTop(leatherTexture)"
+        >
+          <div
+            :class="{
+              circles: true,
+              grey: true,
+            }"
+          ></div>
+        </div>
+      </div>
     </div>
 
     <button>Done</button>
@@ -168,6 +219,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 
 export default {
   data() {
@@ -285,9 +337,33 @@ export default {
 
     this.updateColorTop = updateColorTopFromDiv;
 
+    const textureLoaderLeather = new THREE.TextureLoader();
+    const leatherTexture = textureLoaderLeather.load(
+      "src/assets/textures/leather.jpg"
+    );
+
+    const holesTexture = textureLoaderHoles.load(
+      "src/assets/textures/holes.jpg"
+    );
+
+    const updateMaterialTopFromDiv = (texture) => {
+      if (shoe) {
+        console.log("💕", texture);
+        this.selectedOption = texture;
+        const MaterialTop = shoe.getObjectByName("outside_1").material;
+        const MaterialBottom = shoe.getObjectByName("outside_2").material;
+        MaterialTop.map = texture;
+        MaterialTop.needsUpdate = true;
+        MaterialBottom.map = texture;
+        MaterialBottom.needsUpdate = true;
+      }
+    };
+
+    this.updateMaterialTop = (event) =>
+      updateMaterialTopFromDiv(leatherTexture);
+
     const animate = () => {
       requestAnimationFrame(animate);
-
       renderer.render(scene, camera);
     };
 
