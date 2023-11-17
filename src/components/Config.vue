@@ -262,6 +262,20 @@
       </div>
     </div>
 
+    <div class="user-details">
+      <label for="shoeSize">Shoe Size:</label>
+      <input type="number" v-model="shoeSize" />
+
+      <label for="userName">User Name:</label>
+      <input type="text" v-model="userName" />
+
+      <label for="userAddress">User Address:</label>
+      <input type="text" v-model="userAddress" />
+
+      <label for="userEmail">User Email:</label>
+      <input type="email" v-model="userEmail" />
+    </div>
+
     <button @click="handleDoneButtonClick">Done</button>
   </div>
 </template>
@@ -285,6 +299,10 @@ export default {
         shoeMaterialPanelUp: "/src/assets/textures/leather.jpg",
         shoeMaterialPanelDown: "/src/assets/textures/leather.jpg",
       },
+      shoeSize: "Not filled in",
+      userName: "Not filled in",
+      userAddress: "Not filled in",
+      userEmail: "Not filled in",
     };
   },
   mounted() {
@@ -457,7 +475,7 @@ export default {
       const data = {
         shoe: {
           shoeType: "AIR REV. NITRO S",
-          shoeSize: 40,
+          shoeSize: this.shoeSize,
           shoeColorSole: this.selectedColors.shoeColorSole,
           shoeColorLaces: this.selectedColors.shoeColorLaces,
           shoeColorPanelDown: this.selectedColors.shoeColorPanelDown,
@@ -465,9 +483,9 @@ export default {
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
           status: "Order placed",
-          userName: "Evi Vermeêren",
-          userAddress: "Hanswijkstraat 47, 2800 Mechelen",
-          userEmail: "r0702020@student.thomasmore.be",
+          userName: this.userName,
+          userAddress: this.userAddress,
+          userEmail: this.userEmail,
         },
       };
 
