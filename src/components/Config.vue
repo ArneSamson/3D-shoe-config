@@ -276,6 +276,8 @@
       <input type="email" v-model="userEmail" />
     </div>
 
+    <div v-if="formError" class="error-message">{{ formError }}</div>
+
     <button @click="handleDoneButtonClick">Done</button>
   </div>
 </template>
@@ -290,19 +292,20 @@ export default {
   data() {
     return {
       selectedColors: {
-        shoeColorLaces: "#FFFF00",
-        shoeColorSole: "#FFFF00",
-        shoeColorPanelUp: "#FFFF00",
-        shoeColorPanelDown: "#FFFF00",
+        shoeColorLaces: null,
+        shoeColorSole: null,
+        shoeColorPanelUp: null,
+        shoeColorPanelDown: null,
       },
       selectedMaterials: {
-        shoeMaterialPanelUp: "/src/assets/textures/leather.jpg",
-        shoeMaterialPanelDown: "/src/assets/textures/leather.jpg",
+        shoeMaterialPanelUp: null,
+        shoeMaterialPanelDown: null,
       },
-      shoeSize: "Not filled in",
-      userName: "Not filled in",
-      userAddress: "Not filled in",
-      userEmail: "Not filled in",
+      shoeSize: null,
+      userName: null,
+      userAddress: null,
+      userEmail: null,
+      formError: null,
     };
   },
   mounted() {
@@ -466,8 +469,25 @@ export default {
 
   methods: {
     handleDoneButtonClick() {
-      console.log("click");
-      this.fetchData();
+      if (
+        this.shoeSize &&
+        this.userName &&
+        this.userAddress &&
+        this.userEmail &&
+        this.selectedColors.shoeColorLaces &&
+        this.selectedColors.shoeColorSole &&
+        this.selectedColors.shoeColorPanelDown &&
+        this.selectedColors.shoeColorPanelUp &&
+        this.selectedMaterials.shoeMaterialPanelDown &&
+        this.selectedMaterials.shoeMaterialPanelUp
+      ) {
+        this.formError = null; // Clear any previous errors
+
+        this.fetchData();
+      } else {
+        this.formError =
+          "Please fill in all the required fields and selections.";
+      }
     },
 
     fetchData() {
@@ -673,5 +693,10 @@ button {
 
 .subtitle {
   color: white;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 </style>
