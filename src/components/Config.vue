@@ -163,7 +163,7 @@
         <p class="subtitle">Panel one material</p>
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop('/src/assets/textures/leather.jpg')"
+          @click="updateMaterialTop('/textures/leather.jpg')"
         >
           <div
             :class="{
@@ -175,7 +175,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop('/src/assets/textures/holes.jpg')"
+          @click="updateMaterialTop('/textures/holes.jpg')"
         >
           <div
             :class="{
@@ -187,7 +187,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop('/src/assets/textures/latex.jpg')"
+          @click="updateMaterialTop('/textures/latex.jpg')"
         >
           <div
             :class="{
@@ -199,7 +199,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialTop('/src/assets/textures/fabric.jpg')"
+          @click="updateMaterialTop('/textures/fabric.jpg')"
         >
           <div
             :class="{
@@ -214,7 +214,7 @@
         <p class="subtitle">Panel two material</p>
         <div
           :class="{ options: true }"
-          @click="updateMaterialBottom('/src/assets/textures/leather.jpg')"
+          @click="updateMaterialBottom('/textures/leather.jpg')"
         >
           <div
             :class="{
@@ -226,7 +226,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialBottom('/src/assets/textures/holes.jpg')"
+          @click="updateMaterialBottom('/textures/holes.jpg')"
         >
           <div
             :class="{
@@ -238,7 +238,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialBottom('/src/assets/textures/latex.jpg')"
+          @click="updateMaterialBottom('/textures/latex.jpg')"
         >
           <div
             :class="{
@@ -250,7 +250,7 @@
 
         <div
           :class="{ options: true }"
-          @click="updateMaterialBottom('/src/assets/textures/fabric.jpg')"
+          @click="updateMaterialBottom('/textures/fabric.jpg')"
         >
           <div
             :class="{
@@ -663,22 +663,22 @@ button {
 }
 
 .leather {
-  background-image: url("/src/assets/textures/leather.jpg");
+  background-image: url("/textures/leather.jpg");
   background-size: cover;
 }
 
 .holes {
-  background-image: url("/src/assets/textures/holes.jpg");
+  background-image: url("/textures/holes.jpg");
   background-size: cover;
 }
 
 .latex {
-  background-image: url("/src/assets/textures/latex.jpg");
+  background-image: url("/textures/latex.jpg");
   background-size: cover;
 }
 
 .fabric {
-  background-image: url("/src/assets/textures/fabric.jpg");
+  background-image: url("/textures/fabric.jpg");
   background-size: cover;
 }
 
