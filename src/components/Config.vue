@@ -346,7 +346,7 @@ export default {
 
     let shoe;
 
-    gltfLoader.load("src/assets/models/new-shoe.glb", (gltf) => {
+    gltfLoader.load("/models/new-shoe.glb", (gltf) => {
       shoe = gltf.scene;
       shoe.scale.set(2.5, 2.5, 2.5);
 
