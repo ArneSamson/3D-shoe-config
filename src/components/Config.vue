@@ -23,7 +23,7 @@
           ></div>
         </div>
 
-        <div :class="{ options: true }" @click="updateColorLaces('#000000')">
+        <div :class="{ options: true }" @click="updateColorLaces('#FFC0CB')">
           <div
             :class="{
               circles: true,
@@ -62,7 +62,7 @@
           ></div>
         </div>
 
-        <div :class="{ options: true }" @click="updateColorSole('#000000')">
+        <div :class="{ options: true }" @click="updateColorSole('#FFC0CB')">
           <div
             :class="{
               circles: true,
@@ -101,7 +101,7 @@
           ></div>
         </div>
 
-        <div :class="{ options: true }" @click="updateColorinside('#000000')">
+        <div :class="{ options: true }" @click="updateColorinside('#FFC0CB')">
           <div
             :class="{
               circles: true,
@@ -140,7 +140,7 @@
           ></div>
         </div>
 
-        <div :class="{ options: true }" @click="updateColorTop('#000000')">
+        <div :class="{ options: true }" @click="updateColorTop('#FFC0CB')">
           <div
             :class="{
               circles: true,
@@ -262,7 +262,7 @@
       </div>
     </div>
 
-    <button>Done</button>
+    <button @click="handleDoneButtonClick">Done</button>
   </div>
 </template>
 
@@ -274,7 +274,18 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 
 export default {
   data() {
-    return {};
+    return {
+      selectedColors: {
+        shoeColorLaces: "#FFFF00",
+        shoeColorSole: "#FFFF00",
+        shoeColorPanelUp: "#FFFF00",
+        shoeColorPanelDown: "#FFFF00",
+      },
+      selectedMaterials: {
+        shoeMaterialPanelUp: "/src/assets/textures/leather.jpg",
+        shoeMaterialPanelDown: "/src/assets/textures/leather.jpg",
+      },
+    };
   },
   mounted() {
     const windowWidth = window.innerWidth * 2;
@@ -334,10 +345,10 @@ export default {
       console.log("💕");
       if (shoe) {
         console.log("💕", hexColor);
-        this.selectedOption = hexColor;
         const lacesMaterial = shoe.getObjectByName("laces").material;
         lacesMaterial.color.setStyle(hexColor);
         lacesMaterial.needsUpdate = true;
+        this.selectedColors.shoeColorLaces = hexColor;
       }
     };
 
@@ -347,13 +358,13 @@ export default {
       console.log("💕");
       if (shoe) {
         console.log("💕", hexColor);
-        this.selectedOption = hexColor;
         const soleMaterialTop = shoe.getObjectByName("sole_1").material;
         const soleMaterialBottom = shoe.getObjectByName("sole_2").material;
         soleMaterialTop.color.setStyle(hexColor);
         soleMaterialTop.needsUpdate = true;
         soleMaterialBottom.color.setStyle(hexColor);
         soleMaterialBottom.needsUpdate = true;
+        this.selectedColors.shoeColorSole = hexColor;
       }
     };
 
@@ -363,10 +374,10 @@ export default {
       console.log("💕");
       if (shoe) {
         console.log("💕", hexColor);
-        this.selectedOption = hexColor;
         const insideMaterial = shoe.getObjectByName("inside").material;
         insideMaterial.color.setStyle(hexColor);
         insideMaterial.needsUpdate = true;
+        this.selectedColors.shoeColorPanelDown = hexColor;
       }
     };
 
@@ -376,13 +387,13 @@ export default {
       console.log("💕");
       if (shoe) {
         console.log("💕", hexColor);
-        this.selectedOption = hexColor;
         const topMaterialTop = shoe.getObjectByName("outside_1").material;
         const topMaterialBottom = shoe.getObjectByName("outside_2").material;
         topMaterialTop.color.setStyle(hexColor);
         topMaterialTop.needsUpdate = true;
         topMaterialBottom.color.setStyle(hexColor);
         topMaterialBottom.needsUpdate = true;
+        this.selectedColors.shoeColorPanelUp = hexColor;
       }
     };
 
@@ -403,11 +414,12 @@ export default {
 
         MaterialBottom.map = texture;
         MaterialBottom.needsUpdate = true;
+
+        this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
       }
     };
 
-    this.updateMaterialTop = (textureUrl) =>
-      updateMaterialTopFromDiv(textureUrl);
+    this.updateMaterialTop = updateMaterialTopFromDiv;
 
     const updateMaterialBottomFromDiv = (textureUrl) => {
       if (shoe) {
@@ -420,11 +432,11 @@ export default {
 
         MaterialTop.map = texture;
         MaterialTop.needsUpdate = true;
+        this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
       }
     };
 
-    this.updateMaterialBottom = (textureUrl) =>
-      updateMaterialBottomFromDiv(textureUrl);
+    this.updateMaterialBottom = updateMaterialBottomFromDiv;
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -434,7 +446,48 @@ export default {
     animate();
   },
 
-  methods: {},
+  methods: {
+    handleDoneButtonClick() {
+      console.log("click");
+      this.fetchData();
+    },
+
+    fetchData() {
+      console.log("fetching data");
+      const data = {
+        shoe: {
+          shoeType: "AIR REV. NITRO S",
+          shoeSize: 40,
+          shoeColorSole: this.selectedColors.shoeColorSole,
+          shoeColorLaces: this.selectedColors.shoeColorLaces,
+          shoeColorPanelDown: this.selectedColors.shoeColorPanelDown,
+          shoeColorPanelUp: this.selectedColors.shoeColorPanelUp,
+          shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
+          shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
+          status: "Order placed",
+          userName: "Evi Vermeêren",
+          userAddress: "Hanswijkstraat 47, 2800 Mechelen",
+          userEmail: "r0702020@student.thomasmore.be",
+        },
+      };
+
+      fetch("https://dev5-api-sneakers.onrender.com/api/v1/shoes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle the response if needed
+          console.log("Data successfully sent:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    },
+  },
 };
 </script>
 
@@ -443,6 +496,7 @@ export default {
   width: 100%;
   height: 50vh;
 }
+
 menu {
   margin: 0;
   padding: 0;
@@ -462,6 +516,7 @@ menu {
   justify-content: space-between;
   align-items: center;
 }
+
 .arrows-item {
   padding-left: 20px;
   padding-right: 20px;
@@ -482,11 +537,13 @@ menu {
   align-items: flex-start;
   max-width: 500px;
 }
+
 .options {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .circles {
   width: 50px;
   height: 50px;
@@ -506,6 +563,7 @@ h1 {
   line-height: normal;
   letter-spacing: 0.6px;
 }
+
 h2 {
   color: #000;
   font-family: "inter", sans-serif;
@@ -514,6 +572,7 @@ h2 {
   font-weight: 300;
   line-height: normal;
 }
+
 h3 {
   color: #000;
   font-family: "inter", sans-serif;
@@ -522,6 +581,7 @@ h3 {
   font-weight: 300;
   line-height: normal;
 }
+
 p {
   font-family: "inter", sans-serif;
   font-size: 18px;
@@ -549,7 +609,7 @@ button {
 }
 
 .black {
-  background-color: #000;
+  background-color: #ffc0cb;
 }
 
 .red {
