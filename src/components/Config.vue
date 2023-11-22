@@ -682,10 +682,8 @@ export default {
     };
 
     animate();
-  },
 
-  methods: {
-    toggleInitials() {
+    const toggleInitials = () => {
       this.initialsState = !this.initialsState;
       console.log(this.initialsState);
       console.log(this.initials);
@@ -694,22 +692,27 @@ export default {
       } else if(this.initialsState === false) {
         this.removeInitials();
       }
-    },
-    addInitials(){
+    };
+
+    const removeInitials = () => {
       const { scene } = this;
       //remove previous text
       if(this.shoeText){
         scene.remove(this.shoeText);
       }
-      //create new text    
-    },
-    removeInitials(){
+    };
+    const addInitials = () => {
       const { scene } = this;
       //remove previous text
       if(this.shoeText){
         scene.remove(this.shoeText);
       }
-    },
+      //create new text
+      
+    };
+  },
+
+  methods: {
     handleDoneButtonClick() {
       if (
         this.shoeSize &&
