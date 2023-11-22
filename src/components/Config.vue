@@ -327,6 +327,7 @@ export default {
         shoeMaterialPanelDown: null,
       },
       shoeSize: null,
+      jewel: null,
       userName: null,
       userAddress: null,
       userEmail: null,
@@ -406,6 +407,8 @@ export default {
     this.addJewelCat = () => {
       jewelCat.visible = !jewelCat.visible;
       jewelDog.visible = false;
+      this.jewel = "cat";
+      console.log(this.jewel);
     };
 
     let jewelDog;
@@ -428,6 +431,8 @@ export default {
     this.addJewelDog = () => {
       jewelDog.visible = !jewelDog.visible;
       jewelCat.visible = false;
+      this.jewel = "dog";
+      console.log(this.jewel);
     };
 
     const updateColorLacesFromDiv = (hexColor) => {
@@ -570,6 +575,7 @@ export default {
           shoeColorPanelUp: this.selectedColors.shoeColorPanelUp,
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
+          jewel: this.jewel,
           status: "Order placed",
           userName: this.userName,
           userAddress: this.userAddress,
