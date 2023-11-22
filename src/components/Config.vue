@@ -300,6 +300,21 @@
       </div>
     </div>
 
+    <div>
+      <div class="initials-container">
+  <label>
+    <input type="checkbox" v-model="showInitials" />
+    Show Initials
+  </label>
+  <input
+    type="text"
+    v-if="showInitials"
+    v-model="initialsValue"
+    placeholder="Enter Initials"
+  />
+</div>
+    </div>
+
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
@@ -326,10 +341,16 @@
 </template>
 
 <script>
+import {ref} from 'vue';
+
+const showInitials = ref(false);
+const initialsValue = ref('');
+
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
+import { TextGeometry} from "three/addons/geometries/TextGeometry.js";
 
 export default {
   data() {
@@ -389,6 +410,8 @@ export default {
     scene.add(directionalLight4);
 
     let shoe;
+
+    let shoeText;
 
     gltfLoader.load("/models/new-shoe.glb", (gltf) => {
       shoe = gltf.scene;
@@ -726,7 +749,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #threeContainers {
   width: 100%;
   height: 50vh;
@@ -757,12 +780,13 @@ menu {
   padding-right: 20px;
 }
 
-.shoe-desc {
+.initials-container {
   display: flex;
   flex-direction: column;
   align-items: start;
   padding: 43px;
   background-color: #d6ff38;
+  padding: 50px;
 }
 
 .selections {
