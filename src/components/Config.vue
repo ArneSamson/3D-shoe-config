@@ -390,15 +390,16 @@ export default {
 
     let jewelCat;
 
-    gltfLoader.load("/models/cat.glb", (gltf) => {
+    gltfLoader.load("/models/pendant1.glb", (gltf) => {
       jewelCat = gltf.scene;
-      jewelCat.scale.set(0.003, 0.003, 0.003);
+      jewelCat.scale.set(0.05, 0.05, 0.05);
 
-      jewelCat.rotation.z = -0.5;
+      jewelCat.rotation.x = -1.7;
+      jewelCat.rotation.y = 0.3;
 
-      jewelCat.position.z = 0.1;
-      jewelCat.position.y = -1;
-      jewelCat.position.x = 2.8;
+      jewelCat.position.z = 1.3;
+      jewelCat.position.y = 0.5;
+      jewelCat.position.x = -1;
       jewelCat.visible = false;
 
       scene.add(jewelCat);
