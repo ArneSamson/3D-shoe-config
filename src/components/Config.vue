@@ -279,6 +279,24 @@
             }"
           ></div>
         </div>
+
+        <div :class="{ options: true }" @click="addJewelHedgehog">
+          <div
+            :class="{
+              circles: true,
+              jewelHedgehog: true,
+            }"
+          ></div>
+        </div>
+
+        <div :class="{ options: true }" @click="addJewelWhale">
+          <div
+            :class="{
+              circles: true,
+              jewelWhale: true,
+            }"
+          ></div>
+        </div>
       </div>
     </div>
 
@@ -392,14 +410,14 @@ export default {
 
     gltfLoader.load("/models/pendantGiraffe.glb", (gltf) => {
       jewelGiraffe = gltf.scene;
-      jewelGiraffe.scale.set(0.05, 0.05, 0.05);
+      jewelGiraffe.scale.set(0.04, 0.04, 0.04);
 
-      jewelGiraffe.rotation.x = -1.7;
+      jewelGiraffe.rotation.x = -1.85;
       jewelGiraffe.rotation.y = 0.3;
 
-      jewelGiraffe.position.z = 1.3;
-      jewelGiraffe.position.y = 0.5;
-      jewelGiraffe.position.x = -1;
+      jewelGiraffe.position.z = 1.25;
+      jewelGiraffe.position.y = 0.8;
+      jewelGiraffe.position.x = -1.3;
       jewelGiraffe.visible = false;
 
       scene.add(jewelGiraffe);
@@ -408,6 +426,8 @@ export default {
     this.addJewelGiraffe = () => {
       jewelGiraffe.visible = !jewelGiraffe.visible;
       jewelElephant.visible = false;
+      jewelHedgehog.visible = false;
+      jewelWhale.visible = false;
       this.jewel = "Giraffe";
       console.log(this.jewel);
     };
@@ -432,7 +452,61 @@ export default {
     this.addJewelElephant = () => {
       jewelElephant.visible = !jewelElephant.visible;
       jewelGiraffe.visible = false;
+      jewelHedgehog.visible = false;
+      jewelWhale.visible = false;
       this.jewel = "Elephant";
+      console.log(this.jewel);
+    };
+
+    let jewelHedgehog;
+
+    gltfLoader.load("/models/pendantHedgehog.glb", (gltf) => {
+      jewelHedgehog = gltf.scene;
+      jewelHedgehog.scale.set(0.05, 0.05, 0.05);
+
+      jewelHedgehog.rotation.x = -1.95;
+      jewelHedgehog.rotation.y = 0.6;
+
+      jewelHedgehog.position.z = 1.15;
+      jewelHedgehog.position.y = 1.2;
+      jewelHedgehog.position.x = -1;
+      jewelHedgehog.visible = false;
+
+      scene.add(jewelHedgehog);
+    });
+
+    this.addJewelHedgehog = () => {
+      jewelHedgehog.visible = !jewelHedgehog.visible;
+      jewelGiraffe.visible = false;
+      jewelElephant.visible = false;
+      jewelWhale.visible = false;
+      this.jewel = "Hedgehog";
+      console.log(this.jewel);
+    };
+
+    let jewelWhale;
+
+    gltfLoader.load("/models/pendantWhale.glb", (gltf) => {
+      jewelWhale = gltf.scene;
+      jewelWhale.scale.set(0.05, 0.05, 0.05);
+
+      jewelWhale.rotation.x = -2;
+      jewelWhale.rotation.y = 0.6;
+
+      jewelWhale.position.z = 0.95;
+      jewelWhale.position.y = 1.4;
+      jewelWhale.position.x = -1;
+      jewelWhale.visible = false;
+
+      scene.add(jewelWhale);
+    });
+
+    this.addJewelWhale = () => {
+      jewelWhale.visible = !jewelWhale.visible;
+      jewelGiraffe.visible = false;
+      jewelElephant.visible = false;
+      jewelHedgehog.visible = false;
+      this.jewel = "Whale";
       console.log(this.jewel);
     };
 
@@ -791,6 +865,10 @@ input {
 }
 
 .jewelElephant {
+  background-color: #fff;
+}
+
+.jewelHedgehog {
   background-color: #fff;
 }
 </style>
