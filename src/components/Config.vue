@@ -686,9 +686,15 @@ button {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 50px;
+  gap: 120px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
   padding-bottom: 50px;
+  margin-bottom: 50px;
+  overflow-x: auto;
+  flex-wrap: nowrap; /* Prevent items from wrapping */
 }
 
 .subtitle {
