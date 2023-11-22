@@ -2,7 +2,8 @@
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
 
-    <button @click="addJewel">Jewel</button>
+    <button @click="addJewelCat">JewelCat</button>
+    <button @click="addJewelDog">JewelDog</button>
     <div id="configurator">
       <div id="lacecolor">
         <p class="subtitle">Laces color</p>
@@ -368,19 +369,45 @@ export default {
       scene.add(shoe);
     });
 
-    //add small cube
-    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
-    const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.z = 0;
-    cube.position.y = 0;
-    cube.position.x = 4;
-    cube.visible = false;
+    let jewelCat;
 
-    scene.add(cube);
+    gltfLoader.load("/models/cat.glb", (gltf) => {
+      jewelCat = gltf.scene;
+      jewelCat.scale.set(0.003, 0.003, 0.003);
 
-    this.addJewel = () => {
-      cube.visible = !cube.visible;
+      jewelCat.rotation.z = -0.5;
+
+      jewelCat.position.z = 0.1;
+      jewelCat.position.y = -1;
+      jewelCat.position.x = 2.8;
+      jewelCat.visible = false;
+
+      scene.add(jewelCat);
+    });
+
+    this.addJewelCat = () => {
+      jewelCat.visible = !jewelCat.visible;
+    };
+
+    let jewelDog;
+
+    gltfLoader.load("/models/dog.glb", (gltf) => {
+      jewelDog = gltf.scene;
+      jewelDog.scale.set(0.03, 0.03, 0.03);
+
+      jewelDog.rotation.x = -1.2;
+      jewelDog.rotation.y = 1;
+
+      jewelDog.position.z = 0.1;
+      jewelDog.position.y = -1;
+      jewelDog.position.x = 2.8;
+      jewelDog.visible = false;
+
+      scene.add(jewelDog);
+    });
+
+    this.addJewelDog = () => {
+      jewelDog.visible = !jewelDog.visible;
     };
 
     const updateColorLacesFromDiv = (hexColor) => {
