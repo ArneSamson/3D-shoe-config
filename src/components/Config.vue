@@ -2,6 +2,7 @@
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
 
+    <button @click="addJewel">Jewel</button>
     <div id="configurator">
       <div id="lacecolor">
         <p class="subtitle">Laces color</p>
@@ -366,6 +367,21 @@ export default {
 
       scene.add(shoe);
     });
+
+    //add small cube
+    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+    const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    const cube = new THREE.Mesh(geometry, material);
+    cube.position.z = 0;
+    cube.position.y = 0;
+    cube.position.x = 4;
+    cube.visible = false;
+
+    scene.add(cube);
+
+    this.addJewel = () => {
+      cube.visible = !cube.visible;
+    };
 
     const updateColorLacesFromDiv = (hexColor) => {
       console.log("💕");
