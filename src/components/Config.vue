@@ -1,9 +1,6 @@
 <template>
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
-
-    <button @click="addJewelCat">JewelCat</button>
-    <button @click="addJewelDog">JewelDog</button>
     <div id="configurator">
       <div id="lacecolor">
         <p class="subtitle">Laces color</p>
@@ -262,6 +259,27 @@
           ></div>
         </div>
       </div>
+
+      <div id="jewels">
+        <p class="subtitle">Jewels</p>
+        <div :class="{ options: true }" @click="addJewelCat">
+          <div
+            :class="{
+              circles: true,
+              jewelCat: true,
+            }"
+          ></div>
+        </div>
+
+        <div :class="{ options: true }" @click="addJewelDog">
+          <div
+            :class="{
+              circles: true,
+              jewelDog: true,
+            }"
+          ></div>
+        </div>
+      </div>
     </div>
 
     <div class="user-details">
@@ -387,6 +405,7 @@ export default {
 
     this.addJewelCat = () => {
       jewelCat.visible = !jewelCat.visible;
+      jewelDog.visible = false;
     };
 
     let jewelDog;
@@ -408,6 +427,7 @@ export default {
 
     this.addJewelDog = () => {
       jewelDog.visible = !jewelDog.visible;
+      jewelCat.visible = false;
     };
 
     const updateColorLacesFromDiv = (hexColor) => {
@@ -757,5 +777,13 @@ input {
   border: 2px solid #d6ff38;
   background-color: #242424;
   color: white;
+}
+
+.jewelCat {
+  background-color: #fff;
+}
+
+.jewelDog {
+  background-color: #fff;
 }
 </style>
