@@ -909,14 +909,26 @@ input {
 }
 
 .jewelGiraffe {
-  background-color: #fff;
+  background-image: url("/media/giraffe.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .jewelElephant {
-  background-color: #fff;
+  background-image: url("/media/elephant.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .jewelHedgehog {
-  background-color: #fff;
+  background-image: url("/media/hedgehog.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.jewelWhale {
+  background-image: url("/media/whale.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 </style>
