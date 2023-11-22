@@ -263,17 +263,22 @@
     </div>
 
     <div class="user-details">
-      <label for="shoeSize">Shoe Size:</label>
-      <input type="number" v-model="shoeSize" />
-
-      <label for="userName">User Name:</label>
-      <input type="text" v-model="userName" />
-
-      <label for="userAddress">User Address:</label>
-      <input type="text" v-model="userAddress" />
-
-      <label for="userEmail">User Email:</label>
-      <input type="email" v-model="userEmail" />
+      <div class="user-details-div">
+        <label for="shoeSize">Shoe Size:</label>
+        <input type="number" v-model="shoeSize" />
+      </div>
+      <div class="user-details-div">
+        <label for="userName">User Name:</label>
+        <input type="text" v-model="userName" />
+      </div>
+      <div class="user-details-div">
+        <label for="userAddress">User Address:</label>
+        <input type="text" v-model="userAddress" />
+      </div>
+      <div class="user-details-div">
+        <label for="userEmail">User Email:</label>
+        <input type="email" v-model="userEmail" />
+      </div>
     </div>
 
     <div v-if="formError" class="error-message">{{ formError }}</div>
@@ -590,56 +595,38 @@ menu {
   border: 2px solid #fff;
 }
 
-h1 {
-  color: #000;
-  font-size: 1.5rem;
-  margin: 0;
-  font-family: "cooper-black-std", serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.6px;
-}
-
-h2 {
-  color: #000;
-  font-family: "inter", sans-serif;
-  font-size: 1§px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-
-h3 {
-  color: #000;
-  font-family: "inter", sans-serif;
-  font-size: 1§px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-
 p {
-  font-family: "inter", sans-serif;
+  font-family: "basic-sans", sans-serif;
+  font-weight: 400;
   font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  color: #000;
+  color: black;
+}
+
+label {
+  font-family: "basic-sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: white;
 }
 
 button {
   color: #d6ff38;
   background-color: #000;
-  margin: 43px;
-  width: 300px;
+  width: 60%;
+  max-width: 300px;
   height: 68px;
-  font-family: "inter", sans-serif;
+  font-family: "cooper-black-std", serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  display: block;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .selected-circle {
@@ -704,5 +691,27 @@ button {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.user-details-div {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+input {
+  border: 2px solid #d6ff38;
+  background-color: #242424;
+  color: white;
 }
 </style>
