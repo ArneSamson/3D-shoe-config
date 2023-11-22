@@ -1,7 +1,19 @@
 <template>
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
+
+    <div>
+      <div class="initials-container">
+        <label>
+          <input type="checkbox" @change="toggleInitials"/>
+          Show Initials
+        </label>
+        <input v-model="initials"/>
+      </div>
+    </div>
+
     <div id="configurator">
+
       <div id="lacecolor">
         <p class="subtitle">Laces color</p>
         <div :class="{ options: true }" @click="updateColorLaces('#FFFF00')">
@@ -300,20 +312,7 @@
       </div>
     </div>
 
-    <div>
-      <div class="initials-container">
-  <label>
-    <input type="checkbox" v-model="showInitials" />
-    Show Initials
-  </label>
-  <input
-    type="text"
-    v-if="showInitials"
-    v-model="initialsValue"
-    placeholder="Enter Initials"
-  />
-</div>
-    </div>
+
 
     <div class="user-details">
       <div class="user-details-div">
@@ -341,11 +340,6 @@
 </template>
 
 <script>
-import {ref} from 'vue';
-
-const showInitials = ref(false);
-const initialsValue = ref('');
-
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
@@ -353,8 +347,12 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { TextGeometry} from "three/addons/geometries/TextGeometry.js";
 
 export default {
+  setup() {
+  },
   data() {
     return {
+      initials: '',
+      initialsState: false,
       selectedColors: {
         shoeColorLaces: null,
         shoeColorSole: null,
@@ -687,6 +685,31 @@ export default {
   },
 
   methods: {
+    toggleInitials() {
+      this.initialsState = !this.initialsState;
+      console.log(this.initialsState);
+      console.log(this.initials);
+      if(this.initialsState === true){
+        this.addInitials();
+      } else if(this.initialsState === false) {
+        this.removeInitials();
+      }
+    },
+    addInitials(){
+      const { scene } = this;
+      //remove previous text
+      if(this.shoeText){
+        scene.remove(this.shoeText);
+      }
+      //create new text    
+    },
+    removeInitials(){
+      const { scene } = this;
+      //remove previous text
+      if(this.shoeText){
+        scene.remove(this.shoeText);
+      }
+    },
     handleDoneButtonClick() {
       if (
         this.shoeSize &&
@@ -785,8 +808,8 @@ menu {
   flex-direction: column;
   align-items: start;
   padding: 43px;
-  background-color: #d6ff38;
-  padding: 50px;
+  /* background-color: #d6ff38; */
+  /* padding: 50px; */
 }
 
 .selections {
