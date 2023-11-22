@@ -420,6 +420,18 @@ export default {
       jewelGiraffe.position.x = -1.3;
       jewelGiraffe.visible = false;
 
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 1,
+        roughness: 0.3,
+      });
+
+      jewelGiraffe.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = material;
+        }
+      });
+
       scene.add(jewelGiraffe);
     });
 
@@ -445,6 +457,18 @@ export default {
       jewelElephant.position.y = 1;
       jewelElephant.position.x = -1;
       jewelElephant.visible = false;
+
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 1,
+        roughness: 0.3,
+      });
+
+      jewelElephant.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = material;
+        }
+      });
 
       scene.add(jewelElephant);
     });
@@ -472,6 +496,18 @@ export default {
       jewelHedgehog.position.x = -1;
       jewelHedgehog.visible = false;
 
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 1,
+        roughness: 0.3,
+      });
+
+      jewelHedgehog.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = material;
+        }
+      });
+
       scene.add(jewelHedgehog);
     });
 
@@ -497,6 +533,18 @@ export default {
       jewelWhale.position.y = 1.4;
       jewelWhale.position.x = -1;
       jewelWhale.visible = false;
+
+      const material = new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 1,
+        roughness: 0.3,
+      });
+
+      jewelWhale.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = material;
+        }
+      });
 
       scene.add(jewelWhale);
     });
