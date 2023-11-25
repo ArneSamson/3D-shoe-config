@@ -8,7 +8,7 @@
           <input type="checkbox" @change="toggleInitials()"/>
           Show Initials
         </label>
-        <input v-model="initials" maxlength="2"/>
+        <input v-model="initials" @input="handleInitialsInput" maxlength="2"/>
       </div>
     </div>
 
@@ -392,9 +392,12 @@ export default {
 
     const fontLoader = new FontLoader();
     const textMaterial = new THREE.MeshStandardMaterial({
-          color: 0xffd700,
-          metalness: 1,
-          roughness: 0.3,
+      color: 0x000000,
+      metalness: 0.4,
+      roughness: 1,
+      wireframe: true,
+      wireframeLinewidth: 0.5,
+
     });
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -692,6 +695,12 @@ export default {
 
     animate();
 
+    const handleInitialsInput = () => {
+      this.initials = this.initials.toUpperCase();
+    };
+
+    this.handleInitialsInput = handleInitialsInput;
+
     
     const toggleInitials = () => {
       this.initialsState = !this.initialsState;
@@ -704,8 +713,8 @@ export default {
         fontLoader.load('fonts/helvetiker_regular.typeface.json', (font) => {
         const textGeometry = new TextGeometry(this.initials, {
           font: font,
-          size: 0.5,
-          height: 0.2,
+          size: 0.25,
+          height: 0.01,
           curveSegments: 12,
           bevelEnabled: true,
           bevelThickness: 0.03,
@@ -715,8 +724,16 @@ export default {
         });
         
         this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
-        this.shoeText.position.x = -3;
-        this.shoeText.position.y = 1.5;
+
+        this.shoeText.rotation.order = "YXZ";
+
+        this.shoeText.rotation.x = -0.5;
+        this.shoeText.rotation.y = -1.75;
+
+        this.shoeText.position.x = -1.88;
+        this.shoeText.position.y = 2.2;
+        this.shoeText.position.z = -0.45;
+
         scene.add(this.shoeText);
       });
       } else if(this.initialsState === false) {
