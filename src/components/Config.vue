@@ -5,10 +5,10 @@
     <div>
       <div class="initials-container">
         <label>
-          <input type="checkbox" @change="toggleInitials"/>
+          <input type="checkbox" @change="toggleInitials()"/>
           Show Initials
         </label>
-        <input v-model="initials"/>
+        <input v-model="initials" maxlength="2"/>
       </div>
     </div>
 
@@ -345,6 +345,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { TextGeometry} from "three/addons/geometries/TextGeometry.js";
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+
 
 export default {
   setup() {
@@ -387,6 +389,13 @@ export default {
     const loadingManager = new THREE.LoadingManager();
 
     const gltfLoader = new GLTFLoader(loadingManager);
+
+    const fontLoader = new FontLoader();
+    const textMaterial = new THREE.MeshStandardMaterial({
+          color: 0xffd700,
+          metalness: 1,
+          roughness: 0.3,
+    });
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
@@ -683,33 +692,41 @@ export default {
 
     animate();
 
+    
     const toggleInitials = () => {
       this.initialsState = !this.initialsState;
       console.log(this.initialsState);
       console.log(this.initials);
-      if(this.initialsState === true){
-        this.addInitials();
-      } else if(this.initialsState === false) {
-        this.removeInitials();
-      }
-    };
 
-    const removeInitials = () => {
-      const { scene } = this;
-      //remove previous text
-      if(this.shoeText){
+      if(this.initialsState === true){
+        console.log("initialsState is true");
+
+        fontLoader.load('fonts/helvetiker_regular.typeface.json', (font) => {
+        const textGeometry = new TextGeometry(this.initials, {
+          font: font,
+          size: 0.5,
+          height: 0.2,
+          curveSegments: 12,
+          bevelEnabled: true,
+          bevelThickness: 0.03,
+          bevelSize: 0.02,
+          bevelOffset: 0,
+          bevelSegments: 5,
+        });
+        
+        this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
+        this.shoeText.position.x = -3;
+        this.shoeText.position.y = 1.5;
+        scene.add(this.shoeText);
+      });
+      } else if(this.initialsState === false) {
+        console.log("initialsState is false");
         scene.remove(this.shoeText);
       }
     };
-    const addInitials = () => {
-      const { scene } = this;
-      //remove previous text
-      if(this.shoeText){
-        scene.remove(this.shoeText);
-      }
-      //create new text
-      
-    };
+    
+    this.toggleInitials = toggleInitials;
+
   },
 
   methods: {
