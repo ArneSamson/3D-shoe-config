@@ -769,7 +769,8 @@ export default {
         this.selectedColors.shoeColorPanelDown &&
         this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
-        this.selectedMaterials.shoeMaterialPanelUp
+        this.selectedMaterials.shoeMaterialPanelUp &&
+        this.initials
       ) {
         this.formError = null; // Clear any previous errors
 
@@ -793,6 +794,7 @@ export default {
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
           jewel: this.jewel,
+          initials: this.initials,
           status: "Order placed",
           userName: this.userName,
           userAddress: this.userAddress,
