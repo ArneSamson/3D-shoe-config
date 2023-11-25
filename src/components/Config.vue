@@ -374,15 +374,26 @@ export default {
     };
   },
   mounted() {
+
+    const canvasContainer = this.$refs.canvasContainer;
+
     const windowWidth = window.innerWidth * 2;
     const ratio = windowWidth / window.innerHeight;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+    // renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
     renderer.setPixelRatio(window.devicePixelRatio);
-    this.$refs.canvasContainer.appendChild(renderer.domElement);
+    canvasContainer.appendChild(renderer.domElement);
+
+    resize();
+    window.addEventListener("resize", resize);
+    function resize() {
+        renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+        camera.aspect = canvasContainer.clientWidth / canvasContainer.clientHeight;
+        camera.updateProjectionMatrix();
+    }
 
     camera.position.z = 7;
 
