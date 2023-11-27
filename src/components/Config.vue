@@ -215,7 +215,6 @@ export default {
       Whale: { model: null, position: new THREE.Vector3(-1, 1.4, 0.95) },
     };
 
-    // Load jewel models
     Object.keys(jewelModels).forEach((jewelType) => {
       const modelPath = `/models/pendant${jewelType}.glb`;
       gltfLoader.load(modelPath, (gltf) => {
@@ -243,7 +242,6 @@ export default {
       });
     });
 
-    // Function to update jewel visibility
     const updateJewel = (jewelType) => {
       Object.keys(jewelModels).forEach((type) => {
         const model = jewelModels[type].model;
@@ -400,7 +398,7 @@ export default {
         this.selectedMaterials.shoeMaterialPanelUp &&
         this.initials
       ) {
-        this.formError = null; // Clear any previous errors
+        this.formError = null;
 
         this.fetchData();
       } else {
@@ -429,7 +427,6 @@ export default {
         },
       };
 
-      // Additional properties for color and material selections
       data.shoe.colorOptions = this.colorOptions;
       data.shoe.selectedColors = this.selectedColors;
       data.shoe.selectedMaterials = this.selectedMaterials;
@@ -443,7 +440,6 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          // Handle the response if needed
           console.log("Data successfully sent:", data);
         })
         .catch((error) => {
