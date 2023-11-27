@@ -246,16 +246,6 @@ export default {
       scene.add(jewelGiraffe);
     });
 
-    // this.addJewelGiraffe = () => {
-    //   jewelGiraffe.visible = !jewelGiraffe.visible;
-    //   jewelElephant.visible = false;
-    //   jewelHedgehog.visible = false;
-    //   jewelWhale.visible = false;
-    //   this.jewel = "Giraffe";
-    //   console.log(this.jewel);
-    // };
-
-
     gltfLoader.load("/models/pendantElephant.glb", (gltf) => {
       jewelElephant = gltf.scene;
       jewelElephant.scale.set(0.05, 0.05, 0.05);
@@ -282,17 +272,6 @@ export default {
 
       scene.add(jewelElephant);
     });
-
-    // this.addJewelElephant = () => {
-    //   jewelElephant.visible = !jewelElephant.visible;
-    //   jewelGiraffe.visible = false;
-    //   jewelHedgehog.visible = false;
-    //   jewelWhale.visible = false;
-    //   this.jewel = "Elephant";
-    //   console.log(this.jewel);
-    // };
-
-
 
     gltfLoader.load("/models/pendantHedgehog.glb", (gltf) => {
       jewelHedgehog = gltf.scene;
@@ -321,17 +300,6 @@ export default {
       scene.add(jewelHedgehog);
     });
 
-    // this.addJewelHedgehog = () => {
-    //   jewelHedgehog.visible = !jewelHedgehog.visible;
-    //   jewelGiraffe.visible = false;
-    //   jewelElephant.visible = false;
-    //   jewelWhale.visible = false;
-    //   this.jewel = "Hedgehog";
-    //   console.log(this.jewel);
-    // };
-
-
-
     gltfLoader.load("/models/pendantWhale.glb", (gltf) => {
       jewelWhale = gltf.scene;
       jewelWhale.scale.set(0.05, 0.05, 0.05);
@@ -358,15 +326,6 @@ export default {
 
       scene.add(jewelWhale);
     });
-
-    // this.addJewelWhale = () => {
-    //   jewelWhale.visible = !jewelWhale.visible;
-    //   jewelGiraffe.visible = false;
-    //   jewelElephant.visible = false;
-    //   jewelHedgehog.visible = false;
-    //   this.jewel = "Whale";
-    //   console.log(this.jewel);
-    // };
 
     const updateJewel = (jewelType) => {
       if (jewelType) {
