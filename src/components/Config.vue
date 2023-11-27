@@ -13,6 +13,7 @@
     </div>
 
     <div id="configurator">
+
       <div
         v-for="colorType in ['laces', 'sole', 'inside', 'outside']"
         :key="colorType"
@@ -29,7 +30,25 @@
         </div>
       </div>
 
-      <div id="topmaterial">
+      <div
+        v-for="materialType in ['top', 'bottom']"
+        :key="materialType"
+        :id="`${materialType}material`"
+      >
+        <p class="subtitle">{{ materialType }} material</p>
+        <div
+          v-for="material in materialOptions"
+          :key="material"
+          :class="{ options: true }"
+          @click="updateMaterial(materialType, material)"
+        >
+          <div class="circle" :style="{ backgroundImage: `url(${material})` }">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div id="topmaterial">
         <p class="subtitle">Panel one material</p>
         <div
           :class="{ options: true }"
@@ -129,7 +148,7 @@
             }"
           ></div>
         </div>
-      </div>
+      </div> -->
 
       <div id="jewels">
         <p class="subtitle">Jewels</p>
@@ -169,6 +188,7 @@
           ></div>
         </div>
       </div>
+      
     </div>
 
     <div class="user-details">
@@ -504,44 +524,74 @@ export default {
 
     this.updateColor = updateColor;
 
-    const updateMaterialTopFromDiv = (textureUrl) => {
+    const updateMaterial = (materialType, textureUrl) => {
       if (shoe) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load(textureUrl);
 
         console.log("💕", texture);
 
-        const MaterialTop = shoe.getObjectByName("outside_1").material;
-        const MaterialBottom = shoe.getObjectByName("outside_2").material;
+        let material;
+        switch (materialType) {
+          case "top":
+            material = shoe.getObjectByName("outside_1").material;
+            this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
+            break;
+          case "bottom":
+            material = shoe.getObjectByName("inside").material;
+            this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
+            break;
+          default:
+            break;
+        }
 
-        MaterialTop.map = texture;
-        MaterialTop.needsUpdate = true;
-
-        MaterialBottom.map = texture;
-        MaterialBottom.needsUpdate = true;
-
-        this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
+        if (material) {
+          material.map = texture;
+          material.needsUpdate = true;
+        }
       }
     };
 
-    this.updateMaterialTop = updateMaterialTopFromDiv;
+    this.updateMaterial = updateMaterial;
 
-    const updateMaterialBottomFromDiv = (textureUrl) => {
-      if (shoe) {
-        const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load(textureUrl);
+    // const updateMaterialTopFromDiv = (textureUrl) => {
+    //   if (shoe) {
+    //     const textureLoader = new THREE.TextureLoader();
+    //     const texture = textureLoader.load(textureUrl);
 
-        console.log("💕", texture);
+    //     console.log("💕", texture);
 
-        const MaterialTop = shoe.getObjectByName("inside").material;
+    //     const MaterialTop = shoe.getObjectByName("outside_1").material;
+    //     const MaterialBottom = shoe.getObjectByName("outside_2").material;
 
-        MaterialTop.map = texture;
-        MaterialTop.needsUpdate = true;
-        this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
-      }
-    };
+    //     MaterialTop.map = texture;
+    //     MaterialTop.needsUpdate = true;
 
-    this.updateMaterialBottom = updateMaterialBottomFromDiv;
+    //     MaterialBottom.map = texture;
+    //     MaterialBottom.needsUpdate = true;
+
+    //     this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
+    //   }
+    // };
+
+    // this.updateMaterialTop = updateMaterialTopFromDiv;
+
+    // const updateMaterialBottomFromDiv = (textureUrl) => {
+    //   if (shoe) {
+    //     const textureLoader = new THREE.TextureLoader();
+    //     const texture = textureLoader.load(textureUrl);
+
+    //     console.log("💕", texture);
+
+    //     const MaterialTop = shoe.getObjectByName("inside").material;
+
+    //     MaterialTop.map = texture;
+    //     MaterialTop.needsUpdate = true;
+    //     this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
+    //   }
+    // };
+
+    // this.updateMaterialBottom = updateMaterialBottomFromDiv;
 
     const animate = () => {
       requestAnimationFrame(animate);
