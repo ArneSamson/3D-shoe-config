@@ -143,7 +143,6 @@ export default {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
-    // renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
     renderer.setPixelRatio(window.devicePixelRatio);
     canvasContainer.appendChild(renderer.domElement);
 
@@ -294,9 +293,6 @@ export default {
           material.color.setStyle(hexColor);
           material.needsUpdate = true;
         }
-
-        console.log("Updated color:", colorType, hexColor);
-        console.log("Selected colors:", this.selectedColors);
       }
     };
 
@@ -306,8 +302,6 @@ export default {
       if (shoe) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load(textureUrl);
-
-        console.log("💕", texture);
 
         let material;
         switch (materialType) {
@@ -347,12 +341,8 @@ export default {
 
     const toggleInitials = () => {
       this.initialsState = !this.initialsState;
-      console.log(this.initialsState);
-      console.log(this.initials);
 
       if (this.initialsState === true) {
-        console.log("initialsState is true");
-
         fontLoader.load("fonts/helvetiker_regular.typeface.json", (font) => {
           const textGeometry = new TextGeometry(this.initials, {
             font: font,
