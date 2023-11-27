@@ -47,7 +47,28 @@
         </div>
       </div>
 
-      <div id="jewels">
+      <div>
+        <p class="subtitle">Jewels</p>
+        
+        <div
+          v-for="jewelType in jewelOptions"
+          :key="jewelType"
+          :id="`${jewelType}jewel`"
+          :class="{ options: true }"
+          @click="updateJewel(jewelType)"
+        >
+          <div
+            :class="{
+              circles: true,
+              [`jewel${jewelType}`]: true,
+            }"
+          ></div>
+        </div>
+      </div>
+
+
+
+      <!-- <div id="jewels">
         <p class="subtitle">Jewels</p>
         <div :class="{ options: true }" @click="addJewelGiraffe">
           <div
@@ -84,9 +105,9 @@
             }"
           ></div>
         </div>
-      </div>
+      </div> -->
 
-    </div>
+      </div>
 
     <div class="user-details">
       <div class="user-details-div">
@@ -149,6 +170,12 @@ export default {
         "/textures/holes.jpg",
         "/textures/latex.jpg",
         "/textures/fabric.jpg",
+      ],
+      jewelOptions: [
+        "Giraffe",
+        "Elephant",
+        "Hedgehog",
+        "Whale",
       ],
     };
   },
@@ -229,6 +256,9 @@ export default {
     });
 
     let jewelGiraffe;
+    let jewelElephant;
+    let jewelHedgehog;
+    let jewelWhale;
 
     gltfLoader.load("/models/pendantGiraffe.glb", (gltf) => {
       jewelGiraffe = gltf.scene;
@@ -257,16 +287,15 @@ export default {
       scene.add(jewelGiraffe);
     });
 
-    this.addJewelGiraffe = () => {
-      jewelGiraffe.visible = !jewelGiraffe.visible;
-      jewelElephant.visible = false;
-      jewelHedgehog.visible = false;
-      jewelWhale.visible = false;
-      this.jewel = "Giraffe";
-      console.log(this.jewel);
-    };
+    // this.addJewelGiraffe = () => {
+    //   jewelGiraffe.visible = !jewelGiraffe.visible;
+    //   jewelElephant.visible = false;
+    //   jewelHedgehog.visible = false;
+    //   jewelWhale.visible = false;
+    //   this.jewel = "Giraffe";
+    //   console.log(this.jewel);
+    // };
 
-    let jewelElephant;
 
     gltfLoader.load("/models/pendantElephant.glb", (gltf) => {
       jewelElephant = gltf.scene;
@@ -295,16 +324,16 @@ export default {
       scene.add(jewelElephant);
     });
 
-    this.addJewelElephant = () => {
-      jewelElephant.visible = !jewelElephant.visible;
-      jewelGiraffe.visible = false;
-      jewelHedgehog.visible = false;
-      jewelWhale.visible = false;
-      this.jewel = "Elephant";
-      console.log(this.jewel);
-    };
+    // this.addJewelElephant = () => {
+    //   jewelElephant.visible = !jewelElephant.visible;
+    //   jewelGiraffe.visible = false;
+    //   jewelHedgehog.visible = false;
+    //   jewelWhale.visible = false;
+    //   this.jewel = "Elephant";
+    //   console.log(this.jewel);
+    // };
 
-    let jewelHedgehog;
+
 
     gltfLoader.load("/models/pendantHedgehog.glb", (gltf) => {
       jewelHedgehog = gltf.scene;
@@ -333,16 +362,16 @@ export default {
       scene.add(jewelHedgehog);
     });
 
-    this.addJewelHedgehog = () => {
-      jewelHedgehog.visible = !jewelHedgehog.visible;
-      jewelGiraffe.visible = false;
-      jewelElephant.visible = false;
-      jewelWhale.visible = false;
-      this.jewel = "Hedgehog";
-      console.log(this.jewel);
-    };
+    // this.addJewelHedgehog = () => {
+    //   jewelHedgehog.visible = !jewelHedgehog.visible;
+    //   jewelGiraffe.visible = false;
+    //   jewelElephant.visible = false;
+    //   jewelWhale.visible = false;
+    //   this.jewel = "Hedgehog";
+    //   console.log(this.jewel);
+    // };
 
-    let jewelWhale;
+
 
     gltfLoader.load("/models/pendantWhale.glb", (gltf) => {
       jewelWhale = gltf.scene;
@@ -371,14 +400,49 @@ export default {
       scene.add(jewelWhale);
     });
 
-    this.addJewelWhale = () => {
-      jewelWhale.visible = !jewelWhale.visible;
-      jewelGiraffe.visible = false;
-      jewelElephant.visible = false;
-      jewelHedgehog.visible = false;
-      this.jewel = "Whale";
-      console.log(this.jewel);
+    // this.addJewelWhale = () => {
+    //   jewelWhale.visible = !jewelWhale.visible;
+    //   jewelGiraffe.visible = false;
+    //   jewelElephant.visible = false;
+    //   jewelHedgehog.visible = false;
+    //   this.jewel = "Whale";
+    //   console.log(this.jewel);
+    // };
+
+    const updateJewel = (jewelType) => {
+      if (jewelType) {
+        switch (jewelType) {
+          case "Giraffe":
+            jewelGiraffe.visible = true;
+            jewelElephant.visible = false;
+            jewelHedgehog.visible = false;
+            jewelWhale.visible = false;
+            break;
+          case "Elephant":
+            jewelElephant.visible = true;
+            jewelGiraffe.visible = false;
+            jewelHedgehog.visible = false;
+            jewelWhale.visible = false;
+            break;
+          case "Hedgehog":
+            jewelHedgehog.visible = true;
+            jewelGiraffe.visible = false;
+            jewelElephant.visible = false;
+            jewelWhale.visible = false;
+            break;
+          case "Whale":
+            jewelWhale.visible = true;
+            jewelGiraffe.visible = false;
+            jewelElephant.visible = false;
+            jewelHedgehog.visible = false;
+            break;
+          default:
+            break;
+        }
+      }
     };
+
+    this.updateJewel = updateJewel;
 
     const updateColor = (colorType, hexColor) => {
       if (shoe) {
