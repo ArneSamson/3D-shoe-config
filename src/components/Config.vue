@@ -471,13 +471,6 @@ export default {
   align-items: start;
   padding: 43px;
 }
-.circles {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 10px 0;
-  border: 2px solid #fff;
-}
 
 p {
   font-family: "basic-sans", sans-serif;
@@ -511,26 +504,6 @@ button {
   margin: auto;
   margin-top: 80px;
   margin-bottom: 80px;
-}
-
-.leather {
-  background-image: url("/textures/leather.jpg");
-  background-size: cover;
-}
-
-.holes {
-  background-image: url("/textures/holes.jpg");
-  background-size: cover;
-}
-
-.latex {
-  background-image: url("/textures/latex.jpg");
-  background-size: cover;
-}
-
-.fabric {
-  background-image: url("/textures/fabric.jpg");
-  background-size: cover;
 }
 
 #configurator {
