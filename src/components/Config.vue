@@ -188,7 +188,7 @@
           ></div>
         </div>
       </div>
-      
+
     </div>
 
     <div class="user-details">
@@ -247,6 +247,12 @@ export default {
       userEmail: null,
       formError: null,
       colorOptions: ["#FFFF00", "#FF0000", "#FFC0CB", "#C9C9C9"],
+      materialOptions: [
+        "/textures/leather.jpg",
+        "/textures/holes.jpg",
+        "/textures/latex.jpg",
+        "/textures/fabric.jpg",
+      ],
     };
   },
   mounted() {
