@@ -13,7 +13,6 @@
     </div>
 
     <div id="configurator">
-
       <div
         v-for="colorType in ['laces', 'sole', 'inside', 'outside']"
         :key="colorType"
@@ -42,14 +41,15 @@
           :class="{ options: true }"
           @click="updateMaterial(materialType, material)"
         >
-          <div class="circle" :style="{ backgroundImage: `url(${material})` }">
-          </div>
+          <div
+            class="circle"
+            :style="{ backgroundImage: `url(${material})` }"
+          ></div>
         </div>
       </div>
 
       <div>
         <p class="subtitle">Jewels</p>
-        
         <div
           v-for="jewelType in jewelOptions"
           :key="jewelType"
@@ -58,15 +58,16 @@
           @click="updateJewel(jewelType)"
         >
           <div
-            :class="{
-              circles: true,
-              [`jewel${jewelType}`]: true,
+            class="circle"
+            :style="{
+              backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
             }"
           ></div>
         </div>
       </div>
-
-      </div>
+    </div>
 
     <div class="user-details">
       <div class="user-details-div">
@@ -130,12 +131,7 @@ export default {
         "/textures/latex.jpg",
         "/textures/fabric.jpg",
       ],
-      jewelOptions: [
-        "Giraffe",
-        "Elephant",
-        "Hedgehog",
-        "Whale",
-      ],
+      jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
     };
   },
   mounted() {
@@ -213,155 +209,48 @@ export default {
 
       scene.add(shoe);
     });
+    const jewelModels = {
+      Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
+      Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
+      Hedgehog: { model: null, position: new THREE.Vector3(-1, 1.2, 1.15) },
+      Whale: { model: null, position: new THREE.Vector3(-1, 1.4, 0.95) },
+    };
 
-    let jewelGiraffe;
-    let jewelElephant;
-    let jewelHedgehog;
-    let jewelWhale;
+    // Load jewel models
+    Object.keys(jewelModels).forEach((jewelType) => {
+      const modelPath = `/models/pendant${jewelType}.glb`;
+      gltfLoader.load(modelPath, (gltf) => {
+        const jewelModel = gltf.scene;
+        jewelModel.scale.set(0.05, 0.05, 0.05);
+        jewelModel.rotation.x = -2;
+        jewelModel.rotation.y = 0.6;
+        jewelModel.position.copy(jewelModels[jewelType].position);
 
-    gltfLoader.load("/models/pendantGiraffe.glb", (gltf) => {
-      jewelGiraffe = gltf.scene;
-      jewelGiraffe.scale.set(0.04, 0.04, 0.04);
+        const material = new THREE.MeshStandardMaterial({
+          color: 0xffd700,
+          metalness: 1,
+          roughness: 0.3,
+        });
 
-      jewelGiraffe.rotation.x = -1.85;
-      jewelGiraffe.rotation.y = 0.3;
+        jewelModel.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            child.material = material;
+          }
+        });
 
-      jewelGiraffe.position.z = 1.25;
-      jewelGiraffe.position.y = 0.8;
-      jewelGiraffe.position.x = -1.3;
-      jewelGiraffe.visible = false;
-
-      const material = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1,
-        roughness: 0.3,
+        jewelModel.visible = false;
+        jewelModels[jewelType].model = jewelModel;
+        scene.add(jewelModel);
       });
-
-      jewelGiraffe.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = material;
-        }
-      });
-
-      scene.add(jewelGiraffe);
     });
 
-    gltfLoader.load("/models/pendantElephant.glb", (gltf) => {
-      jewelElephant = gltf.scene;
-      jewelElephant.scale.set(0.05, 0.05, 0.05);
-
-      jewelElephant.rotation.x = -1.95;
-      jewelElephant.rotation.y = 0.6;
-
-      jewelElephant.position.z = 1.25;
-      jewelElephant.position.y = 1;
-      jewelElephant.position.x = -1;
-      jewelElephant.visible = false;
-
-      const material = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1,
-        roughness: 0.3,
-      });
-
-      jewelElephant.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = material;
-        }
-      });
-
-      scene.add(jewelElephant);
-    });
-
-    gltfLoader.load("/models/pendantHedgehog.glb", (gltf) => {
-      jewelHedgehog = gltf.scene;
-      jewelHedgehog.scale.set(0.05, 0.05, 0.05);
-
-      jewelHedgehog.rotation.x = -1.95;
-      jewelHedgehog.rotation.y = 0.6;
-
-      jewelHedgehog.position.z = 1.15;
-      jewelHedgehog.position.y = 1.2;
-      jewelHedgehog.position.x = -1;
-      jewelHedgehog.visible = false;
-
-      const material = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1,
-        roughness: 0.3,
-      });
-
-      jewelHedgehog.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = material;
-        }
-      });
-
-      scene.add(jewelHedgehog);
-    });
-
-    gltfLoader.load("/models/pendantWhale.glb", (gltf) => {
-      jewelWhale = gltf.scene;
-      jewelWhale.scale.set(0.05, 0.05, 0.05);
-
-      jewelWhale.rotation.x = -2;
-      jewelWhale.rotation.y = 0.6;
-
-      jewelWhale.position.z = 0.95;
-      jewelWhale.position.y = 1.4;
-      jewelWhale.position.x = -1;
-      jewelWhale.visible = false;
-
-      const material = new THREE.MeshStandardMaterial({
-        color: 0xffd700,
-        metalness: 1,
-        roughness: 0.3,
-      });
-
-      jewelWhale.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material = material;
-        }
-      });
-
-      scene.add(jewelWhale);
-    });
-
+    // Function to update jewel visibility
     const updateJewel = (jewelType) => {
-      if (jewelType) {
-        switch (jewelType) {
-          case "Giraffe":
-            jewelGiraffe.visible = true;
-            jewelElephant.visible = false;
-            jewelHedgehog.visible = false;
-            jewelWhale.visible = false;
-            this.jewel = "Giraffe";
-            break;
-          case "Elephant":
-            jewelElephant.visible = true;
-            jewelGiraffe.visible = false;
-            jewelHedgehog.visible = false;
-            jewelWhale.visible = false;
-            this.jewel = "Elephant";
-            break;
-          case "Hedgehog":
-            jewelHedgehog.visible = true;
-            jewelGiraffe.visible = false;
-            jewelElephant.visible = false;
-            jewelWhale.visible = false;
-            this.jewel = "Hedgehog";
-            break;
-          case "Whale":
-            jewelWhale.visible = true;
-            jewelGiraffe.visible = false;
-            jewelElephant.visible = false;
-            jewelHedgehog.visible = false;
-            this.jewel = "Whale";
-            break;
-          default:
-            break;
-        }
-      }
+      Object.keys(jewelModels).forEach((type) => {
+        const model = jewelModels[type].model;
+        model.visible = type === jewelType;
+        if (type === jewelType) this.jewel = jewelType;
+      });
     };
 
     this.updateJewel = updateJewel;
@@ -691,34 +580,9 @@ input {
   background-color: #242424;
   color: white;
 }
-
-.jewelGiraffe {
-  background-image: url("/media/giraffe.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.jewelElephant {
-  background-image: url("/media/elephant.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.jewelHedgehog {
-  background-image: url("/media/hedgehog.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-.jewelWhale {
-  background-image: url("/media/whale.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-}
 .options .circle {
   cursor: pointer;
   transition: transform 0.2s;
-
   width: 50px;
   height: 50px;
   border-radius: 50%;
