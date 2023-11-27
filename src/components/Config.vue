@@ -66,47 +66,6 @@
         </div>
       </div>
 
-
-
-      <!-- <div id="jewels">
-        <p class="subtitle">Jewels</p>
-        <div :class="{ options: true }" @click="addJewelGiraffe">
-          <div
-            :class="{
-              circles: true,
-              jewelGiraffe: true,
-            }"
-          ></div>
-        </div>
-
-        <div :class="{ options: true }" @click="addJewelElephant">
-          <div
-            :class="{
-              circles: true,
-              jewelElephant: true,
-            }"
-          ></div>
-        </div>
-
-        <div :class="{ options: true }" @click="addJewelHedgehog">
-          <div
-            :class="{
-              circles: true,
-              jewelHedgehog: true,
-            }"
-          ></div>
-        </div>
-
-        <div :class="{ options: true }" @click="addJewelWhale">
-          <div
-            :class="{
-              circles: true,
-              jewelWhale: true,
-            }"
-          ></div>
-        </div>
-      </div> -->
-
       </div>
 
     <div class="user-details">
@@ -417,24 +376,28 @@ export default {
             jewelElephant.visible = false;
             jewelHedgehog.visible = false;
             jewelWhale.visible = false;
+            this.jewel = "Giraffe";
             break;
           case "Elephant":
             jewelElephant.visible = true;
             jewelGiraffe.visible = false;
             jewelHedgehog.visible = false;
             jewelWhale.visible = false;
+            this.jewel = "Elephant";
             break;
           case "Hedgehog":
             jewelHedgehog.visible = true;
             jewelGiraffe.visible = false;
             jewelElephant.visible = false;
             jewelWhale.visible = false;
+            this.jewel = "Hedgehog";
             break;
           case "Whale":
             jewelWhale.visible = true;
             jewelGiraffe.visible = false;
             jewelElephant.visible = false;
             jewelHedgehog.visible = false;
+            this.jewel = "Whale";
             break;
           default:
             break;
