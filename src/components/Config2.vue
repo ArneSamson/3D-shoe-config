@@ -391,11 +391,9 @@ export default {
         this.userEmail &&
         this.selectedColors.shoeColorLaces &&
         this.selectedColors.shoeColorSole &&
-        this.selectedColors.shoeColorPanelDown &&
         this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
-        this.selectedMaterials.shoeMaterialPanelUp &&
-        this.initials
+        this.selectedMaterials.shoeMaterialPanelUp
       ) {
         this.formError = null;
 
@@ -413,12 +411,9 @@ export default {
           shoeSize: this.shoeSize,
           shoeColorSole: this.selectedColors.shoeColorSole,
           shoeColorLaces: this.selectedColors.shoeColorLaces,
-          shoeColorPanelDown: this.selectedColors.shoeColorPanelDown,
           shoeColorPanelUp: this.selectedColors.shoeColorPanelUp,
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
-          jewel: this.jewel,
-          initials: this.initials,
           status: "Order placed",
           userName: this.userName,
           userAddress: this.userAddress,
