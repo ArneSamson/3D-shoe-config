@@ -197,9 +197,9 @@ export default {
 
     let shoeText;
 
-    gltfLoader.load("/models/new-shoe.glb", (gltf) => {
+    gltfLoader.load("/models/vans-shoe.glb", (gltf) => {
       shoe = gltf.scene;
-      shoe.scale.set(2.5, 2.5, 2.5);
+      shoe.scale.set(2.2, 2.2, 2.2);
 
       shoe.rotation.order = "YXZ";
 
