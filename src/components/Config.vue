@@ -132,7 +132,7 @@ export default {
       userAddress: null,
       userEmail: null,
       formError: null,
-      colorOptions: ["#FFFF00", "#FF0000", "#FFC0CB", "#C9C9C9"],
+      colorOptions: ["#ffd700", "#88FF00", "#00FFA6", "#A200FF"],
       materialOptions: [
         "/textures/leather.jpg",
         "/textures/holes.jpg",
@@ -308,6 +308,10 @@ export default {
       if (shoe) {
         const textureLoader = new THREE.TextureLoader();
         const texture = textureLoader.load(textureUrl);
+
+        texture.repeat.set(2, 2);
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
 
         let material;
         switch (materialType) {
