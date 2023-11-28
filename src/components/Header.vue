@@ -1,8 +1,7 @@
 <template>
   <header>
     <div class="shoe-desc">
-      <H1>AIR REV. NITRO S</H1>
-      <p>€ 200</p>
+      <H1>Custom shoe</H1>
     </div>
   </header>
 </template>
