@@ -18,7 +18,7 @@
 
     <div id="configurator">
       <div
-        v-for="colorType in ['laces', 'sole', 'inside', 'outside']"
+        v-for="colorType in ['laces', 'sole', 'sides', 'main', 'tip']"
         :key="colorType"
         :id="`${colorType}color`"
       >
@@ -199,6 +199,12 @@ export default {
 
     gltfLoader.load("/models/vans-shoe.glb", (gltf) => {
       shoe = gltf.scene;
+
+      gltf.scene.traverse((child) => {
+        if (child.isMesh) {
+          console.log("Part Name:", child.name);
+        }
+      });
       shoe.scale.set(2.2, 2.2, 2.2);
 
       shoe.rotation.order = "YXZ";
@@ -261,39 +267,50 @@ export default {
         let material;
         switch (colorType) {
           case "laces":
-            material = shoe.getObjectByName("laces").material;
-            this.selectedColors.shoeColorLaces = hexColor;
+            const laces = shoe.getObjectByName("laces");
+            if (laces && laces.material) {
+              laces.material = laces.material.clone();
+              laces.material.color.setStyle(hexColor);
+              laces.material.needsUpdate = true;
+              this.selectedColors.shoeColorLaces = hexColor;
+            }
             break;
           case "sole":
-            const soleMaterialTop = shoe.getObjectByName("sole_1").material;
-            const soleMaterialBottom = shoe.getObjectByName("sole_2").material;
-            soleMaterialTop.color.setStyle(hexColor);
-            soleMaterialTop.needsUpdate = true;
-            soleMaterialBottom.color.setStyle(hexColor);
-            soleMaterialBottom.needsUpdate = true;
-            this.selectedColors.shoeColorSole = hexColor;
+            const sole = shoe.getObjectByName("sole");
+            if (sole && sole.material) {
+              sole.material = sole.material.clone();
+              sole.material.color.setStyle(hexColor);
+              sole.material.needsUpdate = true;
+              this.selectedColors.shoeColorSole = hexColor;
+            }
             break;
-          case "inside":
-            material = shoe.getObjectByName("inside").material;
-            this.selectedColors.shoeColorPanelDown = hexColor;
+          case "sides":
+            const sides = shoe.getObjectByName("sides");
+            if (sides && sides.material) {
+              sides.material = sides.material.clone();
+              sides.material.color.setStyle(hexColor);
+              sides.material.needsUpdate = true;
+              this.selectedColors.shoeColorSides = hexColor;
+            }
             break;
-          case "outside":
-            const topMaterialTop = shoe.getObjectByName("outside_1").material;
-            const topMaterialBottom =
-              shoe.getObjectByName("outside_2").material;
-            topMaterialTop.color.setStyle(hexColor);
-            topMaterialTop.needsUpdate = true;
-            topMaterialBottom.color.setStyle(hexColor);
-            topMaterialBottom.needsUpdate = true;
-            this.selectedColors.shoeColorPanelUp = hexColor;
+          case "main":
+            const main = shoe.getObjectByName("main");
+            if (main && main.material) {
+              main.material = main.material.clone();
+              main.material.color.setStyle(hexColor);
+              main.material.needsUpdate = true;
+              this.selectedColors.shoeColorMain = hexColor;
+            }
             break;
-          default:
+          case "tip":
+            const tip = shoe.getObjectByName("tip-heel");
+            if (tip && tip.material) {
+              tip.material = tip.material.clone();
+              tip.material.color.setStyle(hexColor);
+              tip.material.needsUpdate = true;
+              this.selectedColors.shoeColorTip = hexColor;
+            }
             break;
-        }
-
-        if (material) {
-          material.color.setStyle(hexColor);
-          material.needsUpdate = true;
         }
       }
     };
