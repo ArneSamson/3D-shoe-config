@@ -3,6 +3,8 @@
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div>
+      <h1>AIR REV. NITRO S</h1>
+      <p class="price">€ 200</p>
       <router-link to="/config2"
         ><button class="router">Go to other model</button></router-link
       >
@@ -574,5 +576,33 @@ input {
   margin-left: 40px;
   margin-top: 20px;
   margin-bottom: 0px;
+}
+
+h1 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "cooper-black-std", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.price {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "cooper-black-std", serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-left: 40px;
+  margin-top: 20px;
 }
 </style>
