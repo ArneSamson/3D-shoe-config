@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="shoe-desc">
-      <H1>Custom shoe</H1>
+      <img src="/media/logo.webp" alt="" />
     </div>
   </header>
 </template>
@@ -70,5 +70,9 @@ button {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+}
+
+img {
+  width: 200px;
 }
 </style>
