@@ -10,7 +10,7 @@
 
 <style scoped>
 header {
-  background-color: #fff;
+  background-color: #242424;
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 43px;
+  padding: 30px;
   background-color: #d6ff38;
 }
 
