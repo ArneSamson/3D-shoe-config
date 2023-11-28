@@ -2,18 +2,6 @@
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
 
-    <h1>AIR REV. XTRA BLACK</h1>
-    <p class="price">€ 180</p>
-
-    <router-link to="/"
-      ><button class="router">Go to other model</button></router-link
-    >
-    <p id="disclaimer">
-      This shoe is the ultimate custom shoe, since all the artwork that is used,
-      is created for our brand by Stable Diffusion and Lexica and is not
-      available anywhere else.
-    </p>
-
     <div id="configurator">
       <div
         v-for="colorType in ['laces', 'sole', 'main']"
@@ -54,21 +42,38 @@
       </div>
     </div>
 
+    <h2>Your information:</h2>
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
-        <input type="number" v-model="shoeSize" />
+        <select id="shoeSize" name="shoeSize">
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="45">45</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="48">48</option>
+          <option value="49">49</option>
+          <option value="50">50</option>
+        </select>
       </div>
       <div class="user-details-div">
-        <label for="userName">User Name:</label>
+        <label for="userName">Your name:</label>
         <input type="text" v-model="userName" />
       </div>
       <div class="user-details-div">
-        <label for="userAddress">User Address:</label>
+        <label for="userAddress">Your address:</label>
         <input type="text" v-model="userAddress" />
       </div>
       <div class="user-details-div">
-        <label for="userEmail">User Email:</label>
+        <label for="userEmail">Your email:</label>
         <input type="email" v-model="userEmail" />
       </div>
     </div>
@@ -76,6 +81,19 @@
     <div v-if="formError" class="error-message">{{ formError }}</div>
 
     <button @click="handleDoneButtonClick">Done</button>
+
+    <div id="shoetype">
+      <h1>You are currently editing: AIR REV. XTRA BLACK</h1>
+      <p class="price">€ 180</p>
+      <router-link to="/"
+        ><button class="router">Go to AIR REV. NITRO S</button></router-link
+      >
+      <p id="disclaimer">
+        This shoe is the ultimate custom shoe, since all the artwork that is
+        used, is created for our brand by Stable Diffusion and Lexica and is not
+        available anywhere else.
+      </p>
+    </div>
   </div>
 </template>
 
@@ -357,9 +375,11 @@ export default {
 <style scoped>
 .initials-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: start;
   padding: 43px;
+  gap: 20px;
+  margin-left: 40px;
 }
 
 p {
@@ -379,19 +399,6 @@ label {
   color: white;
 }
 
-#disclaimer {
-  font-family: "basic-sans", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  color: white;
-  margin-left: 40px;
-  margin-right: 80px;
-  margin-bottom: 40px;
-}
-
 button {
   color: #d6ff38;
   background-color: #000;
@@ -405,7 +412,7 @@ button {
   line-height: normal;
   display: block;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-bottom: 80px;
 }
 
@@ -418,10 +425,9 @@ button {
   margin-right: 50px;
   padding-left: 50px;
   padding-right: 50px;
-  padding-bottom: 50px;
-  margin-bottom: 50px;
+  padding-bottom: 10px;
   overflow-x: auto;
-  flex-wrap: nowrap; /* Prevent items from wrapping */
+  flex-wrap: nowrap;
 }
 
 .subtitle {
@@ -431,15 +437,18 @@ button {
 .error-message {
   color: red;
   margin-top: 10px;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 18px;
 }
 
 .user-details {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   justify-content: space-around;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left: 100px;
   margin-bottom: 20px;
   gap: 40px;
   flex-wrap: wrap;
@@ -450,16 +459,27 @@ button {
   gap: 10px;
 }
 
-input {
+input,
+select {
   border: 2px solid #d6ff38;
   background-color: #242424;
   color: white;
+  height: 20px;
+  width: 200px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+select {
+  height: 30px;
 }
 .options .circle {
   cursor: pointer;
   transition: transform 0.2s;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin: 10px 0;
   border: 2px solid #fff;
@@ -468,23 +488,22 @@ input {
 .options .circle:hover {
   transform: scale(1.2);
 }
-
 .router {
   text-decoration: none;
   color: #d6ff38;
   background-color: #000;
   width: 20%;
-  max-width: 150px;
-  height: 24px;
-  font-family: "cooper-black-std", serif;
-  font-size: 12px;
+  max-width: 250px;
+  height: 34px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: normal;
   display: block;
-  margin-left: 40px;
+  margin-left: 100px;
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 
 h1 {
@@ -497,21 +516,61 @@ h1 {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.6px;
-  margin-left: 40px;
+  margin-left: 100px;
+  margin-top: 200px;
+}
+
+h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "cooper-black-std", serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-left: 100px;
   margin-top: 20px;
+  margin-bottom: 30px;
+  margin-top: 80px;
 }
 
 .price {
   color: white;
   font-size: 1.5rem;
   margin: 0;
-  font-family: "cooper-black-std", serif;
-  font-size: 20px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.6px;
-  margin-left: 40px;
-  margin-top: 20px;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+
+#checkbox {
+  border: 2px solid #d6ff38;
+  background-color: #242424;
+  color: white;
+  width: 20px;
+  margin-left: 15px;
+}
+
+#shoetype {
+  margin-top: 50px;
+}
+#disclaimer {
+  font-family: "basic-sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: white;
+  margin-left: 100px;
+  margin-right: 80px;
+  margin-bottom: 40px;
 }
 </style>
