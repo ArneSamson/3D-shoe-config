@@ -88,15 +88,15 @@
         </select>
       </div>
       <div class="user-details-div">
-        <label for="userName">User Name:</label>
+        <label for="userName">Your name:</label>
         <input type="text" v-model="userName" />
       </div>
       <div class="user-details-div">
-        <label for="userAddress">User Address:</label>
+        <label for="userAddress">Your address:</label>
         <input type="text" v-model="userAddress" />
       </div>
       <div class="user-details-div">
-        <label for="userEmail">User Email:</label>
+        <label for="userEmail">Your email:</label>
         <input type="email" v-model="userEmail" />
       </div>
     </div>
