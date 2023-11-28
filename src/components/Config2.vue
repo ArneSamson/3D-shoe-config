@@ -46,7 +46,7 @@
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
-        <select id="shoeSize" name="shoeSize">
+        <select id="shoeSize" name="shoeSize" v-model="shoeSize">
           <option value="36">36</option>
           <option value="37">37</option>
           <option value="38">38</option>
