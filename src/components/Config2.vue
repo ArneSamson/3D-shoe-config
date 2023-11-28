@@ -18,7 +18,7 @@
 
     <div id="configurator">
       <div
-        v-for="colorType in ['laces', 'sole', 'sides', 'main', 'tip']"
+        v-for="colorType in ['laces', 'sole', 'main']"
         :key="colorType"
         :id="`${colorType}color`"
       >
@@ -34,7 +34,7 @@
       </div>
 
       <div
-        v-for="materialType in ['top', 'bottom']"
+        v-for="materialType in ['sides', 'tip']"
         :key="materialType"
         :id="`${materialType}material`"
       >
@@ -130,10 +130,10 @@ export default {
       formError: null,
       colorOptions: ["#FFFF00", "#FF0000", "#FFC0CB", "#C9C9C9"],
       materialOptions: [
-        "/textures/leather.jpg",
-        "/textures/holes.jpg",
-        "/textures/latex.jpg",
-        "/textures/fabric.jpg",
+        "/textures/dall-e-1.png",
+        "/textures/dall-e-2.png",
+        "/textures/dall-e-3.png",
+        "/textures/dall-e-4.png",
       ],
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
     };
@@ -284,15 +284,6 @@ export default {
               this.selectedColors.shoeColorSole = hexColor;
             }
             break;
-          case "sides":
-            const sides = shoe.getObjectByName("sides");
-            if (sides && sides.material) {
-              sides.material = sides.material.clone();
-              sides.material.color.setStyle(hexColor);
-              sides.material.needsUpdate = true;
-              this.selectedColors.shoeColorSides = hexColor;
-            }
-            break;
           case "main":
             const main = shoe.getObjectByName("main");
             if (main && main.material) {
@@ -300,15 +291,6 @@ export default {
               main.material.color.setStyle(hexColor);
               main.material.needsUpdate = true;
               this.selectedColors.shoeColorMain = hexColor;
-            }
-            break;
-          case "tip":
-            const tip = shoe.getObjectByName("tip-heel");
-            if (tip && tip.material) {
-              tip.material = tip.material.clone();
-              tip.material.color.setStyle(hexColor);
-              tip.material.needsUpdate = true;
-              this.selectedColors.shoeColorTip = hexColor;
             }
             break;
         }
@@ -324,13 +306,22 @@ export default {
 
         let material;
         switch (materialType) {
-          case "top":
-            material = shoe.getObjectByName("outside_1").material;
-            this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
+          case "sides":
+            const sides = shoe.getObjectByName("sides");
+            if (sides && sides.material) {
+              sides.material = sides.material.clone();
+              sides.material.map = texture;
+              sides.material.needsUpdate = true;
+              this.selectedMaterials.shoeMaterialSides = textureUrl;
+            }
             break;
-          case "bottom":
-            material = shoe.getObjectByName("inside").material;
-            this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
+          case "tip":
+            const tip = shoe.getObjectByName("tip-heel");
+            if (tip && tip.material) {
+              tip.material = tip.material.clone();
+              tip.material.map = texture;
+              tip.material.needsUpdate = true;
+            }
             break;
           default:
             break;
