@@ -5,16 +5,11 @@
     <router-link to="/"
       ><button class="router">Go to other model</button></router-link
     >
-
-    <div>
-      <div class="initials-container">
-        <label>
-          <input type="checkbox" @change="toggleInitials()" />
-          Show Initials
-        </label>
-        <input v-model="initials" @input="handleInitialsInput" maxlength="2" />
-      </div>
-    </div>
+    <p id="disclaimer">
+      This shoe is the ultimate custom shoe, since all the artwork that is used,
+      is created for our brand by Stable Diffusion and Lexica and is not
+      available anywhere else.
+    </p>
 
     <div id="configurator">
       <div
@@ -47,26 +42,9 @@
         >
           <div
             class="circle"
-            :style="{ backgroundImage: `url(${material})` }"
-          ></div>
-        </div>
-      </div>
-
-      <div>
-        <p class="subtitle">Jewels</p>
-        <div
-          v-for="jewelType in jewelOptions"
-          :key="jewelType"
-          :id="`${jewelType}jewel`"
-          :class="{ options: true }"
-          @click="updateJewel(jewelType)"
-        >
-          <div
-            class="circle"
             :style="{
-              backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
+              backgroundImage: `url(${material})`,
+              backgroundSize: 'cover',
             }"
           ></div>
         </div>
@@ -110,32 +88,40 @@ export default {
   setup() {},
   data() {
     return {
-      initials: "",
-      initialsState: false,
       selectedColors: {
         shoeColorLaces: null,
         shoeColorSole: null,
         shoeColorPanelUp: null,
-        shoeColorPanelDown: null,
       },
       selectedMaterials: {
         shoeMaterialPanelUp: null,
         shoeMaterialPanelDown: null,
       },
       shoeSize: null,
-      jewel: null,
       userName: null,
       userAddress: null,
       userEmail: null,
       formError: null,
-      colorOptions: ["#FFFF00", "#FF0000", "#FFC0CB", "#C9C9C9"],
-      materialOptions: [
-        "/textures/dall-e-1.png",
-        "/textures/dall-e-2.png",
-        "/textures/dall-e-3.png",
-        "/textures/dall-e-4.png",
+      colorOptions: [
+        "#7DBAAE",
+        "#91131D",
+        "#DD9D1D",
+        "#9A244B",
+        "#5A9E50",
+        "#FCD4D4",
+        "#9DB7D8",
+        "#F9EEB0",
       ],
-      jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
+      materialOptions: [
+        "/textures/sd-1.webp",
+        "/textures/sd-2.webp",
+        "/textures/sd-3.webp",
+        "/textures/sd-4.webp",
+        "/textures/lexica-1.webp",
+        "/textures/lexica-2.webp",
+        "/textures/lexica-3.webp",
+        "/textures/lexica-4.webp",
+      ],
     };
   },
   mounted() {
@@ -290,7 +276,7 @@ export default {
               main.material = main.material.clone();
               main.material.color.setStyle(hexColor);
               main.material.needsUpdate = true;
-              this.selectedColors.shoeColorMain = hexColor;
+              this.selectedColors.shoeColorPanelUp = hexColor;
             }
             break;
         }
@@ -312,7 +298,7 @@ export default {
               sides.material = sides.material.clone();
               sides.material.map = texture;
               sides.material.needsUpdate = true;
-              this.selectedMaterials.shoeMaterialSides = textureUrl;
+              this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
             }
             break;
           case "tip":
@@ -321,6 +307,7 @@ export default {
               tip.material = tip.material.clone();
               tip.material.map = texture;
               tip.material.needsUpdate = true;
+              this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
             }
             break;
           default:
@@ -485,6 +472,19 @@ label {
   font-weight: 400;
   font-size: 18px;
   color: white;
+}
+
+#disclaimer {
+  font-family: "basic-sans", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: white;
+  margin-left: 40px;
+  margin-right: 80px;
+  margin-bottom: 40px;
 }
 
 button {
