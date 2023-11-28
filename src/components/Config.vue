@@ -2,22 +2,6 @@
   <div>
     <div class="canvas-container" ref="canvasContainer"></div>
 
-    <div>
-      <h1>AIR REV. NITRO S</h1>
-      <p class="price">€ 200</p>
-      <router-link to="/config2"
-        ><button class="router">Go to other model</button></router-link
-      >
-
-      <div class="initials-container">
-        <label>
-          <input type="checkbox" @change="toggleInitials()" />
-          Show Initials
-        </label>
-        <input v-model="initials" @input="handleInitialsInput" maxlength="2" />
-      </div>
-    </div>
-
     <div id="configurator">
       <div
         v-for="colorType in ['laces', 'sole', 'inside', 'outside']"
@@ -55,7 +39,7 @@
       </div>
 
       <div>
-        <p class="subtitle">Jewels</p>
+        <p class="subtitle">jewel</p>
         <div
           v-for="jewelType in jewelOptions"
           :key="jewelType"
@@ -75,10 +59,33 @@
       </div>
     </div>
 
+    <div class="initials-container">
+      <input id="checkbox" type="checkbox" @change="toggleInitials()" />
+      <label> Add your initials to your shoe:</label>
+      <input v-model="initials" @input="handleInitialsInput" maxlength="2" />
+    </div>
+
+    <h2>Your information:</h2>
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
-        <input type="number" v-model="shoeSize" />
+        <select id="shoeSize" name="shoeSize">
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="45">45</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="48">48</option>
+          <option value="49">49</option>
+          <option value="50">50</option>
+        </select>
       </div>
       <div class="user-details-div">
         <label for="userName">User Name:</label>
@@ -96,7 +103,15 @@
 
     <div v-if="formError" class="error-message">{{ formError }}</div>
 
-    <button @click="handleDoneButtonClick">Done</button>
+    <button @click="handleDoneButtonClick">Send order!</button>
+
+    <div id="shoetype">
+      <h1>You are currently editing: AIR REV. NITRO S</h1>
+      <p class="price">€ 200</p>
+      <router-link to="/config2"
+        ><button class="router">Go to AIR REV. XTRA BLACK</button></router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -469,9 +484,11 @@ export default {
 <style scoped>
 .initials-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: start;
   padding: 43px;
+  gap: 20px;
+  margin-left: 40px;
 }
 
 p {
@@ -504,7 +521,7 @@ button {
   line-height: normal;
   display: block;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-bottom: 80px;
 }
 
@@ -517,10 +534,9 @@ button {
   margin-right: 50px;
   padding-left: 50px;
   padding-right: 50px;
-  padding-bottom: 50px;
-  margin-bottom: 50px;
+  padding-bottom: 10px;
   overflow-x: auto;
-  flex-wrap: nowrap; /* Prevent items from wrapping */
+  flex-wrap: nowrap;
 }
 
 .subtitle {
@@ -530,15 +546,18 @@ button {
 .error-message {
   color: red;
   margin-top: 10px;
+  margin-left: 100px;
+  margin-bottom: 10px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 18px;
 }
 
 .user-details {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
   justify-content: space-around;
-  margin-left: 80px;
-  margin-right: 80px;
+  margin-left: 100px;
   margin-bottom: 20px;
   gap: 40px;
   flex-wrap: wrap;
@@ -549,16 +568,27 @@ button {
   gap: 10px;
 }
 
-input {
+input,
+select {
   border: 2px solid #d6ff38;
   background-color: #242424;
   color: white;
+  height: 20px;
+  width: 200px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+select {
+  height: 30px;
 }
 .options .circle {
   cursor: pointer;
   transition: transform 0.2s;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   margin: 10px 0;
   border: 2px solid #fff;
@@ -567,23 +597,22 @@ input {
 .options .circle:hover {
   transform: scale(1.2);
 }
-
 .router {
   text-decoration: none;
   color: #d6ff38;
   background-color: #000;
   width: 20%;
-  max-width: 150px;
-  height: 24px;
-  font-family: "cooper-black-std", serif;
-  font-size: 12px;
+  max-width: 250px;
+  height: 34px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: normal;
   display: block;
-  margin-left: 40px;
+  margin-left: 100px;
   margin-top: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 
 h1 {
@@ -596,21 +625,49 @@ h1 {
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.6px;
-  margin-left: 40px;
+  margin-left: 100px;
+  margin-top: 200px;
+}
+
+h2 {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: "cooper-black-std", serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.6px;
+  margin-left: 100px;
   margin-top: 20px;
+  margin-bottom: 30px;
+  margin-top: 80px;
 }
 
 .price {
   color: white;
   font-size: 1.5rem;
   margin: 0;
-  font-family: "cooper-black-std", serif;
-  font-size: 20px;
+  font-family: "basic-sans", sans-serif;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.6px;
-  margin-left: 40px;
-  margin-top: 20px;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+
+#checkbox {
+  border: 2px solid #d6ff38;
+  background-color: #242424;
+  color: white;
+  width: 20px;
+  margin-left: 15px;
+}
+
+#shoetype {
+  margin-top: 50px;
 }
 </style>
