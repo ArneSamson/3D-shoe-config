@@ -201,6 +201,10 @@ export default {
 
     let shoeText;
 
+    const textureLoader = new TextureLoader();
+    const bgi = textureLoader.load("/media/bgi.jpg");
+    scene.background = bgi;
+
     gltfLoader.load("/models/new-shoe.glb", (gltf) => {
       shoe = gltf.scene;
       shoe.scale.set(2.5, 2.5, 2.5);

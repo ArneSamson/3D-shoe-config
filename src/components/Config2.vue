@@ -184,7 +184,9 @@ export default {
 
     let shoe;
 
-    let shoeText;
+    const textureLoader = new TextureLoader();
+    const bgi = textureLoader.load("/media/bgi.jpg");
+    scene.background = bgi;
 
     gltfLoader.load("/models/vans-shoe.glb", (gltf) => {
       shoe = gltf.scene;
