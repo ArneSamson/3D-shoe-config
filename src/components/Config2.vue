@@ -154,15 +154,6 @@ export default {
 
     const gltfLoader = new GLTFLoader(loadingManager);
 
-    const fontLoader = new FontLoader();
-    const textMaterial = new THREE.MeshStandardMaterial({
-      color: 0x000000,
-      metalness: 0.4,
-      roughness: 1,
-      wireframe: true,
-      wireframeLinewidth: 0.5,
-    });
-
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
     controls.enablePan = false;
@@ -209,49 +200,6 @@ export default {
 
       scene.add(shoe);
     });
-    const jewelModels = {
-      Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
-      Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
-      Hedgehog: { model: null, position: new THREE.Vector3(-1, 1.2, 1.15) },
-      Whale: { model: null, position: new THREE.Vector3(-1, 1.4, 0.95) },
-    };
-
-    Object.keys(jewelModels).forEach((jewelType) => {
-      const modelPath = `/models/pendant${jewelType}.glb`;
-      gltfLoader.load(modelPath, (gltf) => {
-        const jewelModel = gltf.scene;
-        jewelModel.scale.set(0.05, 0.05, 0.05);
-        jewelModel.rotation.x = -2;
-        jewelModel.rotation.y = 0.6;
-        jewelModel.position.copy(jewelModels[jewelType].position);
-
-        const material = new THREE.MeshStandardMaterial({
-          color: 0xffd700,
-          metalness: 1,
-          roughness: 0.3,
-        });
-
-        jewelModel.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material = material;
-          }
-        });
-
-        jewelModel.visible = false;
-        jewelModels[jewelType].model = jewelModel;
-        scene.add(jewelModel);
-      });
-    });
-
-    const updateJewel = (jewelType) => {
-      Object.keys(jewelModels).forEach((type) => {
-        const model = jewelModels[type].model;
-        model.visible = type === jewelType;
-        if (type === jewelType) this.jewel = jewelType;
-      });
-    };
-
-    this.updateJewel = updateJewel;
 
     const updateColor = (colorType, hexColor) => {
       if (shoe) {
@@ -334,49 +282,6 @@ export default {
     };
 
     animate();
-
-    const handleInitialsInput = () => {
-      this.initials = this.initials.toUpperCase();
-    };
-
-    this.handleInitialsInput = handleInitialsInput;
-
-    const toggleInitials = () => {
-      this.initialsState = !this.initialsState;
-
-      if (this.initialsState === true) {
-        fontLoader.load("fonts/helvetiker_regular.typeface.json", (font) => {
-          const textGeometry = new TextGeometry(this.initials, {
-            font: font,
-            size: 0.25,
-            height: 0.01,
-            curveSegments: 12,
-            bevelEnabled: true,
-            bevelThickness: 0.03,
-            bevelSize: 0.02,
-            bevelOffset: 0,
-            bevelSegments: 5,
-          });
-
-          this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
-
-          this.shoeText.rotation.order = "YXZ";
-
-          this.shoeText.rotation.x = -0.5;
-          this.shoeText.rotation.y = -1.75;
-
-          this.shoeText.position.x = -1.88;
-          this.shoeText.position.y = 2.2;
-          this.shoeText.position.z = -0.45;
-
-          scene.add(this.shoeText);
-        });
-      } else if (this.initialsState === false) {
-        scene.remove(this.shoeText);
-      }
-    };
-
-    this.toggleInitials = toggleInitials;
   },
 
   methods: {
