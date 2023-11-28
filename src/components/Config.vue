@@ -3,6 +3,10 @@
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div>
+      <router-link to="/config2"
+        ><button class="router">Go to other model</button></router-link
+      >
+
       <div class="initials-container">
         <label>
           <input type="checkbox" @change="toggleInitials()" />
@@ -101,6 +105,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 export default {
   setup() {},
@@ -497,7 +503,6 @@ button {
   flex-direction: row;
   align-items: center;
   gap: 120px;
-  margin-top: 50px;
   margin-left: 50px;
   margin-right: 50px;
   padding-left: 50px;
@@ -551,5 +556,23 @@ input {
 
 .options .circle:hover {
   transform: scale(1.2);
+}
+
+.router {
+  text-decoration: none;
+  color: #d6ff38;
+  background-color: #000;
+  width: 20%;
+  max-width: 150px;
+  height: 24px;
+  font-family: "cooper-black-std", serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: block;
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 0px;
 }
 </style>
