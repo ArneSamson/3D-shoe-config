@@ -216,9 +216,7 @@ export default {
 
     let shoeText;
 
-    const textureLoader = new TextureLoader();
-    const bgi = textureLoader.load("/media/bgi.jpg");
-    scene.background = bgi;
+    this.textureLoader = new TextureLoader();
 
     gltfLoader.load("/models/new-shoe.glb", (gltf) => {
       shoe = gltf.scene;
@@ -325,8 +323,8 @@ export default {
 
     const updateMaterial = (materialType, textureUrl) => {
       if (shoe) {
-        const textureLoader = new THREE.TextureLoader();
-        const texture = textureLoader.load(textureUrl);
+        // const textureLoader = new THREE.TextureLoader();
+        const texture = this.textureLoader.load(textureUrl);
 
         texture.repeat.set(2, 2);
         texture.wrapS = THREE.RepeatWrapping;
