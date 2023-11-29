@@ -7,24 +7,8 @@
       <button @click="if (currentPartIndex > 0) currentPartIndex--;"
       >previous part</button>
 
-      <!-- <div
-        v-for="shoePart in ['laces', 'sole', 'inside', 'outside']"
-        :key="shoePart"
-        :id="`${shoePart}color`"
-      >
-        <p class="subtitle">{{ shoePart }} color</p>
-        <div
-          v-for="color in colorOptions"
-          :key="color"
-          :class="{ options: true }"
-          @click="updateColor(shoePart, color)"
-        >
-          <div class="circle" :style="{ backgroundColor: color }"></div>
-        </div>
-      </div> -->
-
       <div
-      v-if = "currentPartIndex === 0"
+      v-if = "currentPartIndex || currentPartIndex == 0"
       >
         <p class="subtitle">{{ shoePart }} color</p>
         <div
@@ -36,24 +20,6 @@
           <div class="circle" :style="{ backgroundColor: color }"></div>
         </div>
       </div>
-
-      <div
-      v-if = "currentPartIndex === 1"
-      >
-        <p class="subtitle">{{ shoePart }} color</p>
-        <div
-          v-for="color in colorOptions"
-          :key="color"
-          :class="{ options: true }"
-          @click="updateColor(shoePart, color)"
-        >
-          <div class="circle" :style="{ backgroundColor: color }"></div>
-        </div>
-      </div>
-
-
-
-
 
       <div
         v-for="materialType in ['top', 'bottom']"
