@@ -164,6 +164,16 @@ export default {
     const ratio = windowWidth / window.innerHeight;
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.CubeTextureLoader()
+      .setPath("/cubemap/jpg/")
+      .load([
+        "px.jpg",
+        "nx.jpg",
+        "py.jpg",
+        "ny.jpg",
+        "pz.jpg",
+        "nz.jpg",
+      ]); 
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -197,7 +207,7 @@ export default {
     controls.maxPolarAngle = Math.PI / 2;
     controls.enablePan = false;
 
-    scene.background = new THREE.Color(0xffffff);
+    // scene.background = new THREE.Color(0xffffff);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -323,7 +333,6 @@ export default {
 
     const updateMaterial = (materialType, textureUrl) => {
       if (shoe) {
-        // const textureLoader = new THREE.TextureLoader();
         const texture = this.textureLoader.load(textureUrl);
 
         texture.repeat.set(2, 2);
