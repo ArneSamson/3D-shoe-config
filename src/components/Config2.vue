@@ -80,7 +80,7 @@
 
     <div v-if="formError" class="error-message">{{ formError }}</div>
 
-    <button @click="handleDoneButtonClick">Done</button>
+    <button @click="handleDoneButtonClick">Send order!</button>
 
     <div id="shoetype">
       <h1>You are currently editing: AIR REV. XTRA BLACK</h1>
