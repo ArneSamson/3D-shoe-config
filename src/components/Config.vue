@@ -17,28 +17,25 @@
           :class="{ options: true }"
           @click="updateColor(shoePart, color)"
         >
-          <div class="circle" :style="{ backgroundColor: color }"></div>
-        </div>
+        <div class="circle" :style="{ backgroundColor: color }"></div>
       </div>
+    </div>
 
+    <div v-if="shoePart === 'inside' || shoePart === 'outside'"
+    >
+      <p class="subtitle">{{ materialPart }} material</p>
       <div
-        v-for="materialType in ['top', 'bottom']"
-        :key="materialType"
-        :id="`${materialType}material`"
+        v-for="material in materialOptions"
+        :key="material"
+        :class="{ options: true }"
+        @click="updateMaterial(materialPart, material)"
       >
-        <p class="subtitle">{{ materialType }} material</p>
         <div
-          v-for="material in materialOptions"
-          :key="material"
-          :class="{ options: true }"
-          @click="updateMaterial(materialType, material)"
-        >
-          <div
-            class="circle"
-            :style="{ backgroundImage: `url(${material})` }"
-          ></div>
-        </div>
+          class="circle"
+          :style="{ backgroundImage: `url(${material})` }"
+        ></div>
       </div>
+    </div>
 
       <div>
         <p class="subtitle">jewel</p>
@@ -136,6 +133,7 @@ export default {
   data() {
     return {
       shoeParts: ['laces', 'sole', 'inside', 'outside'],
+      materialParts: ['bottom', 'top'],
       currentPartIndex: 0,
       initials: "",
       initialsState: false,
@@ -497,6 +495,9 @@ export default {
   computed: {
     shoePart() {
       return this.shoeParts[this.currentPartIndex];
+    },
+    materialPart(){
+      return this.materialParts[this.currentPartIndex-2];
     },
   },
 };
