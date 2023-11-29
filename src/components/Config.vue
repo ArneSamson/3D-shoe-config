@@ -3,21 +3,57 @@
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div id="configurator">
-      <div
-        v-for="colorType in ['laces', 'sole', 'inside', 'outside']"
-        :key="colorType"
-        :id="`${colorType}color`"
+
+      <button @click="if (currentPartIndex > 0) currentPartIndex--;"
+      >previous part</button>
+
+      <!-- <div
+        v-for="shoePart in ['laces', 'sole', 'inside', 'outside']"
+        :key="shoePart"
+        :id="`${shoePart}color`"
       >
-        <p class="subtitle">{{ colorType }} color</p>
+        <p class="subtitle">{{ shoePart }} color</p>
         <div
           v-for="color in colorOptions"
           :key="color"
           :class="{ options: true }"
-          @click="updateColor(colorType, color)"
+          @click="updateColor(shoePart, color)"
+        >
+          <div class="circle" :style="{ backgroundColor: color }"></div>
+        </div>
+      </div> -->
+
+      <div
+      v-if = "currentPartIndex === 0"
+      >
+        <p class="subtitle">{{ shoePart }} color</p>
+        <div
+          v-for="color in colorOptions"
+          :key="color"
+          :class="{ options: true }"
+          @click="updateColor(shoePart, color)"
         >
           <div class="circle" :style="{ backgroundColor: color }"></div>
         </div>
       </div>
+
+      <div
+      v-if = "currentPartIndex === 1"
+      >
+        <p class="subtitle">{{ shoePart }} color</p>
+        <div
+          v-for="color in colorOptions"
+          :key="color"
+          :class="{ options: true }"
+          @click="updateColor(shoePart, color)"
+        >
+          <div class="circle" :style="{ backgroundColor: color }"></div>
+        </div>
+      </div>
+
+
+
+
 
       <div
         v-for="materialType in ['top', 'bottom']"
@@ -57,6 +93,10 @@
           ></div>
         </div>
       </div>
+
+      <button
+        @click="if (currentPartIndex < 3) currentPartIndex++;"
+      >next part</button>
     </div>
 
     <div class="initials-container">
@@ -129,6 +169,8 @@ export default {
   setup() {},
   data() {
     return {
+      shoeParts: ['laces', 'sole', 'inside', 'outside'],
+      currentPartIndex: 0,
       initials: "",
       initialsState: false,
       selectedColors: {
@@ -483,6 +525,12 @@ export default {
         .catch((error) => {
           console.error("Error:", error);
         });
+    },
+  },
+
+  computed: {
+    shoePart() {
+      return this.shoeParts[this.currentPartIndex];
     },
   },
 };
