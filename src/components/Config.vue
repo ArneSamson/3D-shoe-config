@@ -18,24 +18,24 @@
           @click="updateColor(shoePart, color)"
         >
         <div class="circle" :style="{ backgroundColor: color }"></div>
+        </div>
       </div>
-    </div>
 
-    <div v-if="shoePart === 'inside' || shoePart === 'outside'"
-    >
-      <p class="subtitle">{{ materialPart }} material</p>
-      <div
-        v-for="material in materialOptions"
-        :key="material"
-        :class="{ options: true }"
-        @click="updateMaterial(materialPart, material)"
+      <div v-if="shoePart === 'inside' || shoePart === 'outside'"
       >
+        <p class="subtitle">{{ materialPart }} material</p>
         <div
-          class="circle"
-          :style="{ backgroundImage: `url(${material})` }"
-        ></div>
+          v-for="material in materialOptions"
+          :key="material"
+          :class="{ options: true }"
+          @click="updateMaterial(materialPart, material)"
+        >
+          <div
+            class="circle"
+            :style="{ backgroundImage: `url(${material})` }"
+          ></div>
+        </div>
       </div>
-    </div>
 
       <div>
         <p class="subtitle">jewel</p>
@@ -58,7 +58,7 @@
       </div>
 
       <button
-        @click="if (currentPartIndex < 3) currentPartIndex++;"
+        @click="if (currentPartIndex < 4) currentPartIndex++;"
       >next part</button>
     </div>
 
