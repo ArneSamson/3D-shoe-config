@@ -4,11 +4,13 @@
 
     <div id="configurator">
 
-      <button @click="if (currentPartIndex > 0) currentPartIndex--;"
+      <button @click="if (currentPartIndex > 0) currentPartIndex--;
+        else currentPartIndex = 4
+        "
       >previous part</button>
 
       <div
-      v-if = "currentPartIndex || currentPartIndex == 0"
+      v-if = "currentPartIndex && currentPartIndex < 4 || currentPartIndex == 0"
       >
         <p class="subtitle">{{ shoePart }} color</p>
         <div
@@ -37,7 +39,7 @@
         </div>
       </div>
 
-      <div>
+      <div v-if="currentPartIndex === 4">
         <p class="subtitle">jewel</p>
         <div
           v-for="jewelType in jewelOptions"
@@ -58,7 +60,9 @@
       </div>
 
       <button
-        @click="if (currentPartIndex < 4) currentPartIndex++;"
+        @click="if (currentPartIndex < 4) currentPartIndex++
+        else currentPartIndex = 0
+        ;"
       >next part</button>
     </div>
 
