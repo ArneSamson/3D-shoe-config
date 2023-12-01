@@ -289,6 +289,23 @@ export default {
 
       scene.add(shoe);
     });
+
+    const resetCamera = () => {
+      const initialPosition = { x: 0, y: 0, z: 7 };
+      const initialRotation = { x: 0, y: 0, z: 0 };
+
+      new TWEEN.Tween(camera.position)
+        .to(initialPosition, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+
+      new TWEEN.Tween(camera.rotation)
+        .to(initialRotation, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+    };
+
+
     const jewelModels = {
       Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
       Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
