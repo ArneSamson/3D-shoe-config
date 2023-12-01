@@ -3,69 +3,107 @@
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div id="configurator">
-      <button
+      <a
+        id="arrow"
         @click="
-          if (currentPartIndex > 0) currentPartIndex--;
-          else currentPartIndex = 4;
+          if (currentPartIndex > 0) {
+            currentPartIndex--;
+          } else {
+            currentPartIndex = 5;
+          }
         "
-      >⬅️</button>
+      >
+        ←
+      </a>
 
       <div
+        id="flex"
         v-if="
           (currentPartIndex && currentPartIndex < 4) || currentPartIndex == 0
         "
       >
-        <p class="subtitle">{{ shoePart }} color</p>
-        <div
-          v-for="color in colorOptions"
-          :key="color"
-          :class="{ options: true }"
-          @click="updateColor(shoePart, color)"
-        >
-          <div class="circle" :style="{ backgroundColor: color }"></div>
+        <div>
+          <p class="subtitle" style="text-transform: capitalize">
+            {{ shoePart }} ({{ currentPartIndex + 1 }}/6)
+          </p>
         </div>
-      </div>
-
-      <div v-if="shoePart === 'inside' || shoePart === 'outside'">
-        <p class="subtitle">{{ materialPart }} material</p>
-        <div
-          v-for="material in materialOptions"
-          :key="material"
-          :class="{ options: true }"
-          @click="updateMaterial(materialPart, material)"
-        >
+        <div id="flex2">
           <div
-            class="circle"
-            :style="{ backgroundImage: `url(${material})` }"
-          ></div>
+            v-for="color in colorOptions"
+            :key="color"
+            :class="{ options: true }"
+            @click="updateColor(shoePart, color)"
+          >
+            <div class="circle" :style="{ backgroundColor: color }"></div>
+          </div>
+        </div>
+        <div v-if="shoePart === 'inside' || shoePart === 'outside'">
+          <div id="flex2">
+            <div
+              v-for="material in materialOptions"
+              :key="material"
+              :class="{ options: true }"
+              @click="updateMaterial(materialPart, material)"
+            >
+              <div
+                class="circle"
+                :style="{ backgroundImage: `url(${material})` }"
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div v-if="currentPartIndex === 4">
-        <p class="subtitle">jewel</p>
-        <div
-          v-for="jewelType in jewelOptions"
-          :key="jewelType"
-          :id="`${jewelType}jewel`"
-          :class="{ options: true }"
-          @click="updateJewel(jewelType)"
-        >
+      <div id="flex" v-if="currentPartIndex === 4">
+        <div>
+          <p class="subtitle">Jewel ({{ currentPartIndex + 1 }}/6)</p>
+        </div>
+        <div id="flex2">
           <div
-            class="circle"
-            :style="{
-              backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-            }"
-          ></div>
+            v-for="jewelType in jewelOptions"
+            :key="jewelType"
+            :id="`${jewelType}jewel`"
+            :class="{ options: true }"
+            @click="updateJewel(jewelType)"
+          >
+            <div
+              class="circle"
+              :style="{
+                backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+              }"
+            ></div>
+          </div>
         </div>
       </div>
 
-      <button
-        @click="if (currentPartIndex < 4) currentPartIndex++
-        else currentPartIndex = 0
-        ;"
-      >➡️</button>
+      <div id="flex" v-if="currentPartIndex === 5">
+        <div>
+          <p class="subtitle">Initials ({{ currentPartIndex + 1 }}/6)</p>
+        </div>
+        <div class="initials-container">
+          <input id="checkbox" type="checkbox" @change="toggleInitials()" />
+          <input
+            v-model="initials"
+            @input="handleInitialsInput"
+            maxlength="2"
+          />
+        </div>
+      </div>
+
+      <a
+        id="arrow"
+        @click="
+          if (currentPartIndex < 5) {
+            currentPartIndex++;
+          } else {
+            currentPartIndex = 0;
+          }
+        "
+      >
+        →
+      </a>
     </div>
 
     <div class="initials-container">
