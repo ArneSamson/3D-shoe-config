@@ -174,6 +174,8 @@ export default {
     const windowWidth = window.innerWidth * 2;
     const ratio = windowWidth / window.innerHeight;
 
+    const clock = new THREE.Clock();
+
     const scene = new THREE.Scene();
     scene.background = new THREE.CubeTextureLoader()
       .setPath("/cubemap/jpg/")
@@ -440,7 +442,8 @@ export default {
     const onProgress = () => {
       const particleGeometry = new THREE.BufferGeometry();
       const count = 400;
-      
+      const spreadDistance = 10;
+
       let vertices = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i++) {
         vertices[i] = THREE.MathUtils.randFloatSpread(1);
@@ -451,14 +454,47 @@ export default {
       );
 
       const particleMaterial = new THREE.PointsMaterial({
-        size: 0.05,
+        size: 0.5,
         color: 0xffffff,
+        transparent: true,
+        opacity: 0.7,
       });
 
       const particles = new THREE.Points(particleGeometry, particleMaterial);
       scene.add(particles);
 
-    }
+      // Start to animate the particles like confetti spreading out
+      const animateConfetti = () => {
+        const elapsedTime = clock.getElapsedTime();
+
+        for (let i = 0; i < count; i++) {
+          const i3 = i * 3;
+
+          const x = particleGeometry.attributes.position.array[i3];
+          const y = particleGeometry.attributes.position.array[i3 + 1];
+          const z = particleGeometry.attributes.position.array[i3 + 2];
+
+          particleGeometry.attributes.position.array[i3] = x + x * 0.05;
+          particleGeometry.attributes.position.array[i3 + 1] =
+            y + y * 0.05 + Math.sin(elapsedTime * 2 + i) * 0.01;
+          particleGeometry.attributes.position.array[i3 + 2] =
+            z + z * 0.05 + Math.cos(elapsedTime * 2 + i) * 0.01;
+
+          if (particleGeometry.attributes.position.array[i3 + 1] > 3) {
+            particleGeometry.attributes.position.array[i3 + 1] =
+              -spreadDistance;
+          }
+        }
+
+        particleGeometry.attributes.position.needsUpdate = true;
+
+        renderer.render(scene, camera);
+
+        requestAnimationFrame(animateConfetti);
+      };
+
+      animateConfetti();
+    };
 
     this.onProgress = onProgress;
   },
