@@ -305,7 +305,22 @@ export default {
         .start();
     };
 
+    const updateCameraPosition = (currentPartIndex) => {
+      resetCamera();
 
+      const targetValues = getTargetValues(this.currentPartIndex);
+
+      new TWEEN.Tween(shoe.rotation)
+        .to({ x: targetValues.rotationX, y: targetValues.rotationY }, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+
+      new TWEEN.Tween(shoe.position)
+        .to({ y: targetValues.positionY, z: targetValues.positionZ }, 500)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+    };
+    
     const jewelModels = {
       Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
       Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
