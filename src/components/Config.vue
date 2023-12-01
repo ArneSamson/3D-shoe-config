@@ -6,7 +6,6 @@
 
       <button @click="if (currentPartIndex > 0) currentPartIndex--;
         else currentPartIndex = 4
-        checkProgress()
         "
       >⬅️</button>
 
@@ -63,7 +62,6 @@
       <button
         @click="if (currentPartIndex < 4) currentPartIndex++
         else currentPartIndex = 0
-        checkProgress()
         ;"
       >➡️</button>
     </div>
@@ -167,6 +165,7 @@ export default {
         "/textures/fabric.jpg",
       ],
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
+      progressState: false,
     };
   },
   mounted() {
@@ -377,6 +376,20 @@ export default {
     const animate = () => {
       requestAnimationFrame(animate);
       renderer.render(scene, camera);
+
+      if(this.selectedColors.shoeColorLaces &&
+        this.selectedColors.shoeColorSole &&
+        this.selectedColors.shoeColorPanelDown &&
+        this.selectedColors.shoeColorPanelUp &&
+        this.selectedMaterials.shoeMaterialPanelDown &&
+        this.selectedMaterials.shoeMaterialPanelUp &&
+        this.jewel &&
+        this.progressState === false
+        ){
+          console.log("all selected");
+          this.progressState = true;
+          this.onProgress();
+        }
     };
 
     animate();
@@ -424,27 +437,30 @@ export default {
 
     this.toggleInitials = toggleInitials;
 
-    const checkProgress = () => {
-      console.log("checking progress");
-      if(this.selectedColors.shoeColorLaces &&
-        this.selectedColors.shoeColorSole &&
-        this.selectedColors.shoeColorPanelDown &&
-        this.selectedColors.shoeColorPanelUp &&
-        this.selectedMaterials.shoeMaterialPanelDown &&
-        this.selectedMaterials.shoeMaterialPanelUp &&
-        this.jewel){
-          console.log("all selected");
-          const geometry = new THREE.BoxGeometry(
-            5, 5, 5
-          );
-          const material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
-          const cube = new THREE.Mesh( geometry, material );
-          scene.add( cube );
-  
-        }
+    const onProgress = () => {
+      const particleGeometry = new THREE.BufferGeometry();
+      const count = 400;
+      
+      let vertices = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i++) {
+        vertices[i] = THREE.MathUtils.randFloatSpread(1);
+      }
+      particleGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(vertices, 3)
+      );
+
+      const particleMaterial = new THREE.PointsMaterial({
+        size: 0.05,
+        color: 0xffffff,
+      });
+
+      const particles = new THREE.Points(particleGeometry, particleMaterial);
+      scene.add(particles);
+
     }
 
-    this.checkProgress = checkProgress;
+    this.onProgress = onProgress;
   },
 
   methods: {
