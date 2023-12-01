@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="shoe-configurator">
     <div class="canvas-container" ref="canvasContainer"></div>
 
-    <div id="configurator">
+    <div class="configurator">
       <a
-        id="arrow"
+        class="configurator__arrow"
         @click="
           if (currentPartIndex > 0) {
             currentPartIndex--;
@@ -19,36 +19,39 @@
       </a>
 
       <div
-        id="flex"
+        class="configurator__flex"
         v-if="
           (currentPartIndex && currentPartIndex < 4) || currentPartIndex == 0
         "
       >
         <div>
-          <p class="subtitle" style="text-transform: capitalize">
+          <p class="configurator__subtitle" style="text-transform: capitalize">
             {{ shoePart }} ({{ currentPartIndex + 1 }}/6)
           </p>
         </div>
-        <div id="flex2">
+        <div class="configurator__flex2">
           <div
             v-for="color in colorOptions"
             :key="color"
-            :class="{ options: true }"
+            class="configurator__options"
             @click="updateColor(shoePart, color)"
           >
-            <div class="circle" :style="{ backgroundColor: color }"></div>
+            <div
+              class="configurator__circle"
+              :style="{ backgroundColor: color }"
+            ></div>
           </div>
         </div>
         <div v-if="shoePart === 'inside' || shoePart === 'outside'">
-          <div id="flex2">
+          <div class="configurator__flex2">
             <div
               v-for="material in materialOptions"
               :key="material"
-              :class="{ options: true }"
+              class="configurator__options"
               @click="updateMaterial(materialPart, material)"
             >
               <div
-                class="circle"
+                class="configurator__circle"
                 :style="{ backgroundImage: `url(${material})` }"
               ></div>
             </div>
@@ -56,20 +59,22 @@
         </div>
       </div>
 
-      <div id="flex" v-if="currentPartIndex === 4">
+      <div class="configurator__flex" v-if="currentPartIndex === 4">
         <div>
-          <p class="subtitle">Jewel ({{ currentPartIndex + 1 }}/6)</p>
+          <p class="configurator__subtitle">
+            Jewel ({{ currentPartIndex + 1 }}/6)
+          </p>
         </div>
-        <div id="flex2">
+        <div class="configurator__flex2">
           <div
             v-for="jewelType in jewelOptions"
             :key="jewelType"
             :id="`${jewelType}jewel`"
-            :class="{ options: true }"
+            class="configurator__options"
             @click="updateJewel(jewelType)"
           >
             <div
-              class="circle"
+              class="configurator__circle"
               :style="{
                 backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
                 backgroundSize: 'contain',
@@ -80,12 +85,18 @@
         </div>
       </div>
 
-      <div id="flex" v-if="currentPartIndex === 5">
+      <div class="configurator__flex" v-if="currentPartIndex === 5">
         <div>
-          <p class="subtitle">Initials ({{ currentPartIndex + 1 }}/6)</p>
+          <p class="configurator__subtitle">
+            Initials ({{ currentPartIndex + 1 }}/6)
+          </p>
         </div>
-        <div class="initials-container">
-          <input id="checkbox" type="checkbox" @change="toggleInitials()" />
+        <div class="configurator__initials-container">
+          <input
+            class="configurator__checkbox"
+            type="checkbox"
+            @change="toggleInitials()"
+          />
           <input
             v-model="initials"
             @input="handleInitialsInput"
@@ -95,7 +106,7 @@
       </div>
 
       <a
-        id="arrow"
+        class="configurator__arrow"
         @click="
           if (currentPartIndex < 5) {
             currentPartIndex++;
@@ -108,12 +119,6 @@
       >
         →
       </a>
-    </div>
-
-    <div class="initials-container">
-      <input id="checkbox" type="checkbox" @change="toggleInitials()" />
-      <label> Add your initials to your shoe:</label>
-      <input v-model="initials" @input="handleInitialsInput" maxlength="2" />
     </div>
 
     <h2>Your information:</h2>
@@ -152,17 +157,10 @@
       </div>
     </div>
 
-    <div v-if="formError" class="error-message">{{ formError }}</div>
-
-    <button @click="handleDoneButtonClick">Send order!</button>
-
-    <div id="shoetype">
-      <h1>You are currently editing: AIR REV. NITRO S</h1>
-      <p class="price">€ 200</p>
-      <router-link to="/config2"
-        ><button class="router">Go to AIR REV. XTRA BLACK</button></router-link
-      >
+    <div v-if="formError" class="configurator__error-message">
+      {{ formError }}
     </div>
+    <button @click="handleDoneButtonClick">Send order!</button>
   </div>
 </template>
 
@@ -174,6 +172,8 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { useRouter } from "vue-router";
+import TWEEN from "tween.js";
+
 const router = useRouter();
 
 export default {
