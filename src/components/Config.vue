@@ -3,14 +3,17 @@
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div id="configurator">
-
-      <button @click="if (currentPartIndex > 0) currentPartIndex--;
-        else currentPartIndex = 4
+      <button
+        @click="
+          if (currentPartIndex > 0) currentPartIndex--;
+          else currentPartIndex = 4;
         "
       >⬅️</button>
 
       <div
-      v-if = "currentPartIndex && currentPartIndex < 4 || currentPartIndex == 0"
+        v-if="
+          (currentPartIndex && currentPartIndex < 4) || currentPartIndex == 0
+        "
       >
         <p class="subtitle">{{ shoePart }} color</p>
         <div
@@ -19,12 +22,11 @@
           :class="{ options: true }"
           @click="updateColor(shoePart, color)"
         >
-        <div class="circle" :style="{ backgroundColor: color }"></div>
+          <div class="circle" :style="{ backgroundColor: color }"></div>
         </div>
       </div>
 
-      <div v-if="shoePart === 'inside' || shoePart === 'outside'"
-      >
+      <div v-if="shoePart === 'inside' || shoePart === 'outside'">
         <p class="subtitle">{{ materialPart }} material</p>
         <div
           v-for="material in materialOptions"
@@ -136,8 +138,8 @@ export default {
   setup() {},
   data() {
     return {
-      shoeParts: ['laces', 'sole', 'inside', 'outside'],
-      materialParts: ['bottom', 'top'],
+      shoeParts: ["laces", "sole", "inside", "outside"],
+      materialParts: ["bottom", "top"],
       currentPartIndex: 0,
       initials: "",
       initialsState: false,
@@ -179,14 +181,7 @@ export default {
     const scene = new THREE.Scene();
     scene.background = new THREE.CubeTextureLoader()
       .setPath("/cubemap/jpg/")
-      .load([
-        "px.jpg",
-        "nx.jpg",
-        "py.jpg",
-        "ny.jpg",
-        "pz.jpg",
-        "nz.jpg",
-      ]); 
+      .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -576,8 +571,8 @@ export default {
     shoePart() {
       return this.shoeParts[this.currentPartIndex];
     },
-    materialPart(){
-      return this.materialParts[this.currentPartIndex-2];
+    materialPart() {
+      return this.materialParts[this.currentPartIndex - 2];
     },
   },
 };
