@@ -6,8 +6,9 @@
 
       <button @click="if (currentPartIndex > 0) currentPartIndex--;
         else currentPartIndex = 4
+        checkProgress()
         "
-      >previous part</button>
+      >⬅️</button>
 
       <div
       v-if = "currentPartIndex && currentPartIndex < 4 || currentPartIndex == 0"
@@ -62,8 +63,9 @@
       <button
         @click="if (currentPartIndex < 4) currentPartIndex++
         else currentPartIndex = 0
+        checkProgress()
         ;"
-      >next part</button>
+      >➡️</button>
     </div>
 
     <div class="initials-container">
@@ -421,6 +423,28 @@ export default {
     };
 
     this.toggleInitials = toggleInitials;
+
+    const checkProgress = () => {
+      console.log("checking progress");
+      if(this.selectedColors.shoeColorLaces &&
+        this.selectedColors.shoeColorSole &&
+        this.selectedColors.shoeColorPanelDown &&
+        this.selectedColors.shoeColorPanelUp &&
+        this.selectedMaterials.shoeMaterialPanelDown &&
+        this.selectedMaterials.shoeMaterialPanelUp &&
+        this.jewel){
+          console.log("all selected");
+          const geometry = new THREE.BoxGeometry(
+            5, 5, 5
+          );
+          const material = new THREE.MeshBasicMaterial( {color: 0xffffff} );
+          const cube = new THREE.Mesh( geometry, material );
+          scene.add( cube );
+  
+        }
+    }
+
+    this.checkProgress = checkProgress;
   },
 
   methods: {
