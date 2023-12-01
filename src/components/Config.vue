@@ -321,6 +321,62 @@ export default {
         .start();
     };
     
+    const getTargetValues = (currentPartIndex) => {
+      switch (this.currentPartIndex) {
+        case 0:
+          return {
+            rotationX: 0.7,
+            rotationY: 0.1,
+            positionY: 0,
+            positionZ: -1,
+          };
+        case 1:
+          return {
+            rotationX: 0.6,
+            rotationY: 2.8,
+            positionY: -0.5,
+            positionZ: 1,
+          };
+        case 2:
+          return {
+            rotationX: 0.6,
+            rotationY: 1,
+            positionY: -0.5,
+            positionZ: -1,
+          };
+        case 3:
+          return {
+            rotationX: 0.6,
+            rotationY: -0.8,
+            positionY: -0.5,
+            positionZ: -1,
+          };
+        case 4:
+          return {
+            rotationX: 0.6,
+            rotationY: 1.5,
+            positionY: -0.5,
+            positionZ: 1.6,
+          };
+        case 5:
+          return {
+            rotationX: -0.2,
+            rotationY: 3.3,
+            positionY: -0.5,
+            positionZ: 1.2,
+          };
+        default:
+          return {
+            rotationX: 0.7,
+            rotationY: 0.1,
+            positionY: 0,
+            positionZ: -1,
+          };
+      }
+    };
+
+    this.updateCameraPosition = updateCameraPosition;
+
     const jewelModels = {
       Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
       Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
