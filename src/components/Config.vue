@@ -709,9 +709,8 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: start;
-  padding: 43px;
   gap: 20px;
-  margin-left: 40px;
+  margin-top: 20px;
 }
 
 p {
@@ -721,7 +720,7 @@ p {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  color: black;
+  color: white;
 }
 
 label {
@@ -748,22 +747,28 @@ button {
   margin-bottom: 80px;
 }
 
+#arrow {
+  color: #d6ff38;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-family: "cooper-black-std", serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 15px;
+}
+
 #configurator {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   gap: 120px;
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-left: 50px;
-  padding-right: 50px;
   padding-bottom: 10px;
-  overflow-x: auto;
-  flex-wrap: nowrap;
+  justify-content: center;
 }
 
 .subtitle {
   color: white;
+  font-family: "basic-sans", sans-serif;
+  font-size: 24px;
+  font-style: normal;
 }
 
 .error-message {
@@ -810,8 +815,8 @@ select {
 .options .circle {
   cursor: pointer;
   transition: transform 0.2s;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin: 10px 0;
   border: 2px solid #fff;
@@ -892,5 +897,23 @@ h2 {
 
 #shoetype {
   margin-top: 50px;
+}
+
+#flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+#flex2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
 }
 </style>
