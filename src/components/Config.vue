@@ -8,8 +8,10 @@
         @click="
           if (currentPartIndex > 0) {
             currentPartIndex--;
+            updateCameraPosition();
           } else {
             currentPartIndex = 5;
+            updateCameraPosition();
           }
         "
       >
@@ -97,8 +99,10 @@
         @click="
           if (currentPartIndex < 5) {
             currentPartIndex++;
+            updateCameraPosition();
           } else {
             currentPartIndex = 0;
+            updateCameraPosition();
           }
         "
       >
