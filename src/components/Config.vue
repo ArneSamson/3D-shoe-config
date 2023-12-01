@@ -225,6 +225,7 @@ export default {
       .setPath("/cubemap/jpg/")
       .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
+    
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     canvasContainer.appendChild(renderer.domElement);
@@ -502,6 +503,7 @@ export default {
 
     const animate = () => {
       requestAnimationFrame(animate);
+      TWEEN.update();
       renderer.render(scene, camera);
 
       if(this.selectedColors.shoeColorLaces &&
