@@ -953,5 +953,17 @@ h2 {
   height: 20px;
   margin: 0;
   background-color: #242424;
+  border-radius: 5px;
+}
+progress[value]::-webkit-progress-bar {
+  border-radius: 5px; /* Adjust as needed */
+}
+progress[value]::-webkit-progress-value {
+  border-radius: 5px; /* Adjust as needed */
+  background-color: #d6ff38;
+}
+progress[value]::-moz-progress-bar {
+  border-radius: 5px; /* Adjust as needed */
+  background-color: #d6ff38;
 }
 </style>
