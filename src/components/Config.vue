@@ -1,7 +1,7 @@
 <template>
   <div class="shoe-configurator">
 
-    <progress class="progbar" value="0" max="100"></progress>
+    <progress class="progbar" :value="progbarValue" :max="progbarMax"></progress>
 
     <div class="canvas-container" ref="canvasContainer"></div>
 
@@ -216,6 +216,8 @@ export default {
       ],
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
       progressState: false,
+      progbarValue: 0,
+      progbarMax: 8,
     };
   },
   mounted() {
@@ -471,6 +473,8 @@ export default {
           material.color.setStyle(hexColor);
           material.needsUpdate = true;
         }
+
+        this.progbarValue += 1;
       }
     };
 
@@ -901,7 +905,6 @@ h2 {
   width: 100%;
   height: 20px;
   margin: 0;
-  border-radius: 10px;
   background-color: #242424;
 }
 </style>
