@@ -808,6 +808,9 @@ h2 {
   font-weight: 700;
   margin-top: 15px;
 }
+.configurator__arrow:hover {
+  cursor: pointer;
+}
 
 .configurator__subtitle {
   color: white;
