@@ -1,5 +1,8 @@
 <template>
   <div class="shoe-configurator">
+
+    <progress class="progbar" value="0" max="100"></progress>
+
     <div class="canvas-container" ref="canvasContainer"></div>
 
     <div class="configurator">
@@ -892,5 +895,13 @@ h2 {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.progbar{
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  border-radius: 10px;
+  background-color: #242424;
 }
 </style>
