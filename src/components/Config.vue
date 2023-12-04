@@ -191,6 +191,7 @@ export default {
       currentPartIndex: 0,
       initials: "",
       initialsState: false,
+      initialsClickedOnce: false,
       selectedColors: {
         shoeColorLaces: null,
         shoeColorSole: null,
@@ -215,7 +216,6 @@ export default {
         "/textures/fabric.jpg",
       ],
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
-      progressState: false,
       progbarValue: 0,
       progbarMax: 8,
     };
@@ -520,21 +520,6 @@ export default {
       requestAnimationFrame(animate);
       TWEEN.update();
       renderer.render(scene, camera);
-
-      if (
-        this.selectedColors.shoeColorLaces &&
-        this.selectedColors.shoeColorSole &&
-        this.selectedColors.shoeColorPanelDown &&
-        this.selectedColors.shoeColorPanelUp &&
-        this.selectedMaterials.shoeMaterialPanelDown &&
-        this.selectedMaterials.shoeMaterialPanelUp &&
-        this.jewel &&
-        this.progressState === false
-      ) {
-        console.log("all selected");
-        this.progressState = true;
-        this.onProgress();
-      }
     };
 
     animate();
@@ -562,6 +547,8 @@ export default {
             bevelSegments: 5,
           });
 
+          handleProgress("initials");
+
           this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
 
           this.shoeText.rotation.order = "YXZ";
@@ -583,7 +570,6 @@ export default {
     this.toggleInitials = toggleInitials;
 
     const handleProgress = (selectedItem) => {
-      console.log(selectedItem);
       switch (selectedItem) {
         case "laces":
           if(this.selectedColors.shoeColorLaces === null ){
@@ -620,8 +606,18 @@ export default {
             this.progbarValue += 1;
           }
           break;
+        case "initials":
+          if(this.initialsClickedOnce === false ){
+            this.progbarValue += 1;
+            this.initialsClickedOnce = true;
+          }
+          break;
         default:
           break;
+      }
+
+      if(this.progbarValue === this.progbarMax){
+        onProgress();
       }
       
     };
