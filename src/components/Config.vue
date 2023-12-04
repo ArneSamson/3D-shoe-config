@@ -425,6 +425,7 @@ export default {
     });
 
     const updateJewel = (jewelType) => {
+      handleProgress("jewel");
       Object.keys(jewelModels).forEach((type) => {
         const model = jewelModels[type].model;
         model.visible = type === jewelType;
@@ -493,10 +494,12 @@ export default {
         let material;
         switch (materialType) {
           case "top":
+            handleProgress("top");
             material = shoe.getObjectByName("outside_1").material;
             this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
             break;
           case "bottom":
+            handleProgress("bottom");
             material = shoe.getObjectByName("inside").material;
             this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
             break;
@@ -580,6 +583,7 @@ export default {
     this.toggleInitials = toggleInitials;
 
     const handleProgress = (selectedItem) => {
+      console.log(selectedItem);
       switch (selectedItem) {
         case "laces":
           if(this.selectedColors.shoeColorLaces === null ){
@@ -598,6 +602,21 @@ export default {
           break;
         case "outside":
           if(this.selectedColors.shoeColorPanelUp === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "top":
+          if(this.selectedMaterials.shoeMaterialPanelUp === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "bottom":
+          if(this.selectedMaterials.shoeMaterialPanelDown === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "jewel":
+          if(this.jewel === null ){
             this.progbarValue += 1;
           }
           break;
