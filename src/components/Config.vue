@@ -439,10 +439,12 @@ export default {
         let material;
         switch (colorType) {
           case "laces":
+            handleProgress("laces");
             material = shoe.getObjectByName("laces").material;
             this.selectedColors.shoeColorLaces = hexColor;
             break;
           case "sole":
+            handleProgress("sole");
             const soleMaterialTop = shoe.getObjectByName("sole_1").material;
             const soleMaterialBottom = shoe.getObjectByName("sole_2").material;
             soleMaterialTop.color.setStyle(hexColor);
@@ -452,10 +454,12 @@ export default {
             this.selectedColors.shoeColorSole = hexColor;
             break;
           case "inside":
+            handleProgress("inside");
             material = shoe.getObjectByName("inside").material;
             this.selectedColors.shoeColorPanelDown = hexColor;
             break;
           case "outside":
+            handleProgress("outside");
             const topMaterialTop = shoe.getObjectByName("outside_1").material;
             const topMaterialBottom =
               shoe.getObjectByName("outside_2").material;
@@ -473,8 +477,6 @@ export default {
           material.color.setStyle(hexColor);
           material.needsUpdate = true;
         }
-
-        this.progbarValue += 1;
       }
     };
 
@@ -576,6 +578,36 @@ export default {
     };
 
     this.toggleInitials = toggleInitials;
+
+    const handleProgress = (selectedItem) => {
+      switch (selectedItem) {
+        case "laces":
+          if(this.selectedColors.shoeColorLaces === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "sole":
+          if(this.selectedColors.shoeColorSole === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "inside":
+          if(this.selectedColors.shoeColorPanelDown === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        case "outside":
+          if(this.selectedColors.shoeColorPanelUp === null ){
+            this.progbarValue += 1;
+          }
+          break;
+        default:
+          break;
+      }
+      
+    };
+
+    this.handleProgress = handleProgress;
 
     const onProgress = () => {
       const particleGeometry = new THREE.BufferGeometry();
