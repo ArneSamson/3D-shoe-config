@@ -607,7 +607,7 @@ export default {
           }
           break;
         case "initials":
-          if(this.initialsClickedOnce === false ){
+          if(this.initialsClickedOnce === false && this.initials !== ""){
             this.progbarValue += 1;
             this.initialsClickedOnce = true;
           }
