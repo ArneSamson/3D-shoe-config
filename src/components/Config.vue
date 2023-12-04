@@ -423,7 +423,7 @@ export default {
 
         jewelModel.visible = false;
         jewelModels[jewelType].model = jewelModel;
-        scene.add(jewelModel);
+        shoeGroup.add(jewelModel);
       });
     });
 
@@ -569,10 +569,10 @@ export default {
           this.shoeText.position.y = 2.2;
           this.shoeText.position.z = -0.45;
 
-          scene.add(this.shoeText);
+          shoeGroup.add(this.shoeText);
         });
       } else if (this.initialsState === false) {
-        scene.remove(this.shoeText);
+        shoeGroup.remove(this.shoeText);
       }
     };
 
@@ -636,6 +636,8 @@ export default {
     };
 
     this.onProgress = onProgress;
+
+    scene.add(shoeGroup);
   },
 
   methods: {
