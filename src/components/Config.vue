@@ -397,7 +397,8 @@ export default {
         const jewelModel = gltf.scene;
         jewelModel.scale.set(0.05, 0.05, 0.05);
         jewelModel.rotation.x = -2;
-        jewelModel.rotation.y = 0.6;
+        jewelModel.rotation.y = 0.4;
+        jewelModel.rotation.z = -1.7;
         jewelModel.position.copy(jewelModels[jewelType].position);
 
         const material = new THREE.MeshStandardMaterial({
