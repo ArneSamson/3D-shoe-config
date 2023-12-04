@@ -617,14 +617,14 @@ export default {
       }
 
       if(this.progbarValue === this.progbarMax){
-        onProgress();
+        onProgressComplete();
       }
       
     };
 
     this.handleProgress = handleProgress;
 
-    const onProgress = () => {
+    const onProgressComplete = () => {
       const particleGeometry = new THREE.BufferGeometry();
       const count = 400;
       const spreadDistance = 10;
@@ -689,7 +689,7 @@ export default {
       animateConfetti();
     };
 
-    this.onProgress = onProgress;
+    this.onProgressComplete = onProgressComplete;
 
     scene.add(shoeGroup);
   },
