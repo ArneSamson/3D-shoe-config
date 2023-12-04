@@ -273,6 +273,16 @@ export default {
     scene.add(directionalLight3);
     scene.add(directionalLight4);
 
+    let shoeGroup = new THREE.Group();
+    shoeGroup.rotation.order = "YXZ";
+
+    shoeGroup.rotation.x = 0.7;
+    shoeGroup.rotation.y = 0.1;
+
+    shoeGroup.position.z = -1;
+    shoeGroup.position.y = 0;
+    shoeGroup.position.x = -0.5;
+    
     let shoe;
 
     this.textureLoader = new TextureLoader();
