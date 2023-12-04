@@ -303,7 +303,7 @@ export default {
       shoe.position.y = 0;
       shoe.position.x = -0.5;
 
-      scene.add(shoe);
+      shoeGroup.add(shoe);
     });
 
     const resetCamera = () => {
@@ -326,12 +326,12 @@ export default {
 
       const targetValues = getTargetValues(this.currentPartIndex);
 
-      new TWEEN.Tween(shoe.rotation)
+      new TWEEN.Tween(shoeGroup.rotation)
         .to({ x: targetValues.rotationX, y: targetValues.rotationY }, 500)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start();
 
-      new TWEEN.Tween(shoe.position)
+      new TWEEN.Tween(shoeGroup.position)
         .to({ y: targetValues.positionY, z: targetValues.positionZ }, 500)
         .easing(TWEEN.Easing.Quadratic.Out)
         .start();
