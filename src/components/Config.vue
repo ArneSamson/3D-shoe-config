@@ -161,6 +161,9 @@
       {{ formError }}
     </div>
     <button @click="handleDoneButtonClick">Send order!</button>
+    <router-link to="/config2"
+      ><button class="router">Go to AIR REV. NITRO S</button></router-link
+    >
   </div>
 </template>
 
@@ -225,7 +228,7 @@ export default {
       .setPath("/cubemap/jpg/")
       .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
-    
+
     const renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     canvasContainer.appendChild(renderer.domElement);
@@ -293,11 +296,11 @@ export default {
 
       shoe.rotation.order = "YXZ";
 
-      shoe.rotation.x = 0.5;
-      shoe.rotation.y = 1.5;
+      shoe.rotation.x = 0.7;
+      shoe.rotation.y = 0.1;
 
-      shoe.position.z = 0;
-      shoe.position.y = -0.5;
+      shoe.position.z = -1;
+      shoe.position.y = 0;
       shoe.position.x = -0.5;
 
       scene.add(shoe);
@@ -333,7 +336,7 @@ export default {
         .easing(TWEEN.Easing.Quadratic.Out)
         .start();
     };
-    
+
     const getTargetValues = (currentPartIndex) => {
       switch (this.currentPartIndex) {
         case 0:
@@ -514,7 +517,8 @@ export default {
       TWEEN.update();
       renderer.render(scene, camera);
 
-      if(this.selectedColors.shoeColorLaces &&
+      if (
+        this.selectedColors.shoeColorLaces &&
         this.selectedColors.shoeColorSole &&
         this.selectedColors.shoeColorPanelDown &&
         this.selectedColors.shoeColorPanelUp &&
@@ -522,11 +526,11 @@ export default {
         this.selectedMaterials.shoeMaterialPanelUp &&
         this.jewel &&
         this.progressState === false
-        ){
-          console.log("all selected");
-          this.progressState = true;
-          this.onProgress();
-        }
+      ) {
+        console.log("all selected");
+        this.progressState = true;
+        this.onProgress();
+      }
     };
 
     animate();
