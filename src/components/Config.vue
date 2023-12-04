@@ -385,10 +385,10 @@ export default {
     this.updateCameraPosition = updateCameraPosition;
 
     const jewelModels = {
-      Giraffe: { model: null, position: new THREE.Vector3(-1.6, 0.8, 1.35) },
-      Elephant: { model: null, position: new THREE.Vector3(-1, 1, 1.25) },
-      Hedgehog: { model: null, position: new THREE.Vector3(-1, 1.2, 1.15) },
-      Whale: { model: null, position: new THREE.Vector3(-1, 1.4, 0.95) },
+      Giraffe: { model: null, position: new THREE.Vector3(-1.35, 0.8, -1.25) },
+      Elephant: { model: null, position: new THREE.Vector3(-1.2, 1.2, -1.25) },
+      Hedgehog: { model: null, position: new THREE.Vector3(-1.15, 1.4, -1.3 ) },
+      Whale: { model: null, position: new THREE.Vector3(-1, 1.5, -1.25) },
     };
 
     Object.keys(jewelModels).forEach((jewelType) => {
