@@ -554,12 +554,12 @@ export default {
 
           this.shoeText.rotation.order = "YXZ";
 
-          this.shoeText.rotation.x = -0.5;
-          this.shoeText.rotation.y = -1.75;
-
-          this.shoeText.position.x = -1.88;
-          this.shoeText.position.y = 2.2;
-          this.shoeText.position.z = -0.45;
+          this.shoeText.rotation.x = 0.15;
+          this.shoeText.rotation.y = -3.3;
+          
+          this.shoeText.position.x = 0.4;
+          this.shoeText.position.y = 1.8;
+          this.shoeText.position.z = -2.5;
 
           shoeGroup.add(this.shoeText);
         });
