@@ -604,6 +604,7 @@ export default {
       // Start to animate the particles like confetti spreading out
       const animateConfetti = () => {
         const elapsedTime = clock.getElapsedTime();
+        const speedFactor = 0.01;
 
         for (let i = 0; i < count; i++) {
           const i3 = i * 3;
@@ -612,11 +613,11 @@ export default {
           const y = particleGeometry.attributes.position.array[i3 + 1];
           const z = particleGeometry.attributes.position.array[i3 + 2];
 
-          particleGeometry.attributes.position.array[i3] = x + x * 0.05;
+          particleGeometry.attributes.position.array[i3] = x + x * speedFactor;
           particleGeometry.attributes.position.array[i3 + 1] =
-            y + y * 0.05 + Math.sin(elapsedTime * 2 + i) * 0.01;
+            y + y * speedFactor + Math.sin(elapsedTime * 2 + i) * 0.01;
           particleGeometry.attributes.position.array[i3 + 2] =
-            z + z * 0.05 + Math.cos(elapsedTime * 2 + i) * 0.01;
+            z + z * speedFactor + Math.cos(elapsedTime * 2 + i) * 0.01;
 
           if (particleGeometry.attributes.position.array[i3 + 1] > 3) {
             particleGeometry.attributes.position.array[i3 + 1] =
