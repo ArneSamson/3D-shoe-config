@@ -579,7 +579,7 @@ export default {
       // let colors = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i++) {
         vertices[i] = THREE.MathUtils.randFloatSpread(1);
-        colors[i] = Math.random();
+        // colors[i] = Math.random();
       }
       particleGeometry.setAttribute(
         "position",
@@ -594,7 +594,8 @@ export default {
         size: 0.5,
         // vertexColors: true,
         transparent: true,
-        opacity: 0.7,
+        opacity: 1,
+        map: this.textureLoader.load("/particle/flower.png"),
       });
 
       const particles = new THREE.Points(particleGeometry, particleMaterial);
