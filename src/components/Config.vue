@@ -576,17 +576,23 @@ export default {
       const spreadDistance = 10;
 
       let vertices = new Float32Array(count * 3);
+      // let colors = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i++) {
         vertices[i] = THREE.MathUtils.randFloatSpread(1);
+        colors[i] = Math.random();
       }
       particleGeometry.setAttribute(
         "position",
         new THREE.BufferAttribute(vertices, 3)
       );
+      // particleGeometry.setAttribute(
+      //   "color",
+      //   new THREE.BufferAttribute(colors, 3)
+      // );
 
       const particleMaterial = new THREE.PointsMaterial({
         size: 0.5,
-        color: 0xffffff,
+        // vertexColors: true,
         transparent: true,
         opacity: 0.7,
       });
