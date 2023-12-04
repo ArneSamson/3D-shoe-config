@@ -294,15 +294,6 @@ export default {
       shoe = gltf.scene;
       shoe.scale.set(2.5, 2.5, 2.5);
 
-      shoe.rotation.order = "YXZ";
-
-      shoe.rotation.x = 0.7;
-      shoe.rotation.y = 0.1;
-
-      shoe.position.z = -1;
-      shoe.position.y = 0;
-      shoe.position.x = -0.5;
-
       shoeGroup.add(shoe);
     });
 
