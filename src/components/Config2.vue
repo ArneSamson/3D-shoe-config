@@ -36,6 +36,7 @@
           </p>
         </div>
 
+        <!-- Color Options (for 'laces' and 'sole' parts) -->
         <div v-if="shoePart === 'laces' || shoePart === 'sole'">
           <div class="configurator__flex2">
             <div
@@ -52,7 +53,8 @@
           </div>
         </div>
 
-        <div v-if="shoePart === 'inside' || shoePart === 'outside'">
+        <!-- Material Options (for 'inside' and 'outside' parts) -->
+        <div v-else>
           <div class="configurator__flex2">
             <div
               v-for="material in materialOptions"
