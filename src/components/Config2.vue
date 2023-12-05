@@ -400,12 +400,12 @@ export default {
         switch (materialType) {
           case "top":
             handleProgress("top");
-            material = shoe.getObjectByName("main").material;
+            material = shoe.getObjectByName("sides").material;
             this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
             break;
           case "bottom":
             handleProgress("bottom");
-            material = shoe.getObjectByName("sides").material;
+            material = shoe.getObjectByName("main").material;
             this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
             break;
           default:
