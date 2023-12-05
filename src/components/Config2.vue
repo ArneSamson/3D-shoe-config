@@ -163,10 +163,10 @@ export default {
       formError: null,
       colorOptions: ["#ffd700", "#88FF00", "#00FFA6", "#A200FF"],
       materialOptions: [
-        "/textures/leather.jpg",
-        "/textures/holes.jpg",
-        "/textures/latex.jpg",
-        "/textures/fabric.jpg",
+        "/textures/lexica-1.webp",
+        "/textures/lexica-2.webp",
+        "/textures/lexica-3.webp",
+        "/textures/lexica-4.webp",
       ],
       progbarValue: 0,
       progbarMax: 6,
@@ -349,34 +349,35 @@ export default {
             break;
           case "sole":
             handleProgress("sole");
-            const soleMaterialTop = shoe.getObjectByName("sole_1").material;
-            const soleMaterialBottom = shoe.getObjectByName("sole_2").material;
-            soleMaterialTop.color.setStyle(hexColor);
-            soleMaterialTop.needsUpdate = true;
-            soleMaterialBottom.color.setStyle(hexColor);
-            soleMaterialBottom.needsUpdate = true;
+            const soleObject = shoe.getObjectByName("sole");
+            const heelTipObject = shoe.getObjectByName("heel-tip");
+            const soleMaterial = soleObject.material.clone();
+            const tipHeelMaterial = heelTipObject.material.clone();
+            soleMaterial.color.setStyle(hexColor);
+            tipHeelMaterial.color.setStyle(hexColor);
+            soleObject.material = soleMaterial;
+            heelTipObject.material = tipHeelMaterial;
             this.selectedColors.shoeColorSole = hexColor;
             break;
           case "inside":
             handleProgress("inside");
-            material = shoe.getObjectByName("inside").material;
+            const insideObject = shoe.getObjectByName("main");
+            const insideMaterial = insideObject.material.clone();
+            insideMaterial.color.setStyle(hexColor);
+            insideObject.material = insideMaterial;
             this.selectedColors.shoeColorPanelDown = hexColor;
             break;
           case "outside":
             handleProgress("outside");
-            const topMaterialTop = shoe.getObjectByName("outside_1").material;
-            const topMaterialBottom =
-              shoe.getObjectByName("outside_2").material;
-            topMaterialTop.color.setStyle(hexColor);
-            topMaterialTop.needsUpdate = true;
-            topMaterialBottom.color.setStyle(hexColor);
-            topMaterialBottom.needsUpdate = true;
+            const outsideObject = shoe.getObjectByName("sides");
+            const outsideMaterial = outsideObject.material.clone();
+            outsideMaterial.color.setStyle(hexColor);
+            outsideObject.material = outsideMaterial;
             this.selectedColors.shoeColorPanelUp = hexColor;
             break;
           default:
             break;
         }
-
         if (material) {
           material.color.setStyle(hexColor);
           material.needsUpdate = true;
