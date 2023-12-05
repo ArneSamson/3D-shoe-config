@@ -174,7 +174,7 @@ export default {
         "/textures/lexica-4.webp",
       ],
       progbarValue: 0,
-      progbarMax: 6,
+      progbarMax: 4,
       progressState: false,
     };
   },
