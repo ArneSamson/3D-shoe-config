@@ -16,7 +16,7 @@
             currentPartIndex--;
             updateCameraPosition();
           } else {
-            currentPartIndex = 5;
+            currentPartIndex = 3;
             updateCameraPosition();
           }
         "
@@ -65,56 +65,10 @@
         </div>
       </div>
 
-      <div class="configurator__flex" v-if="currentPartIndex === 4">
-        <div>
-          <p class="configurator__subtitle">
-            Jewel ({{ currentPartIndex + 1 }}/6)
-          </p>
-        </div>
-        <div class="configurator__flex2">
-          <div
-            v-for="jewelType in jewelOptions"
-            :key="jewelType"
-            :id="`${jewelType}jewel`"
-            class="configurator__options"
-            @click="updateJewel(jewelType)"
-          >
-            <div
-              class="configurator__circle"
-              :style="{
-                backgroundImage: `url('/media/${jewelType.toLowerCase()}.jpg')`,
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat',
-              }"
-            ></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="configurator__flex" v-if="currentPartIndex === 5">
-        <div>
-          <p class="configurator__subtitle">
-            Initials ({{ currentPartIndex + 1 }}/6)
-          </p>
-        </div>
-        <div class="configurator__initials-container">
-          <input
-            class="configurator__checkbox"
-            type="checkbox"
-            @change="toggleInitials()"
-          />
-          <input
-            v-model="initials"
-            @input="handleInitialsInput"
-            maxlength="2"
-          />
-        </div>
-      </div>
-
       <a
         class="configurator__arrow"
         @click="
-          if (currentPartIndex < 5) {
+          if (currentPartIndex < 3) {
             currentPartIndex++;
             updateCameraPosition();
           } else {
@@ -220,7 +174,7 @@ export default {
       ],
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
       progbarValue: 0,
-      progbarMax: 8,
+      progbarMax: 6,
     };
   },
   mounted() {
@@ -352,94 +306,60 @@ export default {
           return {
             rotationX: 0.6,
             rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
             positionY: -0.5,
             positionZ: 1,
           };
         case 2:
           return {
             rotationX: 0.6,
-            rotationY: 1,
+            rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
             positionY: -0.5,
-            positionZ: -1,
+            positionZ: 1,
           };
         case 3:
           return {
             rotationX: 0.6,
-            rotationY: -0.8,
+            rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
             positionY: -0.5,
-            positionZ: -1,
+            positionZ: 1,
           };
         case 4:
           return {
             rotationX: 0.6,
-            rotationY: 1.5,
+            rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
             positionY: -0.5,
-            positionZ: 1.6,
+            positionZ: 1,
           };
         case 5:
           return {
-            rotationX: -0.2,
-            rotationY: 3.3,
+            rotationX: 0.6,
+            rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
             positionY: -0.5,
-            positionZ: 1.2,
+            positionZ: 1,
           };
         default:
           return {
-            rotationX: 0.7,
-            rotationY: 0.1,
-            positionY: 0,
-            positionZ: -1,
+            rotationX: 0.6,
+            rotationY: 2.8,
+            rotationZ: -0.5,
+            positionX: -1,
+            positionY: -0.5,
+            positionZ: 1,
           };
       }
     };
 
     this.updateCameraPosition = updateCameraPosition;
-
-    const jewelModels = {
-      Giraffe: { model: null, position: new THREE.Vector3(-1.35, 0.8, -1.25) },
-      Elephant: { model: null, position: new THREE.Vector3(-1.2, 1.2, -1.25) },
-      Hedgehog: { model: null, position: new THREE.Vector3(-1.15, 1.4, -1.3) },
-      Whale: { model: null, position: new THREE.Vector3(-1, 1.5, -1.25) },
-    };
-
-    Object.keys(jewelModels).forEach((jewelType) => {
-      const modelPath = `/models/pendant${jewelType}.glb`;
-      gltfLoader.load(modelPath, (gltf) => {
-        const jewelModel = gltf.scene;
-        jewelModel.scale.set(0.05, 0.05, 0.05);
-        jewelModel.rotation.x = -2;
-        jewelModel.rotation.y = 0.4;
-        jewelModel.rotation.z = -1.7;
-        jewelModel.position.copy(jewelModels[jewelType].position);
-
-        const material = new THREE.MeshStandardMaterial({
-          color: 0xffd700,
-          metalness: 1,
-          roughness: 0.3,
-        });
-
-        jewelModel.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            child.material = material;
-          }
-        });
-
-        jewelModel.visible = false;
-        jewelModels[jewelType].model = jewelModel;
-        shoeGroup.add(jewelModel);
-      });
-    });
-
-    const updateJewel = (jewelType) => {
-      handleProgress("jewel");
-      Object.keys(jewelModels).forEach((type) => {
-        const model = jewelModels[type].model;
-        model.visible = type === jewelType;
-        if (type === jewelType) this.jewel = jewelType;
-      });
-    };
-
-    this.updateJewel = updateJewel;
 
     const updateColor = (colorType, hexColor) => {
       if (shoe) {
@@ -530,51 +450,6 @@ export default {
 
     animate();
 
-    const handleInitialsInput = () => {
-      this.initials = this.initials.toUpperCase();
-    };
-
-    this.handleInitialsInput = handleInitialsInput;
-
-    const toggleInitials = () => {
-      this.initialsState = !this.initialsState;
-
-      if (this.initialsState === true) {
-        fontLoader.load("fonts/helvetiker_regular.typeface.json", (font) => {
-          const textGeometry = new TextGeometry(this.initials, {
-            font: font,
-            size: 0.25,
-            height: 0.01,
-            curveSegments: 12,
-            bevelEnabled: true,
-            bevelThickness: 0.03,
-            bevelSize: 0.02,
-            bevelOffset: 0,
-            bevelSegments: 5,
-          });
-
-          handleProgress("initials");
-
-          this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
-
-          this.shoeText.rotation.order = "YXZ";
-
-          this.shoeText.rotation.x = 0.15;
-          this.shoeText.rotation.y = -3.3;
-
-          this.shoeText.position.x = 0.4;
-          this.shoeText.position.y = 1.8;
-          this.shoeText.position.z = -2.5;
-
-          shoeGroup.add(this.shoeText);
-        });
-      } else if (this.initialsState === false) {
-        shoeGroup.remove(this.shoeText);
-      }
-    };
-
-    this.toggleInitials = toggleInitials;
-
     const handleProgress = (selectedItem) => {
       switch (selectedItem) {
         case "laces":
@@ -605,17 +480,6 @@ export default {
         case "bottom":
           if (this.selectedMaterials.shoeMaterialPanelDown === null) {
             this.progbarValue += 1;
-          }
-          break;
-        case "jewel":
-          if (this.jewel === null) {
-            this.progbarValue += 1;
-          }
-          break;
-        case "initials":
-          if (this.initialsClickedOnce === false && this.initials !== "") {
-            this.progbarValue += 1;
-            this.initialsClickedOnce = true;
           }
           break;
         default:
