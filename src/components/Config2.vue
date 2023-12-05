@@ -308,48 +308,30 @@ export default {
           };
         case 2:
           return {
-            rotationX: 0.6,
-            rotationY: 2.8,
+            rotationX: 0,
+            rotationY: 4,
             rotationZ: -0.5,
             positionX: -1,
-            positionY: -0.5,
-            positionZ: 1,
+            positionY: -1.5,
+            positionZ: -1.5,
           };
         case 3:
           return {
-            rotationX: 0.6,
-            rotationY: 2.8,
+            rotationX: 0,
+            rotationY: -0.5,
             rotationZ: -0.5,
             positionX: -1,
-            positionY: -0.5,
-            positionZ: 1,
-          };
-        case 4:
-          return {
-            rotationX: 0.6,
-            rotationY: 2.8,
-            rotationZ: -0.5,
-            positionX: -1,
-            positionY: -0.5,
-            positionZ: 1,
-          };
-        case 5:
-          return {
-            rotationX: 0.6,
-            rotationY: 2.8,
-            rotationZ: -0.5,
-            positionX: -1,
-            positionY: -0.5,
-            positionZ: 1,
+            positionY: -1.5,
+            positionZ: -1.5,
           };
         default:
           return {
-            rotationX: 0.6,
-            rotationY: 2.8,
+            rotationX: 0,
+            rotationY: 4.8,
             rotationZ: -0.5,
             positionX: -1,
-            positionY: -0.5,
-            positionZ: 1,
+            positionY: -1.5,
+            positionZ: -1.5,
           };
       }
     };
@@ -578,7 +560,7 @@ export default {
         this.selectedColors.shoeColorPanelDown &&
         this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
-        this.selectedMaterials.shoeMaterialPanelUp &&
+        this.selectedMaterials.shoeMaterialPanelUp
       ) {
         this.formError = null;
 
