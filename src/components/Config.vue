@@ -1,7 +1,10 @@
 <template>
   <div class="shoe-configurator">
-
-    <progress class="progbar" :value="progbarValue" :max="progbarMax"></progress>
+    <progress
+      class="progbar"
+      :value="progbarValue"
+      :max="progbarMax"
+    ></progress>
 
     <div class="canvas-container" ref="canvasContainer"></div>
 
@@ -218,6 +221,7 @@ export default {
       jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
       progbarValue: 0,
       progbarMax: 8,
+      progressState: false,
     };
   },
   mounted() {
@@ -290,7 +294,7 @@ export default {
     shoeGroup.position.z = -1;
     shoeGroup.position.y = 0;
     shoeGroup.position.x = -0.5;
-    
+
     let shoe;
 
     this.textureLoader = new TextureLoader();
@@ -392,7 +396,7 @@ export default {
     const jewelModels = {
       Giraffe: { model: null, position: new THREE.Vector3(-1.35, 0.8, -1.25) },
       Elephant: { model: null, position: new THREE.Vector3(-1.2, 1.2, -1.25) },
-      Hedgehog: { model: null, position: new THREE.Vector3(-1.15, 1.4, -1.3 ) },
+      Hedgehog: { model: null, position: new THREE.Vector3(-1.15, 1.4, -1.3) },
       Whale: { model: null, position: new THREE.Vector3(-1, 1.5, -1.25) },
     };
 
@@ -555,7 +559,7 @@ export default {
 
           this.shoeText.rotation.x = 0.15;
           this.shoeText.rotation.y = -3.3;
-          
+
           this.shoeText.position.x = 0.4;
           this.shoeText.position.y = 1.8;
           this.shoeText.position.z = -2.5;
@@ -572,42 +576,42 @@ export default {
     const handleProgress = (selectedItem) => {
       switch (selectedItem) {
         case "laces":
-          if(this.selectedColors.shoeColorLaces === null ){
+          if (this.selectedColors.shoeColorLaces === null) {
             this.progbarValue += 1;
           }
           break;
         case "sole":
-          if(this.selectedColors.shoeColorSole === null ){
+          if (this.selectedColors.shoeColorSole === null) {
             this.progbarValue += 1;
           }
           break;
         case "inside":
-          if(this.selectedColors.shoeColorPanelDown === null ){
+          if (this.selectedColors.shoeColorPanelDown === null) {
             this.progbarValue += 1;
           }
           break;
         case "outside":
-          if(this.selectedColors.shoeColorPanelUp === null ){
+          if (this.selectedColors.shoeColorPanelUp === null) {
             this.progbarValue += 1;
           }
           break;
         case "top":
-          if(this.selectedMaterials.shoeMaterialPanelUp === null ){
+          if (this.selectedMaterials.shoeMaterialPanelUp === null) {
             this.progbarValue += 1;
           }
           break;
         case "bottom":
-          if(this.selectedMaterials.shoeMaterialPanelDown === null ){
+          if (this.selectedMaterials.shoeMaterialPanelDown === null) {
             this.progbarValue += 1;
           }
           break;
         case "jewel":
-          if(this.jewel === null ){
+          if (this.jewel === null) {
             this.progbarValue += 1;
           }
           break;
         case "initials":
-          if(this.initialsClickedOnce === false && this.initials !== ""){
+          if (this.initialsClickedOnce === false && this.initials !== "") {
             this.progbarValue += 1;
             this.initialsClickedOnce = true;
           }
@@ -616,10 +620,11 @@ export default {
           break;
       }
 
-      if(this.progbarValue === this.progbarMax){
+      if (this.progbarValue === this.progbarMax && !this.progressState) {
         onProgressComplete();
+        console.log("progress complete");
+        this.progressState = true;
       }
-      
     };
 
     this.handleProgress = handleProgress;
