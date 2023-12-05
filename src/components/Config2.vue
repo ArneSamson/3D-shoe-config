@@ -32,22 +32,26 @@
       >
         <div>
           <p class="configurator__subtitle" style="text-transform: capitalize">
-            {{ shoePart }} ({{ currentPartIndex + 1 }}/6)
+            {{ shoePart }} ({{ currentPartIndex + 1 }}/4)
           </p>
         </div>
-        <div class="configurator__flex2">
-          <div
-            v-for="color in colorOptions"
-            :key="color"
-            class="configurator__options"
-            @click="updateColor(shoePart, color)"
-          >
+
+        <div v-if="shoePart === 'laces' || shoePart === 'sole'">
+          <div class="configurator__flex2">
             <div
-              class="configurator__circle"
-              :style="{ backgroundColor: color }"
-            ></div>
+              v-for="color in colorOptions"
+              :key="color"
+              class="configurator__options"
+              @click="updateColor(shoePart, color)"
+            >
+              <div
+                class="configurator__circle"
+                :style="{ backgroundColor: color }"
+              ></div>
+            </div>
           </div>
         </div>
+
         <div v-if="shoePart === 'inside' || shoePart === 'outside'">
           <div class="configurator__flex2">
             <div
@@ -64,7 +68,6 @@
           </div>
         </div>
       </div>
-
       <a
         class="configurator__arrow"
         @click="
@@ -400,12 +403,20 @@ export default {
         switch (materialType) {
           case "top":
             handleProgress("top");
-            material = shoe.getObjectByName("sides").material;
+            const topObject = shoe.getObjectByName("sides");
+            const topMaterial = topObject.material.clone();
+            topMaterial.map = new THREE.TextureLoader().load(textureUrl);
+            topMaterial.needsUpdate = true;
+            topObject.material = topMaterial;
             this.selectedMaterials.shoeMaterialPanelUp = textureUrl;
             break;
           case "bottom":
             handleProgress("bottom");
-            material = shoe.getObjectByName("main").material;
+            const bottomObject = shoe.getObjectByName("main");
+            const bottomMaterial = bottomObject.material.clone();
+            bottomMaterial.map = new THREE.TextureLoader().load(textureUrl);
+            bottomMaterial.needsUpdate = true;
+            bottomObject.material = bottomMaterial;
             this.selectedMaterials.shoeMaterialPanelDown = textureUrl;
             break;
           default:
