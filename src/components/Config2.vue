@@ -170,6 +170,7 @@ export default {
       ],
       progbarValue: 0,
       progbarMax: 6,
+      progressState: false,
     };
   },
   mounted() {
@@ -464,8 +465,9 @@ export default {
           break;
       }
 
-      if (this.progbarValue === this.progbarMax) {
+      if (this.progbarValue === this.progbarMax && !this.progressState) {
         onProgressComplete();
+        this.progressState = true;
       }
     };
 
@@ -477,23 +479,16 @@ export default {
       const spreadDistance = 10;
 
       let vertices = new Float32Array(count * 3);
-      // let colors = new Float32Array(count * 3);
       for (let i = 0; i < count * 3; i++) {
         vertices[i] = THREE.MathUtils.randFloatSpread(1);
-        // colors[i] = Math.random();
       }
       particleGeometry.setAttribute(
         "position",
         new THREE.BufferAttribute(vertices, 3)
       );
-      // particleGeometry.setAttribute(
-      //   "color",
-      //   new THREE.BufferAttribute(colors, 3)
-      // );
 
       const particleMaterial = new THREE.PointsMaterial({
         size: 0.5,
-        // vertexColors: true,
         transparent: true,
         opacity: 1,
         map: this.textureLoader.load("/particle/flower.png"),
@@ -502,7 +497,6 @@ export default {
       const particles = new THREE.Points(particleGeometry, particleMaterial);
       scene.add(particles);
 
-      // Start to animate the particles like confetti spreading out
       const animateConfetti = () => {
         const elapsedTime = clock.getElapsedTime();
         const speedFactor = 0.01;
