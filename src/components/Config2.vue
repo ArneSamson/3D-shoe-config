@@ -146,9 +146,6 @@ export default {
       shoeParts: ["laces", "sole", "inside", "outside"],
       materialParts: ["bottom", "top"],
       currentPartIndex: 0,
-      initials: "",
-      initialsState: false,
-      initialsClickedOnce: false,
       selectedColors: {
         shoeColorLaces: null,
         shoeColorSole: null,
@@ -160,7 +157,6 @@ export default {
         shoeMaterialPanelDown: null,
       },
       shoeSize: null,
-      jewel: null,
       userName: null,
       userAddress: null,
       userEmail: null,
@@ -172,7 +168,6 @@ export default {
         "/textures/latex.jpg",
         "/textures/fabric.jpg",
       ],
-      jewelOptions: ["Giraffe", "Elephant", "Hedgehog", "Whale"],
       progbarValue: 0,
       progbarMax: 6,
     };
@@ -584,7 +579,6 @@ export default {
         this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
         this.selectedMaterials.shoeMaterialPanelUp &&
-        this.initials
       ) {
         this.formError = null;
 
@@ -606,8 +600,6 @@ export default {
           shoeColorPanelUp: this.selectedColors.shoeColorPanelUp,
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
-          jewel: this.jewel,
-          initials: this.initials,
           status: "Order placed",
           userName: this.userName,
           userAddress: this.userAddress,
