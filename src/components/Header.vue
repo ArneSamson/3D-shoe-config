@@ -10,27 +10,25 @@
 
 <style scoped>
 header {
-  background-color: var(--color-accent);
+  position: absolute;
+  z-index: 5;
+  background-color: transparent;
   color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100vw;
   margin: 0;
-  border-bottom: #000;
-  border-width: 0 0 2px 0;
-  border-style: solid;
 }
 
 .shoe-desc {
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 10px;
-  background-color: var(--color-accent);
+  padding: 20px;
 }
 
 img {
-  width: 100px;
+  width: 200px;
 }
 </style>
