@@ -537,6 +537,9 @@ export default {
       requestAnimationFrame(animate);
       TWEEN.update();
       renderer.render(scene, camera);
+
+      //make shoeGroup go up and down with sinus
+      shoeGroup.position.y = Math.sin(clock.getElapsedTime()) * 0.2 - 0.8;
     };
 
     animate();
