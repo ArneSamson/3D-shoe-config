@@ -1,13 +1,11 @@
 <template>
   <div class="shoe-configurator">
+    <div class="canvas-container" ref="canvasContainer"></div>
     <progress
       class="progbar"
       :value="progbarValue"
       :max="progbarMax"
     ></progress>
-
-    <div class="canvas-container" ref="canvasContainer"></div>
-
     <div class="configurator">
       <a
         class="configurator__arrow"
@@ -86,7 +84,11 @@
       </a>
     </div>
 
-    <h2>Your information:</h2>
+    <button v-if="progressState" class="configurator__button" @click="goToInfo">
+      I'm finished!
+    </button>
+
+    <h2 ref="infoSection">Your information:</h2>
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
@@ -126,7 +128,7 @@
       {{ formError }}
     </div>
     <button @click="handleDoneButtonClick">Send order!</button>
-    <router-link to="/config2"
+    <router-link to="/"
       ><button class="router">Go to AIR REV. NITRO S</button></router-link
     >
   </div>
@@ -189,9 +191,9 @@ export default {
   },
   mounted() {
     const canvasContainer = this.$refs.canvasContainer;
-
-    const windowWidth = window.innerWidth * 2;
-    const ratio = windowWidth / window.innerHeight;
+    let windowWidth = window.innerWidth * 2;
+    let windowHeight = window.innerHeight;
+    const ratio = windowWidth / windowHeight;
 
     const clock = new THREE.Clock();
 
@@ -208,13 +210,13 @@ export default {
     resize();
     window.addEventListener("resize", resize);
     function resize() {
-      renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+      renderer.setSize(window.innerWidth, window.innerHeight * 0.78);
       camera.aspect =
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();
     }
 
-    camera.position.z = 7;
+    camera.position.z = 8;
 
     const loadingManager = new THREE.LoadingManager();
 
@@ -447,6 +449,7 @@ export default {
       requestAnimationFrame(animate);
       TWEEN.update();
       renderer.render(scene, camera);
+      shoeGroup.position.y = Math.sin(clock.getElapsedTime()) * 0.2 - 0.8;
     };
 
     animate();
@@ -558,6 +561,9 @@ export default {
   },
 
   methods: {
+    goToInfo() {
+      this.$refs.infoSection.scrollIntoView({ behavior: "smooth" });
+    },
     updateColor(type, hexColor) {
       if (shoe) {
         const material = shoe.getObjectByName(type).material;
