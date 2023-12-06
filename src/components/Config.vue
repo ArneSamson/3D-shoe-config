@@ -255,7 +255,7 @@ export default {
       camera.updateProjectionMatrix();
     }
 
-    camera.position.z = 8;
+    camera.position.z = 9;
 
     const loadingManager = new THREE.LoadingManager();
 
@@ -324,7 +324,7 @@ export default {
     scene.add(shoePlatform);
 
     const resetCamera = () => {
-      const initialPosition = { x: 0, y: 0, z: 8 };
+      const initialPosition = { x: 0, y: 0, z: 9 };
       const initialRotation = { x: 0, y: 0, z: 0 };
 
       new TWEEN.Tween(camera.position)
