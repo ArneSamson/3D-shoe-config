@@ -127,6 +127,10 @@
       </a>
     </div>
 
+    <button class="configurator__button" @click="goToInfo">
+      I'm finished!
+    </button>
+
     <h2>Your information:</h2>
     <div class="user-details">
       <div class="user-details-div">
@@ -269,8 +273,8 @@ export default {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
     controls.enablePan = false;
-    controls.minDistance = 4; // Set your desired minimum distance
-    controls.maxDistance = 10; // Set your desired maximum distance
+    controls.minDistance = 4;
+    controls.maxDistance = 10;
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
