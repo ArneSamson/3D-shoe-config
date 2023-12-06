@@ -269,8 +269,8 @@ export default {
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
     controls.enablePan = false;
-
-    // scene.background = new THREE.Color(0xffffff);
+    controls.minDistance = 4; // Set your desired minimum distance
+    controls.maxDistance = 10; // Set your desired maximum distance
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -313,7 +313,7 @@ export default {
       roughness: 0,
     });
     const shoePlatform = new THREE.Mesh(shoePlatformGeo, shoePlatformMat);
-    
+
     shoePlatform.position.y = -6;
     shoePlatform.position.x = -0.5;
 
