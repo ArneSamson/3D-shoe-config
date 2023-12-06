@@ -166,7 +166,16 @@ export default {
       userAddress: null,
       userEmail: null,
       formError: null,
-      colorOptions: ["#ffd700", "#88FF00", "#00FFA6", "#A200FF"],
+      colorOptions: [
+        "#7DBAAE",
+        "#91131D",
+        "#DD9D1D",
+        "#9A244B",
+        "#5A9E50",
+        "#FCD4D4",
+        "#9DB7D8",
+        "#F9EEB0",
+      ],
       materialOptions: [
         "/textures/lexica-1.webp",
         "/textures/lexica-2.webp",
