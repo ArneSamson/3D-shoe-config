@@ -127,7 +127,7 @@
       </a>
     </div>
 
-    <button class="configurator__button" @click="goToInfo">
+    <button v-if="progressState" class="configurator__button" @click="goToInfo">
       I'm finished!
     </button>
 
