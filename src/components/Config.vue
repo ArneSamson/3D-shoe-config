@@ -251,7 +251,7 @@ export default {
       camera.updateProjectionMatrix();
     }
 
-    camera.position.z = 7;
+    camera.position.z = 8;
 
     const loadingManager = new THREE.LoadingManager();
 
@@ -307,7 +307,7 @@ export default {
     });
 
     const resetCamera = () => {
-      const initialPosition = { x: 0, y: 0, z: 7 };
+      const initialPosition = { x: 0, y: 0, z: 8 };
       const initialRotation = { x: 0, y: 0, z: 0 };
 
       new TWEEN.Tween(camera.position)
