@@ -1,13 +1,11 @@
 <template>
   <div class="shoe-configurator">
+    <div class="canvas-container" ref="canvasContainer"></div>
     <progress
       class="progbar"
       :value="progbarValue"
       :max="progbarMax"
     ></progress>
-
-    <div class="canvas-container" ref="canvasContainer"></div>
-
     <div class="configurator">
       <a
         class="configurator__arrow"
