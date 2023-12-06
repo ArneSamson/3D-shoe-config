@@ -33,31 +33,33 @@
             {{ shoePart }} ({{ currentPartIndex + 1 }}/6)
           </p>
         </div>
-        <div class="configurator__flex2">
-          <div
-            v-for="color in colorOptions"
-            :key="color"
-            class="configurator__options"
-            @click="updateColor(shoePart, color)"
-          >
-            <div
-              class="configurator__circle"
-              :style="{ backgroundColor: color }"
-            ></div>
-          </div>
-        </div>
-        <div v-if="shoePart === 'inside' || shoePart === 'outside'">
+        <div class="configurator__flex1">
           <div class="configurator__flex2">
             <div
-              v-for="material in materialOptions"
-              :key="material"
+              v-for="color in colorOptions"
+              :key="color"
               class="configurator__options"
-              @click="updateMaterial(materialPart, material)"
+              @click="updateColor(shoePart, color)"
             >
               <div
                 class="configurator__circle"
-                :style="{ backgroundImage: `url(${material})` }"
+                :style="{ backgroundColor: color }"
               ></div>
+            </div>
+          </div>
+          <div v-if="shoePart === 'inside' || shoePart === 'outside'">
+            <div class="configurator__flex2">
+              <div
+                v-for="material in materialOptions"
+                :key="material"
+                class="configurator__options"
+                @click="updateMaterial(materialPart, material)"
+              >
+                <div
+                  class="configurator__circle"
+                  :style="{ backgroundImage: `url(${material})` }"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -243,7 +245,7 @@ export default {
     resize();
     window.addEventListener("resize", resize);
     function resize() {
-      renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
+      renderer.setSize(window.innerWidth, window.innerHeight * 0.78);
       camera.aspect =
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();

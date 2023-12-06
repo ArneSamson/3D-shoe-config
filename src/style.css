@@ -168,6 +168,15 @@ h2 {
   margin-top: 20px;
 }
 
+.configurator__flex1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
 .configurator__checkbox {
   border: 2px solid rgb(105, 255, 71);
   background-color: #242424;
