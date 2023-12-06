@@ -222,20 +222,12 @@ export default {
 
     const gltfLoader = new GLTFLoader(loadingManager);
 
-    const fontLoader = new FontLoader();
-    const textMaterial = new THREE.MeshStandardMaterial({
-      color: 0x000000,
-      metalness: 0.4,
-      roughness: 1,
-      wireframe: true,
-      wireframeLinewidth: 0.5,
-    });
-
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
     controls.enablePan = false;
 
-    // scene.background = new THREE.Color(0xffffff);
+    controls.minDistance = 4;
+    controls.maxDistance = 10;
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
