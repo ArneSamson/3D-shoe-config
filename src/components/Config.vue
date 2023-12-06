@@ -131,7 +131,7 @@
       I'm finished!
     </button>
 
-    <h2>Your information:</h2>
+    <h2 ref="infoSection">Your information:</h2>
     <div class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
@@ -720,6 +720,9 @@ export default {
   },
 
   methods: {
+    goToInfo() {
+      this.$refs.infoSection.scrollIntoView({ behavior: "smooth" });
+    },
     updateColor(type, hexColor) {
       if (shoe) {
         const material = shoe.getObjectByName(type).material;
