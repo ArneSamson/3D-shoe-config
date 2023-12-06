@@ -224,9 +224,9 @@ export default {
   },
   mounted() {
     const canvasContainer = this.$refs.canvasContainer;
-
-    const windowWidth = window.innerWidth * 2;
-    const ratio = windowWidth / window.innerHeight;
+    let windowWidth = window.innerWidth * 2;
+    let windowHeight = window.innerHeight;
+    const ratio = windowWidth / windowHeight;
 
     const clock = new THREE.Clock();
 
@@ -243,7 +243,7 @@ export default {
     resize();
     window.addEventListener("resize", resize);
     function resize() {
-      renderer.setSize(window.innerWidth, window.innerHeight * 0.5);
+      renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
       camera.aspect =
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();
