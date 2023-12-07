@@ -195,8 +195,8 @@ export default {
 
     const scene = new THREE.Scene();
     scene.background = new THREE.CubeTextureLoader()
-      .setPath("/cubemap/jpg/")
-      .load(["px.jpg", "nx.jpg", "py.jpg", "ny.jpg", "pz.jpg", "nz.jpg"]);
+      .setPath("/cubemap/golf/")
+      .load(["px.png", "nx.png", "py.png", "ny.png", "pz.png", "nz.png"]);
     const camera = new THREE.PerspectiveCamera(75, ratio, 0.1, 1000);
 
     const renderer = new THREE.WebGLRenderer();
