@@ -3,10 +3,45 @@
     <div class="shoe-desc">
       <img src="/media/logo.webp" alt="SWEAR-LOGO" />
     </div>
+    <button @click="toggleSound">
+      <img class="shoe-desc__img" src="/media/sound.svg" alt="" />
+    </button>
   </header>
 </template>
 
-<script></script>
+<script>
+import { Howl } from "howler";
+
+export default {
+  data() {
+    return {
+      sound: null,
+      isPlaying: false,
+    };
+  },
+  methods: {
+    initSound() {
+      this.sound = new Howl({
+        src: ["/media/sonicbranding.mp3"], // Replace with the path to your sound file
+        loop: true, // Set to true if you want the sound to loop
+      });
+    },
+    toggleSound() {
+      if (!this.sound) {
+        this.initSound();
+      }
+
+      if (this.isPlaying) {
+        this.sound.pause();
+      } else {
+        this.sound.play();
+      }
+
+      this.isPlaying = !this.isPlaying;
+    },
+  },
+};
+</script>
 
 <style scoped>
 header {
@@ -30,5 +65,27 @@ header {
 
 img {
   width: 200px;
+}
+
+.shoe-desc__img {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+}
+
+button {
+  color: var(--color-accent);
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  display: block;
+  margin: auto;
+  margin-right: 50px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 </style>
