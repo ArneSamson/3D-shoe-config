@@ -311,19 +311,6 @@ export default {
       shoeGroup.add(shoe);
     });
 
-    const shoePlatformGeo = new THREE.BoxGeometry(15, 0.5, 15);
-    const shoePlatformMat = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
-      metalness: 0,
-      roughness: 0,
-    });
-    const shoePlatform = new THREE.Mesh(shoePlatformGeo, shoePlatformMat);
-
-    shoePlatform.position.y = -6;
-    shoePlatform.position.x = -0.5;
-
-    scene.add(shoePlatform);
-
     const resetCamera = () => {
       const initialPosition = { x: 0, y: 0, z: 9 };
       const initialRotation = { x: 0, y: 0, z: 0 };
