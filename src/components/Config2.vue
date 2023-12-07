@@ -34,7 +34,6 @@
           </p>
         </div>
 
-        <!-- Color Options (for 'laces' and 'sole' parts) -->
         <div v-if="shoePart === 'laces' || shoePart === 'sole'">
           <div class="configurator__flex2">
             <div
@@ -51,7 +50,6 @@
           </div>
         </div>
 
-        <!-- Material Options (for 'inside' and 'outside' parts) -->
         <div v-else>
           <div class="configurator__flex2">
             <div
@@ -139,8 +137,6 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
-import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { useRouter } from "vue-router";
 import TWEEN from "tween.js";
 
@@ -458,16 +454,6 @@ export default {
             this.progbarValue += 1;
           }
           break;
-        case "inside":
-          if (this.selectedColors.shoeColorPanelDown === null) {
-            this.progbarValue += 1;
-          }
-          break;
-        case "outside":
-          if (this.selectedColors.shoeColorPanelUp === null) {
-            this.progbarValue += 1;
-          }
-          break;
         case "top":
           if (this.selectedMaterials.shoeMaterialPanelUp === null) {
             this.progbarValue += 1;
@@ -572,8 +558,6 @@ export default {
         this.userEmail &&
         this.selectedColors.shoeColorLaces &&
         this.selectedColors.shoeColorSole &&
-        this.selectedColors.shoeColorPanelDown &&
-        this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
         this.selectedMaterials.shoeMaterialPanelUp
       ) {
@@ -593,8 +577,6 @@ export default {
           shoeSize: this.shoeSize,
           shoeColorSole: this.selectedColors.shoeColorSole,
           shoeColorLaces: this.selectedColors.shoeColorLaces,
-          shoeColorPanelDown: this.selectedColors.shoeColorPanelDown,
-          shoeColorPanelUp: this.selectedColors.shoeColorPanelUp,
           shoeMaterialPanelDown: this.selectedMaterials.shoeMaterialPanelDown,
           shoeMaterialPanelUp: this.selectedMaterials.shoeMaterialPanelUp,
           status: "Order placed",
