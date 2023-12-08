@@ -100,9 +100,17 @@
         <div class="configurator__initials-container">
           <input
             class="configurator__checkbox"
-            type="checkbox"
+            type="radio"
             @change="toggleInitials()"
           />
+          <label for="inital-yes">yes</label>
+          <input
+            class="configurator__checkbox"
+            type="radio"
+            @change="toggleInitials()"
+            value="no"
+          />
+          <label for="inital-no">no</label>
           <input
             v-model="initials"
             @input="handleInitialsInput"
