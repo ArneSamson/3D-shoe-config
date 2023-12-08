@@ -101,14 +101,17 @@
           <input
             class="configurator__checkbox"
             type="radio"
+            id="inital-yes"
+            :value="false"
             @change="toggleInitials()"
           />
           <label for="inital-yes">yes</label>
           <input
             class="configurator__checkbox"
             type="radio"
+            id="inital-no"
+            :value="true"
             @change="toggleInitials()"
-            value="no"
           />
           <label for="inital-no">no</label>
           <input
@@ -601,7 +604,8 @@ export default {
           this.shoeText.position.z = -2.5;
 
           shoeGroup.add(this.shoeText);
-        });
+        }
+      );
       } else if (this.initialsState === false) {
         shoeGroup.remove(this.shoeText);
       }
