@@ -657,6 +657,9 @@ export default {
         transparent: true,
         opacity: 1,
         map: this.textureLoader.load("/particle/flower.png"),
+        alphaTest: 0.001,
+        transparent: true,
+        depthWrite: false,
       });
 
       const particles = new THREE.Points(particleGeometry, particleMaterial);
@@ -694,6 +697,10 @@ export default {
       };
 
       animateConfetti();
+
+      setTimeout(() => {
+        scene.remove(particles);
+      }, 7000);
     };
 
     this.onProgressComplete = onProgressComplete;
