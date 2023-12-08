@@ -308,9 +308,9 @@ export default {
         });
       }else{
         child.material = new THREE.MeshStandardMaterial({
-          color: 0xff00ff,
+          color: "#69FF47",
           metalness: 1,
-          roughness: 0,
+          roughness: 0.5,
           envMap: scene.background,
         });
       }
