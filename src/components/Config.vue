@@ -307,21 +307,21 @@ export default {
       shoePlatform.position.x = -0.5;
       shoePlatform.traverse((child) => {
         console.log(child);
-      if (child.name === "lower" || child.name === "middle") {
-        child.material = new THREE.MeshStandardMaterial({
-          color: 0xffffff,
-          metalness: 1,
-          roughness: 0,
-          envMap: scene.background,
-        });
-      }else{
-        child.material = new THREE.MeshStandardMaterial({
-          color: "#69FF47",
-          metalness: 0.5,
-          roughness: 0.5,
-          envMap: scene.background,
-        });
-      }
+        if (child.name === "lower" || child.name === "middle") {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            metalness: 1,
+            roughness: 0,
+            envMap: scene.background,
+          });
+        }else{
+          child.material = new THREE.MeshStandardMaterial({
+            color: "#ffffff",
+            metalness: 1,
+            roughness: 0.1,
+            envMap: scene.background,
+          });
+        }
       });
       scene.add(shoePlatform);
     });
