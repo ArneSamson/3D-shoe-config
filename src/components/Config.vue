@@ -306,7 +306,6 @@ export default {
       shoePlatform.position.y = -5;
       shoePlatform.position.x = -0.5;
       shoePlatform.traverse((child) => {
-        console.log(child);
         if (child.name === "lower" || child.name === "middle") {
           child.material = new THREE.MeshStandardMaterial({
             color: 0xffffff,
