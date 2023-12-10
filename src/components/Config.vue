@@ -142,8 +142,8 @@
       I'm finished!
     </button>
 
-    <h2 ref="infoSection">Your information:</h2>
-    <div class="user-details">
+    <h2 v-if="progressState" ref="infoSection">Your information:</h2>
+    <div v-if="progressState" class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
         <select id="shoeSize" name="shoeSize" v-model="shoeSize">
@@ -181,7 +181,9 @@
     <div v-if="formError" class="configurator__error-message">
       {{ formError }}
     </div>
-    <button @click="handleDoneButtonClick">Send order!</button>
+    <button v-if="progressState" @click="handleDoneButtonClick">
+      Send order!
+    </button>
     <router-link to="/config2"
       ><button class="router">Go to AIR REV. NITRO S</button></router-link
     >
@@ -604,8 +606,7 @@ export default {
           this.shoeText.position.z = -2.5;
 
           shoeGroup.add(this.shoeText);
-        }
-      );
+        });
       } else if (this.initialsState === false) {
         shoeGroup.remove(this.shoeText);
       }
@@ -682,7 +683,6 @@ export default {
         "position",
         new THREE.BufferAttribute(vertices, 3)
       );
-
 
       const particleMaterial = new THREE.PointsMaterial({
         size: 0.5,
