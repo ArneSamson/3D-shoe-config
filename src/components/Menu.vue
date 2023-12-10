@@ -37,87 +37,87 @@
         </div>
       </div>
     </div>
-  </template>
+</template>
   
 <script>
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+  import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-export default {
-    name: "Menu",
-    mounted() {
-    const windowWidth = window.innerWidth;
-    const squareSize = windowWidth * 0.4;
+  export default {
+      name: "Menu",
+      mounted() {
+      const windowWidth = window.innerWidth;
+      const squareSize = windowWidth * 0.4;
 
-    const createScene = (container, modelPaths) => {
-        const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(100, 1, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(squareSize, squareSize);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      container.appendChild(renderer.domElement);
-      camera.position.z = 5;
+      const createScene = (container, modelPaths) => {
+          const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(100, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(squareSize, squareSize);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+        camera.position.z = 5;
 
-      const loadingManager = new THREE.LoadingManager();
+        const loadingManager = new THREE.LoadingManager();
 
-      const gltfLoader = new GLTFLoader(loadingManager);
+        const gltfLoader = new GLTFLoader(loadingManager);
 
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.maxPolarAngle = Math.PI / 2;
-      controls.enablePan = false;
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.maxPolarAngle = Math.PI / 2;
+        controls.enablePan = false;
 
-      scene.background = new THREE.Color(0x242424);
+        scene.background = new THREE.Color(0x242424);
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
-      const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
-      const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1.7);
-      const directionalLight4 = new THREE.DirectionalLight(0xffffff, 1);
-      directionalLight.position.set(0, 0, 1);
-      directionalLight2.position.set(0, 0, -1);
-      directionalLight3.position.set(0, 1, 0);
-      directionalLight4.position.set(-1, 0, 0);
-      scene.add(directionalLight);
-      scene.add(directionalLight2);
-      scene.add(directionalLight3);
-      scene.add(directionalLight4);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1.7);
+        const directionalLight4 = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(0, 0, 1);
+        directionalLight2.position.set(0, 0, -1);
+        directionalLight3.position.set(0, 1, 0);
+        directionalLight4.position.set(-1, 0, 0);
+        scene.add(directionalLight);
+        scene.add(directionalLight2);
+        scene.add(directionalLight3);
+        scene.add(directionalLight4);
 
-      let shoe;
+        let shoe;
 
-      gltfLoader.load(modelPath, (gltf) => {
+        gltfLoader.load(modelPath, (gltf) => {
 
-        shoe = gltf.scene;
-        shoe.rotation.order = "YXZ";
+          shoe = gltf.scene;
+          shoe.rotation.order = "YXZ";
 
-        if(modelPath === "/models/new-shoe.glb") {
-          shoe.scale.set(2, 2, 2);
-          shoe.rotation.x = 0.5;
-          shoe.rotation.y = 1.5;
-          shoe.position.z = 0;
-          shoe.position.y = -0.5;
-          shoe.position.x = -0.5;
-          scene.add(shoe);
-        } else {
-          shoe.scale.set(0.75, 0.75, 0.75);
-          shoe.rotation.x = 0;
-          shoe.rotation.y = -0.15;
-          shoe.rotation.z = -0.4;
-          shoe.position.z = 0;
-          shoe.position.y = -0.5;
-          shoe.position.x = -0.5;
-          scene.add(shoe);
-        }
-      });
+          if(modelPath === "/models/new-shoe.glb") {
+            shoe.scale.set(2, 2, 2);
+            shoe.rotation.x = 0.5;
+            shoe.rotation.y = 1.5;
+            shoe.position.z = 0;
+            shoe.position.y = -0.5;
+            shoe.position.x = -0.5;
+            scene.add(shoe);
+          } else {
+            shoe.scale.set(0.75, 0.75, 0.75);
+            shoe.rotation.x = 0;
+            shoe.rotation.y = -0.15;
+            shoe.rotation.z = -0.4;
+            shoe.position.z = 0;
+            shoe.position.y = -0.5;
+            shoe.position.x = -0.5;
+            scene.add(shoe);
+          }
+        });
 
-      const animate = () => {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-      };
+        const animate = () => {
+          requestAnimationFrame(animate);
+          renderer.render(scene, camera);
+        };
 
-      animate();
-    }
-    },
-}
+        animate();
+      }
+      },
+  }
 
 </script>
   
