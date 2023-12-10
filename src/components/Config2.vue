@@ -50,16 +50,23 @@
           </div>
         </div>
 
-        <div v-else>
+        <div class="configurator__AIGenerator" v-else>
           <input v-model="textInput" placeholder="Enter text..." />
-          <button @click="generateImage">Generate Image</button>
-          <button @click="updateMaterialAI">Use this Image</button>
-          <img
-            :src="generatedImage"
-            alt="Generated Image"
-            v-if="generatedImage"
-          />
+          <button class="configurator__generateButton" @click="generateImage">
+            Generate
+          </button>
+          <button
+            class="configurator__updateShoeWithAI"
+            @click="updateMaterialAI"
+          >
+            Use
+          </button>
         </div>
+        <img
+          :src="generatedImage"
+          alt="Generated Image"
+          v-if="generatedImage"
+        />
       </div>
       <a
         class="configurator__arrow"
@@ -76,13 +83,6 @@
         →
       </a>
     </div>
-
-    <!-- <div>
-      <input v-model="textInput" placeholder="Enter text..." />
-      <button @click="generateImage">Generate Image</button>
-      <button @click="updateMaterialAI">Use this Image</button>
-      <img :src="generatedImage" alt="Generated Image" v-if="generatedImage" />
-    </div> -->
 
     <button v-if="progressState" class="configurator__button" @click="goToInfo">
       I'm finished!
@@ -201,7 +201,7 @@ export default {
       //   "/textures/lexica-4.webp",
       // ],
       progbarValue: 0,
-      progbarMax: 4,
+      progbarMax: 3,
       progressState: false,
     };
   },
