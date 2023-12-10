@@ -108,6 +108,13 @@ export default {
           scene.add(shoe);
         }
       });
+
+      const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      };
+
+      animate();
     }
     },
 }
