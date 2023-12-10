@@ -2,6 +2,7 @@
 import Header from "./components/Header.vue";
 import Config from "./components/Config.vue";
 import Config2 from "./components/Config2.vue";
+import Menu from "./components/Menu.vue";
 </script>
 
 <template>
