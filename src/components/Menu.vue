@@ -11,7 +11,7 @@
           <p class="model__price">€200,00</p>
           <div class="model__buttons buttons">
             <button>
-              <router-link to="/customize" class="buttons__link"
+              <router-link to="/config" class="buttons__link"
                 >CUSTOMIZE</router-link
               >
             </button>
