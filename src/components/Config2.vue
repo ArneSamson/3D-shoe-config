@@ -61,6 +61,7 @@
           >
             Use
           </button>
+          <div v-if="loading">Loading...</div>
         </div>
         <img
           :src="generatedImage"
@@ -166,6 +167,8 @@ export default {
       textInput: "",
       generatedImage: null,
       textureUrl: "",
+      loading: false,
+
       shoeParts: ["laces", "sole", "main"],
       materialParts: ["bottom", "top"],
       currentPartIndex: 0,
@@ -656,10 +659,15 @@ export default {
     },
     async generateImage() {
       try {
+        this.loading = true;
         const imageData = await query({ inputs: this.textInput });
         const imageUrl = URL.createObjectURL(imageData);
         this.generatedImage = imageUrl;
         this.textureUrl = imageUrl; // Store the generated image URL
+
+        if (this.generatedImage) {
+          this.loading = false;
+        }
       } catch (error) {
         console.error("Error generating image:", error);
       }
