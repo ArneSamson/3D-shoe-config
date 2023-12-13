@@ -57,6 +57,7 @@ export default {
       renderer.setSize(squareSize, squareSize);
       renderer.setPixelRatio(window.devicePixelRatio);
       container.appendChild(renderer.domElement);
+
       camera.position.z = 5;
 
       const loadingManager = new THREE.LoadingManager();
@@ -66,6 +67,9 @@ export default {
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.maxPolarAngle = Math.PI / 2;
       controls.enablePan = false;
+
+      controls.minDistance = 5;
+      controls.maxDistance = 5;
 
       scene.background = new THREE.Color(0x242424);
 
@@ -132,7 +136,7 @@ export default {
 
 a {
   text-decoration: none;
-  color: #d6ff38;
+  color: var(--color-accent);
 }
 
 .models-container__title {
@@ -206,15 +210,16 @@ button {
   background-color: #000000;
   font-family: "basic-sans", sans-serif;
   font-weight: 700;
-  color: #d6ff38;
+  color: var(--color-accent);
   font-size: 14px;
   letter-spacing: 1.61px;
   line-height: normal;
+  margin: 0px;
 }
 
 .buttons__link {
   text-decoration: none;
-  color: #d6ff38;
+  color: var(--color-accent);
 }
 
 @media (max-width: 800px) {

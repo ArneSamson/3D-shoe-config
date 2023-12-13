@@ -98,7 +98,7 @@ h2 {
 }
 
 .configurator__arrow {
-  color: #d6ff38;
+  color: var(--color-accent);
   margin-top: 0;
   margin-bottom: 10px;
   font-family: "cooper-black-std", serif;
