@@ -142,7 +142,9 @@
       I'm finished!
     </button>
 
-    <h2 v-if="progressState" ref="infoSection">Your information:</h2>
+    <h2 class="user-details__title" v-if="progressState" ref="infoSection">
+      Your information:
+    </h2>
     <div v-if="progressState" class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>

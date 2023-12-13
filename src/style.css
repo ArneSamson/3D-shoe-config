@@ -262,3 +262,103 @@ progress[value]::-moz-progress-bar {
   display: block;
   margin: auto;
 }
+
+@media (max-width: 950px) {
+  .configurator {
+    gap: 0px;
+  }
+
+  .configurator__arrow {
+    font-size: 24px;
+  }
+
+  .configurator__subtitle {
+    font-size: 20px;
+  }
+
+  .configurator__flex2 {
+    gap: 20px;
+  }
+
+  .configurator__options .configurator__circle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .configurator__initials-container {
+    gap: 10px;
+  }
+
+  .configurator__initials-container input:nth-child(5) {
+    width: 25px;
+  }
+
+  .configurator__flex1 {
+    gap: 20px;
+  }
+  .configurator__button {
+    width: 100px;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .configurator__button {
+    width: 70px;
+    height: 50px;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .configurator {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .configurator__flex2 {
+    gap: 10px;
+  }
+
+  .user-details__title {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  .user-details {
+    margin-left: 20px;
+    gap: 30px;
+  }
+
+  .user-details-div label {
+    font-size: 16px;
+  }
+
+  .user-details-div input,
+  .user-details-div select {
+    width: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .configurator__flex1 {
+    gap: 0px;
+  }
+
+  .configurator__button {
+    position: absolute;
+    bottom: 28%;
+    z-index: 1;
+  }
+
+  button {
+    max-width: 200px;
+    height: 50px;
+    font-family: "cooper-black-std", serif;
+    font-size: 16px;
+    margin-top: 50px;
+  }
+}
