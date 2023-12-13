@@ -10,8 +10,8 @@ const route = useRoute();
 </script>
 
 <template>
-  <Header v-if="route.path !== '/'"/>
-  <HeaderMain v-else/>
+  <Header v-if="route.path !== '/' && route.path !== '/thankyou'" />
+  <HeaderMain v-else />
   <router-view />
 </template>
 
