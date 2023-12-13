@@ -50,7 +50,8 @@ export default {
   name: "Menu",
   mounted() {
     const windowWidth = window.innerWidth;
-    const squareSize = windowWidth * 0.2;
+
+    const squareSize = 300;
 
     const createScene = (container, modelPath) => {
       const scene = new THREE.Scene();
@@ -158,6 +159,7 @@ a {
   align-items: center;
   margin-bottom: 50px;
   gap: 100px;
+  flex-wrap: wrap;
 }
 
 .model {
@@ -231,55 +233,33 @@ button {
   color: var(--color-accent);
 }
 
-@media (max-width: 800px) {
-  .models-container__title {
-    font-size: 30px;
-    margin: 0;
-    padding-top: 25px;
-    margin-left: 25px;
-    margin-bottom: 50px;
-  }
-
-  .model {
-    flex-wrap: wrap;
-    width: 90vw;
-    justify-content: left;
-    margin-left: 25px;
-  }
-
-  .model__name {
-    font-size: 24px;
-  }
-  button {
-    margin-bottom: 50px;
-  }
-}
-
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .models-container__title {
     font-size: 24px;
-    padding-top: 20px;
     margin-left: 20px;
-    margin-bottom: 20px;
+  }
+
+  .models-container__flexbox {
+    margin-left: 20px;
+    margin-bottom: 0px;
   }
 
   .model__name {
     font-size: 20px;
   }
 
-  .model__type {
-    font-size: 16px;
-  }
-
-  .model__price,
-  p {
-    font-size: 16px;
-  }
-
   button {
-    width: 150px;
+    width: 200px;
     font-size: 12px;
-    margin-bottom: 50px;
+  }
+
+  .model {
+    display: flex;
+    align-items: normal;
+  }
+
+  .canvas-container {
+    margin-left: -50px;
   }
 }
 </style>
