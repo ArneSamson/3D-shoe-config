@@ -103,7 +103,7 @@
             type="radio"
             id="inital-yes"
             :value="false"
-            @change="toggleInitials()"
+            @change="initialOn"
           />
           <label for="inital-yes">yes</label>
           <input
@@ -111,7 +111,7 @@
             type="radio"
             id="inital-no"
             :value="true"
-            @change="toggleInitials()"
+            @change="initialOff"
           />
           <label for="inital-no">no</label>
           <input
@@ -581,8 +581,27 @@ export default {
 
     this.handleInitialsInput = handleInitialsInput;
 
+    const initialOn = () => {
+      this.initialsState = true;
+      console.log(this.initialsState);
+      toggleInitials();
+      //toggle off the other radio button if it's selected
+      document.getElementById("inital-no").checked = false;
+    };
+
+    this.initialOn = initialOn;
+
+    const initialOff = () => {
+      this.initialsState = false;
+      console.log(this.initialsState);
+      toggleInitials();
+      //toggle off the other radio button if it's selected
+      document.getElementById("inital-yes").checked = false;
+    };
+
+    this.initialOff = initialOff;
+
     const toggleInitials = () => {
-      this.initialsState = !this.initialsState;
 
       if (this.initialsState === true) {
         fontLoader.load("fonts/helvetiker_regular.typeface.json", (font) => {
