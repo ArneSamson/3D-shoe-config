@@ -583,9 +583,7 @@ export default {
 
     const initialOn = () => {
       this.initialsState = true;
-      console.log(this.initialsState);
       toggleInitials();
-      //toggle off the other radio button if it's selected
       document.getElementById("inital-no").checked = false;
     };
 
@@ -593,9 +591,7 @@ export default {
 
     const initialOff = () => {
       this.initialsState = false;
-      console.log(this.initialsState);
       toggleInitials();
-      //toggle off the other radio button if it's selected
       document.getElementById("inital-yes").checked = false;
     };
 
