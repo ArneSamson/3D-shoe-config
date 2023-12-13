@@ -90,4 +90,16 @@ button {
 button:hover {
   cursor: pointer;
 }
+
+@media (max-width: 700px) {
+  img {
+    width: 150px;
+  }
+
+  .shoe-desc__img {
+    height: 30px;
+    width: 30px;
+    margin-right: -25px;
+  }
+}
 </style>
