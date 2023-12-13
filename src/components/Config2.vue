@@ -641,7 +641,7 @@ export default {
     fetchData() {
       const data = {
         shoe: {
-          shoeType: "AIR REV. NITRO S",
+          shoeType: "AIR REV. XTRA BLACK",
           shoeSize: this.shoeSize,
           shoeColorSole: this.selectedColors.shoeColorSole,
           shoeColorLaces: this.selectedColors.shoeColorLaces,
