@@ -260,6 +260,26 @@ export default {
     scene.add(directionalLight3);
     scene.add(directionalLight4);
 
+    //load shoePlatform.glb
+    gltfLoader.load("/models/shoePlatform.glb", (gltf) => {
+      const shoePlatform = gltf.scene;
+      shoePlatform.scale.set(2.5, 2.5, 2.5);
+      shoePlatform.position.z = -1;
+      shoePlatform.position.y = -5;
+      shoePlatform.position.x = -0.5;
+      shoePlatform.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            metalness: 1,
+            roughness: 0,
+            envMap: scene.background,
+          });
+        }
+      });
+      scene.add(shoePlatform);
+    });
+
     let shoeGroup = new THREE.Group();
     shoeGroup.rotation.order = "YXZ";
 
