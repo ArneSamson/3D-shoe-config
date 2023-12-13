@@ -815,6 +815,13 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log("Data successfully sent:", data);
+
+          if (data && data.data && data.data.shoe && data.data.shoe._id) {
+            const newId = data.data.shoe._id;
+            this.$router.push({ path: "/thankyou", query: { id: newId } });
+          } else {
+            console.error("Invalid server response format");
+          }
         })
         .catch((error) => {
           console.error("Error:", error);
