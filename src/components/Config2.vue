@@ -78,7 +78,9 @@
       I'm finished!
     </button>
 
-    <h2 v-if="progressState" ref="infoSection">Your information:</h2>
+    <h2 class="user-details__title" v-if="progressState" ref="infoSection">
+      Your information:
+    </h2>
     <div v-if="progressState" class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
@@ -221,6 +223,12 @@ export default {
       camera.aspect =
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();
+      if (window.innerWidth < 500) {
+        renderer.setSize(window.innerWidth, window.innerHeight * 0.73);
+        camera.aspect =
+          canvasContainer.clientWidth / canvasContainer.clientHeight;
+        camera.updateProjectionMatrix();
+      }
     }
 
     camera.position.z = 9;
