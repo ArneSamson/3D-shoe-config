@@ -1,38 +1,40 @@
 <template>
   <div class="models-container">
     <h1 id="ourmodels" class="models-container__title">Our models</h1>
-    <div class="model flex">
-      <div>
-        <div class="canvas-container" ref="canvasContainer1"></div>
-      </div>
-      <div>
-        <h1 class="model__name">AIR REV. NITRO S</h1>
-        <h2 class="model__type">Custom shoes</h2>
-        <p class="model__price">€200,00</p>
-        <div class="model__buttons buttons">
-          <button>
-            <router-link to="/config" class="buttons__link"
-              >CUSTOMIZE</router-link
-            >
-          </button>
+    <div class="models-container__flexbox">
+      <div class="model flex">
+        <div>
+          <div class="canvas-container" ref="canvasContainer1"></div>
+        </div>
+        <div>
+          <h1 class="model__name">AIR REV. NITRO S</h1>
+          <h2 class="model__type">Custom shoes</h2>
+          <p class="model__price">€200,00</p>
+          <div class="model__buttons buttons">
+            <button>
+              <router-link to="/config" class="buttons__link"
+                >CUSTOMIZE</router-link
+              >
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="model flex">
-      <div>
-        <div class="canvas-container" ref="canvasContainer2"></div>
-      </div>
-      <div>
-        <h1 class="model__name">AIR REV. XTRA</h1>
-        <h2 class="model__type">Custom shoes</h2>
-        <p class="model__price">€180,00</p>
-        <div class="model__buttons buttons">
-          <button>
-            <router-link to="/config2" class="buttons__link"
-              >CUSTOMIZE</router-link
-            >
-          </button>
+      <div class="model flex">
+        <div>
+          <div class="canvas-container" ref="canvasContainer2"></div>
+        </div>
+        <div>
+          <h1 class="model__name">AIR REV. XTRA</h1>
+          <h2 class="model__type">Custom shoes</h2>
+          <p class="model__price">€180,00</p>
+          <div class="model__buttons buttons">
+            <button>
+              <router-link to="/config2" class="buttons__link"
+                >CUSTOMIZE</router-link
+              >
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -48,7 +50,7 @@ export default {
   name: "Menu",
   mounted() {
     const windowWidth = window.innerWidth;
-    const squareSize = windowWidth * 0.4;
+    const squareSize = windowWidth * 0.2;
 
     const createScene = (container, modelPath) => {
       const scene = new THREE.Scene();
@@ -97,7 +99,7 @@ export default {
           shoe.rotation.x = 0.5;
           shoe.rotation.y = 1.5;
           shoe.position.z = 0;
-          shoe.position.y = -0.5;
+          shoe.position.y = 0.5;
           shoe.position.x = -0.5;
           scene.add(shoe);
         } else {
@@ -120,10 +122,7 @@ export default {
       animate();
     };
 
-    // Load the first model in the first container
     createScene(this.$refs.canvasContainer1, "/models/new-shoe.glb");
-
-    // Load a different model in the second container
     createScene(this.$refs.canvasContainer2, "/models/vans-shoe.glb");
   },
 };
@@ -151,11 +150,21 @@ a {
   margin-left: 50px;
 }
 
+.models-container__flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-left: 75px;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 100px;
+}
+
 .model {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: left;
-  width: 100vw;
 }
 
 img {
@@ -171,14 +180,14 @@ img {
 }
 
 .model__name {
-  font-size: 36px;
+  font-size: 24px;
   letter-spacing: 1.08px;
   line-height: normal;
   margin: 0;
 }
 
 .model__type {
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 0.72px;
   line-height: normal;
   white-space: nowrap;
