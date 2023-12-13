@@ -55,19 +55,8 @@
           <button class="configurator__generateButton" @click="generateImage">
             Generate
           </button>
-          <!-- <button
-            class="configurator__updateShoeWithAI"
-            @click="updateMaterialAI"
-          >
-            Use
-          </button> -->
           <div v-if="loading">Loading...</div>
         </div>
-        <!-- <img
-          :src="generatedImage"
-          alt="Generated Image"
-          v-if="generatedImage"
-        /> -->
       </div>
       <a
         class="configurator__arrow"
