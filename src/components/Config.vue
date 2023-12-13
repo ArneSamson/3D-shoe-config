@@ -265,7 +265,7 @@ export default {
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();
 
-      if (window.innerWidth < 650) {
+      if (window.innerWidth < 500) {
         renderer.setSize(window.innerWidth, window.innerHeight * 0.7);
         camera.aspect =
           canvasContainer.clientWidth / canvasContainer.clientHeight;
