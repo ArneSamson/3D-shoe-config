@@ -59,7 +59,7 @@ export default {
   async mounted() {
     await this.fetchShoes();
     const windowWidth = window.innerWidth;
-    const squareSize = windowWidth * 0.3;
+    const squareSize = 280;
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -437,6 +437,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0px;
+  margin-top: 100px;
 }
 
 .order-info__title {
@@ -464,5 +465,45 @@ export default {
   letter-spacing: 0;
   line-height: normal;
   white-space: nowrap;
+}
+
+@media (max-width: 750px) {
+  .flex {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+    gap: 0px;
+    justify-content: left;
+    align-items: baseline;
+    margin-left: 20px;
+  }
+
+  .canvas-container {
+    margin-top: 0px;
+  }
+
+  .order-info {
+    margin-top: 50px;
+  }
+
+  .order-info__title {
+    font-family: "cooper-black-std", serif;
+    font-weight: 400;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 1.08px;
+    line-height: normal;
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+
+  .order-info__shoe-type,
+  .order-info__user-name,
+  .order-info__user-address,
+  .order-info__user-email,
+  .order-info__shoe-size,
+  .order-info__status {
+    font-size: 14px;
+  }
 }
 </style>
