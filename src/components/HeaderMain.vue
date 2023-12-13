@@ -32,7 +32,7 @@ export default {
   flex-direction: column;
   align-items: start;
   padding: 40px;
-  background-color: #d6ff38;
+  background-color: var(--color-accent);
 }
 
 a {
@@ -41,7 +41,7 @@ a {
 }
 
 .headerMain__admin-button {
-  color: #d6ff38;
+  color: var(--color-accent);
   background-color: #000;
   width: 80%;
   max-width: 300px;
@@ -64,7 +64,7 @@ a {
     flex-direction: column;
     align-items: start;
     padding: 20px;
-    background-color: #d6ff38;
+    background-color: var(--color-accent);
   }
 
   .headerMain__admin-button {
