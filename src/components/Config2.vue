@@ -238,7 +238,7 @@ export default {
 
 
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath( '../../draco/' );
+    dracoLoader.setDecoderPath( '/draco/' );
     const gltfLoader = new GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader( dracoLoader );
 
