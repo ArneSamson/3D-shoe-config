@@ -31,6 +31,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
@@ -71,7 +72,10 @@ export default {
     camera.position.z = 7;
 
     const loadingManager = new THREE.LoadingManager();
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( '/draco/' );
     const gltfLoader = new GLTFLoader(loadingManager);
+    gltfLoader.setDRACOLoader( dracoLoader );
     scene.background = new THREE.Color(0x242424);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
