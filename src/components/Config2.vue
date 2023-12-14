@@ -130,6 +130,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { useRouter } from "vue-router";
 import TWEEN from "tween.js";
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
 const router = useRouter();
 
@@ -227,7 +228,11 @@ export default {
 
     const loadingManager = new THREE.LoadingManager();
 
+
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( '../../draco/' );
     const gltfLoader = new GLTFLoader(loadingManager);
+    gltfLoader.setDRACOLoader( dracoLoader );
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
