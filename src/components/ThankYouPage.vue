@@ -71,13 +71,7 @@ export default {
     camera.position.z = 7;
 
     const loadingManager = new THREE.LoadingManager();
-
     const gltfLoader = new GLTFLoader(loadingManager);
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.maxPolarAngle = Math.PI / 2;
-    controls.enablePan = false;
-
     scene.background = new THREE.Color(0x242424);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -345,6 +339,10 @@ export default {
         main.material = main.material.clone();
         main.material.color.set(shoeColorMain);
 
+        const tipHeel = shoe.getObjectByName("heel-tip");
+        tipHeel.material = tipHeel.material.clone();
+        tipHeel.material.color.set(shoeColorSole);
+
         const textureLoader = new THREE.TextureLoader();
         const textureUrl = this.shoe.shoeMaterialPanelUp;
         console.log(textureUrl);
@@ -352,19 +350,9 @@ export default {
 
         const sides = shoe.getObjectByName("sides");
         sides.material = sides.material.clone();
-        sides.material = new THREE.MeshBasicMaterial({
-          map: texture,
-        });
+        sides.material.map = texture;
 
-        const textureLoader2 = new THREE.TextureLoader();
-        const textureUrl2 = this.shoe.shoeMaterialPanelDown;
-        const texture2 = textureLoader2.load(textureUrl2);
-
-        const tip = shoe.getObjectByName("tip-heel");
-        tip.material = tip.material.clone();
-        tip.material = new THREE.MeshBasicMaterial({
-          map: texture2,
-        });
+        main.material.map = texture;
       };
 
       gltfLoader.load("/models/vans-shoe.glb", (gltf) => {
@@ -373,11 +361,11 @@ export default {
 
         shoe.rotation.order = "YXZ";
 
-        shoe.rotation.x = 0.5;
-        shoe.rotation.y = 1.5;
-
-        shoe.position.z = 0;
-        shoe.position.y = -0.5;
+        shoe.rotation.x = 0;
+        shoe.rotation.y = -0.15;
+        shoe.rotation.z = -0.4;
+        shoe.position.z = -7;
+        shoe.position.y = -4;
         shoe.position.x = -0.5;
 
         scene.add(shoe);

@@ -78,7 +78,9 @@
       I'm finished!
     </button>
 
-    <h2 v-if="progressState" ref="infoSection">Your information:</h2>
+    <h2 class="user-details__title" v-if="progressState" ref="infoSection">
+      Your information:
+    </h2>
     <div v-if="progressState" class="user-details">
       <div class="user-details-div">
         <label for="shoeSize">Shoe Size:</label>
@@ -222,6 +224,12 @@ export default {
       camera.aspect =
         canvasContainer.clientWidth / canvasContainer.clientHeight;
       camera.updateProjectionMatrix();
+      if (window.innerWidth < 500) {
+        renderer.setSize(window.innerWidth, window.innerHeight * 0.73);
+        camera.aspect =
+          canvasContainer.clientWidth / canvasContainer.clientHeight;
+        camera.updateProjectionMatrix();
+      }
     }
 
     camera.position.z = 9;
@@ -638,7 +646,7 @@ export default {
     fetchData() {
       const data = {
         shoe: {
-          shoeType: "AIR REV. NITRO S",
+          shoeType: "AIR REV. XTRA BLACK",
           shoeSize: this.shoeSize,
           shoeColorSole: this.selectedColors.shoeColorSole,
           shoeColorLaces: this.selectedColors.shoeColorLaces,
@@ -665,6 +673,13 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log("Data successfully sent:", data);
+
+          if (data && data.data && data.data.shoe && data.data.shoe._id) {
+            const newId = data.data.shoe._id;
+            this.$router.push({ path: "/thankyou", query: { id: newId } });
+          } else {
+            console.error("Invalid server response format");
+          }
         })
         .catch((error) => {
           console.error("Error:", error);

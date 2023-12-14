@@ -29,7 +29,7 @@
           <h2 class="model__type">Custom shoes</h2>
           <p class="model__price">€180,00</p>
           <div class="model__buttons buttons">
-            <button>
+            <button class="model__buttons_margin">
               <router-link to="/config2" class="buttons__link"
                 >CUSTOMIZE</router-link
               >
@@ -264,6 +264,10 @@ button {
 
   .canvas-container {
     margin-left: -50px;
+  }
+
+  .model__buttons_margin {
+    margin-bottom: 70px;
   }
 }
 </style>
