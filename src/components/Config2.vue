@@ -486,7 +486,7 @@ export default {
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
 
-        handleProgress("top");
+        handleProgress("generatedImage");
         const topObject = shoe.getObjectByName("sides");
         const topMaterial = topObject.material.clone();
         topMaterial.map = texture;
@@ -494,7 +494,6 @@ export default {
         topObject.material = topMaterial;
         this.selectedMaterials.shoeMaterialPanelUp = this.textureUrl;
 
-        handleProgress("bottom");
         const bottomObject = shoe.getObjectByName("main");
         const bottomMaterial = bottomObject.material.clone();
         bottomMaterial.map = texture;
@@ -527,13 +526,8 @@ export default {
             this.progbarValue += 1;
           }
           break;
-        case "top":
-          if (this.selectedMaterials.shoeMaterialPanelUp === null) {
-            this.progbarValue += 1;
-          }
-          break;
-        case "bottom":
-          if (this.selectedMaterials.shoeMaterialPanelDown === null) {
+        case "generatedImage":
+          if (this.selectedMaterials.shoeMaterialPanelUp === null && this.selectedMaterials.shoeMaterialPanelDown === null) {
             this.progbarValue += 1;
           }
           break;
