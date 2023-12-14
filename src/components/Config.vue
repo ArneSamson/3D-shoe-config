@@ -197,6 +197,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { useRouter } from "vue-router";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
 import TWEEN from "tween.js";
 
 const router = useRouter();
@@ -279,7 +280,10 @@ export default {
 
     const loadingManager = new THREE.LoadingManager();
 
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath( '../../draco/' );
     const gltfLoader = new GLTFLoader(loadingManager);
+    gltfLoader.setDRACOLoader( dracoLoader );
 
     const fontLoader = new FontLoader();
     const textMaterial = new THREE.MeshStandardMaterial({
