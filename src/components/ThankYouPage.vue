@@ -428,7 +428,7 @@ export default {
   letter-spacing: 1.08px;
   line-height: normal;
   margin: 0;
-  margin-top: 50px;
+  margin-top: -30px;
   margin-bottom: 20px;
 }
 
@@ -473,7 +473,6 @@ export default {
     letter-spacing: 1.08px;
     line-height: normal;
     margin: 0;
-    margin-top: 50px;
     margin-bottom: 20px;
   }
 
