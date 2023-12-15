@@ -6,7 +6,11 @@
       </div>
     </router-link>
     <button @click="toggleSound">
-      <img class="shoe-desc__img" src="/media/sound.svg" alt="" />
+      <img
+        class="shoe-desc__img"
+        :src="isPlaying ? '/media/sound-off.svg' : '/media/sound.svg'"
+        alt=""
+      />
     </button>
   </header>
 </template>
