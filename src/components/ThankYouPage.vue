@@ -73,9 +73,9 @@ export default {
 
     const loadingManager = new THREE.LoadingManager();
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath( '/draco/' );
+    dracoLoader.setDecoderPath("/draco/");
     const gltfLoader = new GLTFLoader(loadingManager);
-    gltfLoader.setDRACOLoader( dracoLoader );
+    gltfLoader.setDRACOLoader(dracoLoader);
     scene.background = new THREE.Color(0x242424);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -94,8 +94,6 @@ export default {
     let shoe;
 
     if (this.shoe.shoeType === "AIR REV. NITRO S") {
-      console.log("code AIR REV. NITRO S here");
-
       const updateShoeColors = () => {
         const shoeColorLaces = this.shoe.shoeColorLaces;
         const shoeLaces = shoe.getObjectByName("laces");
@@ -195,7 +193,6 @@ export default {
         });
 
         if (this.shoe.jewel === "Elephant") {
-          console.log("elephant");
           scene.add(jewelElephant);
         }
       });
@@ -226,7 +223,6 @@ export default {
         });
 
         if (this.shoe.jewel === "Hedgehog") {
-          console.log("Hedgehog");
           scene.add(jewelHedgehog);
         }
       });
@@ -257,7 +253,6 @@ export default {
         });
 
         if (this.shoe.jewel === "Whale") {
-          console.log("Whale");
           scene.add(jewelWhale);
         }
       });
@@ -325,8 +320,6 @@ export default {
     }
 
     if (this.shoe.shoeType === "AIR REV. XTRA BLACK") {
-      console.log("code AIR REV. XTRA BLACK here");
-
       const updateShoeColors = () => {
         const shoeColorLaces = this.shoe.shoeColorLaces;
         const laces = shoe.getObjectByName("laces");
@@ -349,7 +342,6 @@ export default {
 
         const textureLoader = new THREE.TextureLoader();
         const textureUrl = this.shoe.shoeMaterialPanelUp;
-        console.log(textureUrl);
         const texture = textureLoader.load(textureUrl);
 
         const sides = shoe.getObjectByName("sides");
@@ -396,7 +388,6 @@ export default {
 
         if (data.status === "success") {
           this.shoe = data.data.shoe || {};
-          console.log(this.shoe);
         } else {
           console.error("Error fetching shoes:", data.message);
         }

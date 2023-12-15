@@ -281,9 +281,9 @@ export default {
     const loadingManager = new THREE.LoadingManager();
 
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath( '/draco/' );
+    dracoLoader.setDecoderPath("/draco/");
     const gltfLoader = new GLTFLoader(loadingManager);
-    gltfLoader.setDRACOLoader( dracoLoader );
+    gltfLoader.setDRACOLoader(dracoLoader);
 
     const fontLoader = new FontLoader();
     const textMaterial = new THREE.MeshStandardMaterial({
@@ -313,7 +313,6 @@ export default {
     scene.add(directionalLight3);
     scene.add(directionalLight4);
 
-    //load shoePlatform.glb
     gltfLoader.load("/models/shoePlatform.glb", (gltf) => {
       const shoePlatform = gltf.scene;
       shoePlatform.scale.set(2.5, 2.5, 2.5);
@@ -572,8 +571,6 @@ export default {
       requestAnimationFrame(animate);
       TWEEN.update();
       renderer.render(scene, camera);
-
-      //make shoeGroup go up and down with sinus
       shoeGroup.position.y = Math.sin(clock.getElapsedTime()) * 0.2 - 0.8;
     };
 
@@ -602,7 +599,6 @@ export default {
     this.initialOff = initialOff;
 
     const toggleInitials = () => {
-
       handleProgress("initials");
 
       if (this.initialsState === true) {
@@ -618,7 +614,6 @@ export default {
             bevelOffset: 0,
             bevelSegments: 5,
           });
-
 
           this.shoeText = new THREE.Mesh(textGeometry, textMaterial);
 
@@ -689,7 +684,6 @@ export default {
 
       if (this.progbarValue === this.progbarMax && !this.progressState) {
         onProgressComplete();
-        console.log("progress complete");
         this.progressState = true;
       }
     };
@@ -723,7 +717,6 @@ export default {
       const particles = new THREE.Points(particleGeometry, particleMaterial);
       scene.add(particles);
 
-      // Start to animate the particles like confetti spreading out
       const animateConfetti = () => {
         const elapsedTime = clock.getElapsedTime();
         const speedFactor = 0.01;
@@ -790,7 +783,7 @@ export default {
         this.selectedColors.shoeColorPanelUp &&
         this.selectedMaterials.shoeMaterialPanelDown &&
         this.selectedMaterials.shoeMaterialPanelUp
-        ) {
+      ) {
         this.formError = null;
 
         this.fetchData();
@@ -801,8 +794,7 @@ export default {
     },
 
     fetchData() {
-
-      if(this.initialsState === false) {
+      if (this.initialsState === false) {
         this.initials = "";
       }
 
@@ -838,8 +830,6 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Data successfully sent:", data);
-
           if (data && data.data && data.data.shoe && data.data.shoe._id) {
             const newId = data.data.shoe._id;
             this.$router.push({ path: "/thankyou", query: { id: newId } });

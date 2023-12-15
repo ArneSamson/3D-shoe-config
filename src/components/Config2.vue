@@ -132,7 +132,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { useRouter } from "vue-router";
 import TWEEN from "tween.js";
-import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 
 const router = useRouter();
 
@@ -236,11 +236,10 @@ export default {
 
     const loadingManager = new THREE.LoadingManager();
 
-
     const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath( '/draco/' );
+    dracoLoader.setDecoderPath("/draco/");
     const gltfLoader = new GLTFLoader(loadingManager);
-    gltfLoader.setDRACOLoader( dracoLoader );
+    gltfLoader.setDRACOLoader(dracoLoader);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.maxPolarAngle = Math.PI / 2;
@@ -262,7 +261,6 @@ export default {
     scene.add(directionalLight3);
     scene.add(directionalLight4);
 
-    //load shoePlatform.glb
     gltfLoader.load("/models/shoePlatform.glb", (gltf) => {
       const shoePlatform = gltf.scene;
       shoePlatform.scale.set(2.5, 2.5, 2.5);
@@ -479,7 +477,6 @@ export default {
 
     const updateMaterialAI = () => {
       if (shoe && this.textureUrl) {
-        console.log("updateMaterialAI");
         const texture = this.textureLoader.load(this.textureUrl);
 
         texture.repeat.set(2, 2);
@@ -527,7 +524,10 @@ export default {
           }
           break;
         case "generatedImage":
-          if (this.selectedMaterials.shoeMaterialPanelUp === null && this.selectedMaterials.shoeMaterialPanelDown === null) {
+          if (
+            this.selectedMaterials.shoeMaterialPanelUp === null &&
+            this.selectedMaterials.shoeMaterialPanelDown === null
+          ) {
             this.progbarValue += 1;
           }
           break;
@@ -666,8 +666,6 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Data successfully sent:", data);
-
           if (data && data.data && data.data.shoe && data.data.shoe._id) {
             const newId = data.data.shoe._id;
             this.$router.push({ path: "/thankyou", query: { id: newId } });
@@ -685,11 +683,10 @@ export default {
         const imageData = await query({ inputs: this.textInput });
         const imageUrl = URL.createObjectURL(imageData);
         this.generatedImage = imageUrl;
-        this.textureUrl = imageUrl; // Store the generated image URL
+        this.textureUrl = imageUrl;
 
         if (this.generatedImage) {
           this.loading = false;
-          //call the updateMaterialAI function
           this.updateMaterialAI();
         }
       } catch (error) {
