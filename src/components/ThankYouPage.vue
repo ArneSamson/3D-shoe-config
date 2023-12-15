@@ -25,6 +25,9 @@
 
 <script>
 import * as THREE from "three";
+
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
@@ -55,7 +58,6 @@ export default {
   async mounted() {
     await this.fetchShoes();
     const squareSize = 280;
-
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
@@ -71,6 +73,13 @@ export default {
     const gltfLoader = new GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader(dracoLoader);
     scene.background = new THREE.Color(0x242424);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.enablePan = false;
+
+    controls.minDistance = 7;
+    controls.maxDistance = 7;
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1.7);
     const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1.7);
@@ -342,15 +351,14 @@ export default {
 
       gltfLoader.load("/models/vans-shoe.glb", (gltf) => {
         shoe = gltf.scene;
-        shoe.scale.set(1.8, 1.8, 1.8);
-
+        shoe.scale.set(1, 1, 1);
         shoe.rotation.order = "YXZ";
 
         shoe.rotation.x = 0;
         shoe.rotation.y = -0.15;
         shoe.rotation.z = -0.4;
-        shoe.position.z = -7;
-        shoe.position.y = -4;
+        shoe.position.z = 0;
+        shoe.position.y = -1.5;
         shoe.position.x = -0.5;
 
         scene.add(shoe);
