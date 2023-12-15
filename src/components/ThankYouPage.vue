@@ -24,13 +24,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
-
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
@@ -59,7 +54,6 @@ export default {
   },
   async mounted() {
     await this.fetchShoes();
-    const windowWidth = window.innerWidth;
     const squareSize = 280;
 
     const scene = new THREE.Scene();
@@ -110,7 +104,6 @@ export default {
         const texture = textureLoader.load(textureUrl);
 
         const MaterialTop = shoe.getObjectByName("outside_1");
-        const MaterialBottom = shoe.getObjectByName("outside_2");
 
         MaterialTop.material = new THREE.MeshBasicMaterial({
           map: texture,
@@ -121,10 +114,6 @@ export default {
         const panelDownColor2 = shoe.getObjectByName("outside_2");
         panelDownColor1.material.color.set(shoeColorPanelDown);
         panelDownColor2.material.color.set(shoeColorPanelDown);
-
-        const textureLoader2 = new THREE.TextureLoader();
-        const textureUrl2 = this.shoe.shoeMaterialPanelDown;
-        const texture2 = textureLoader.load(textureUrl);
 
         const MaterialTop2 = shoe.getObjectByName("inside");
 

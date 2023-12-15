@@ -24,8 +24,8 @@ export default {
   methods: {
     initSound() {
       this.sound = new Howl({
-        src: ["/media/sonicbranding.mp3"], // Replace with the path to your sound file
-        loop: true, // Set to true if you want the sound to loop
+        src: ["/media/sonicbranding.mp3"],
+        loop: true,
       });
     },
     toggleSound() {
