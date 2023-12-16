@@ -263,6 +263,29 @@ progress[value]::-moz-progress-bar {
   margin: auto;
 }
 
+.loading-placeholder {
+  margin: 0;
+  min-height: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.loading-placeholder--big {
+  height: 78vh;
+}
+
+.loading-placeholder__message {
+  font-family: "basic-sans", sans-serif;
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: normal;
+  margin: 0;
+}
+
 @media (max-width: 950px) {
   .configurator {
     gap: 0px;
