@@ -2,6 +2,9 @@
   <div class="bgc">
     <div class="flex">
       <div>
+        <div class="loading-placeholder" ref="loadingPlaceholder1">
+          <p class="loading-placeholder__message">Loading...</p>
+        </div>
         <div class="canvas-container" ref="canvasContainer"></div>
       </div>
       <div class="order-info">
@@ -63,6 +66,7 @@ export default {
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(squareSize, squareSize);
     renderer.setPixelRatio(window.devicePixelRatio);
+    const canvasContainer = this.$refs.canvasContainer;
     this.$refs.canvasContainer.appendChild(renderer.domElement);
 
     camera.position.z = 7;
@@ -72,6 +76,18 @@ export default {
     dracoLoader.setDecoderPath("/draco/");
     const gltfLoader = new GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader(dracoLoader);
+
+    loadingManager.onStart = () => {
+      this.loadingState = true;
+      canvasContainer.style.display = "none";
+      this.$refs.loadingPlaceholder1.style.display = "flex";
+    };
+    loadingManager.onLoad = () => {
+      this.loadingState = false;
+      canvasContainer.style.display = "block";
+      this.$refs.loadingPlaceholder1.style.display = "none";
+    };
+
     scene.background = new THREE.Color(0x242424);
 
     const controls = new OrbitControls(camera, renderer.domElement);
