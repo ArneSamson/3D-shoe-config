@@ -847,7 +847,23 @@ export default {
         .then((data) => {
           if (data && data.data && data.data.shoe && data.data.shoe._id) {
             const newId = data.data.shoe._id;
-            this.$router.push({ path: "/thankyou", query: { id: newId } });
+            this.$router.push({ path: "/thankyou", query: {
+              id: newId,
+              shoeType: responseData.data.shoe.shoeType,
+                shoeSize: responseData.data.shoe.shoeSize,
+                shoeColorSole: responseData.data.shoe.shoeColorSole,
+                shoeColorLaces: responseData.data.shoe.shoeColorLaces,
+                shoeColorPanelDown: responseData.data.shoe.shoeColorPanelDown,
+                shoeColorPanelUp: responseData.data.shoe.shoeColorPanelUp,
+                shoeMaterialPanelDown: responseData.data.shoe.shoeMaterialPanelDown,
+                shoeMaterialPanelUp: responseData.data.shoe.shoeMaterialPanelUp,
+                jewel: responseData.data.shoe.jewel,
+                initials: responseData.data.shoe.initials,
+                status: responseData.data.shoe.status,
+                userName: responseData.data.shoe.userName,
+                userAddress: responseData.data.shoe.userAddress,
+                userEmail: responseData.data.shoe.userEmail,
+            } });
           } else {
             console.error("Invalid server response format");
           }
