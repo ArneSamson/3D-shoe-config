@@ -4,6 +4,9 @@
     <div class="models-container__flexbox">
       <div class="model flex">
         <div>
+          <div class="loading-placeholder" ref="loadingPlaceholder1">
+          <p class="loading-placeholder__message">Loading...</p>
+        </div>
           <div class="canvas-container" ref="canvasContainer1"></div>
         </div>
         <div>
@@ -22,6 +25,9 @@
 
       <div class="model flex">
         <div>
+          <div class="loading-placeholder" ref="loadingPlaceholder2">
+            <p class="loading-placeholder__message">Loading...</p>
+          </div>
           <div class="canvas-container" ref="canvasContainer2"></div>
         </div>
         <div>
@@ -70,6 +76,20 @@ export default {
       dracoLoader.setDecoderPath( '/draco/' );
       const gltfLoader = new GLTFLoader(loadingManager);
       gltfLoader.setDRACOLoader( dracoLoader );
+
+      loadingManager.onStart = () => {
+        this.loadingState = true;
+        container.style.display = "none";
+        this.$refs.loadingPlaceholder1.style.display = "flex";
+        this.$refs.loadingPlaceholder2.style.display = "flex";
+      };
+      loadingManager.onLoad = () => {
+        this.loadingState = false;
+        container.style.display = "block";
+        this.$refs.loadingPlaceholder1.style.display = "none";
+        this.$refs.loadingPlaceholder2.style.display = "none";
+
+      };
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.maxPolarAngle = Math.PI / 2;
@@ -200,8 +220,7 @@ img {
   margin: 0;
 }
 
-.model__price,
-p {
+.model__price{
   font-family: "basic-sans", sans-serif;
   font-weight: 400;
   color: white;
