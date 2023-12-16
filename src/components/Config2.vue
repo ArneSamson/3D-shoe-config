@@ -685,16 +685,16 @@ export default {
             this.$router.push({ path: "/thankyou",
               query:{
                 id: newId,
-                shoeType: responseData.data.shoe.shoeType,
-                shoeSize: responseData.data.shoe.shoeSize,
-                shoeColorSole: responseData.data.shoe.shoeColorSole,
-                shoeColorLaces: responseData.data.shoe.shoeColorLaces,
-                shoeMaterialPanelDown: responseData.data.shoe.shoeMaterialPanelDown,
-                shoeMaterialPanelUp: responseData.data.shoe.shoeMaterialPanelUp,
-                status: responseData.data.shoe.status,
-                userName: responseData.data.shoe.userName,
-                userAddress: responseData.data.shoe.userAddress,
-                userEmail: responseData.data.shoe.userEmail,
+                shoeType: data.data.shoe.shoeType,
+                shoeSize: data.data.shoe.shoeSize,
+                shoeColorSole: data.data.shoe.shoeColorSole,
+                shoeColorLaces: data.data.shoe.shoeColorLaces,
+                shoeMaterialPanelDown: data.data.shoe.shoeMaterialPanelDown,
+                shoeMaterialPanelUp: data.data.shoe.shoeMaterialPanelUp,
+                status: data.data.shoe.status,
+                userName: data.data.shoe.userName,
+                userAddress: data.data.shoe.userAddress,
+                userEmail: data.data.shoe.userEmail,
               }, });
           } else {
             console.error("Invalid server response format");
