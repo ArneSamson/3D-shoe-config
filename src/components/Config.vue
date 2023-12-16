@@ -1,5 +1,11 @@
 <template>
   <div class="shoe-configurator">
+    <div
+      class="loading-placeholder loading-placeholder--big" ref="loadingPlaceholder1">
+      <p class="loading-placeholder__message">
+        Loading...
+      </p>
+    </div>
     <div class="canvas-container" ref="canvasContainer"></div>
     <progress
       class="progbar"
@@ -284,6 +290,15 @@ export default {
     dracoLoader.setDecoderPath("/draco/");
     const gltfLoader = new GLTFLoader(loadingManager);
     gltfLoader.setDRACOLoader(dracoLoader);
+
+    loadingManager.onStart = () => {
+      canvasContainer.style.display = "none";
+      this.$refs.loadingPlaceholder1.style.display = "flex";
+    };
+    loadingManager.onLoad = () => {
+      canvasContainer.style.display = "block";
+      this.$refs.loadingPlaceholder1.style.display = "none";
+    };
 
     const fontLoader = new FontLoader();
     const textMaterial = new THREE.MeshStandardMaterial({
