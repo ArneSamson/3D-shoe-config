@@ -67,7 +67,7 @@ export default {
     renderer.setSize(squareSize, squareSize);
     renderer.setPixelRatio(window.devicePixelRatio);
     const canvasContainer = this.$refs.canvasContainer;
-    this.$refs.canvasContainer.appendChild(renderer.domElement);
+    canvasContainer.appendChild(renderer.domElement);
 
     camera.position.z = 7;
 
