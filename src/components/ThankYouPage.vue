@@ -59,7 +59,7 @@ export default {
     };
   },
   async mounted() {
-    await this.fetchShoes();
+    this.shoeDataFromRoute();
     const squareSize = 280;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
@@ -392,20 +392,25 @@ export default {
   },
 
   methods: {
-    async fetchShoes() {
-      try {
-        const response = await fetch(
-          `https://dev5-api-sneakers.onrender.com/api/v1/shoes?id=${this.$route.query.id}`
-        );
-        const data = await response.json();
-
-        if (data.status === "success") {
-          this.shoe = data.data.shoe || {};
-        } else {
-          console.error("Error fetching shoes:", data.message);
-        }
-      } catch (error) {
-        console.error("Error fetching shoes:", error);
+    shoeDataFromRoute() {
+      const shoeData = this.$route.query;
+      if (shoeData) {
+        this.shoe = {
+          jewel: shoeData.jewel,
+          initials: shoeData.initials,
+          shoeType: shoeData.shoeType,
+          shoeSize: shoeData.shoeSize,
+          shoeColorSole: shoeData.shoeColorSole,
+          shoeColorLaces: shoeData.shoeColorLaces,
+          shoeColorPanelDown: shoeData.shoeColorPanelDown,
+          shoeColorPanelUp: shoeData.shoeColorPanelUp,
+          shoeMaterialPanelDown: shoeData.shoeMaterialPanelDown,
+          shoeMaterialPanelUp: shoeData.shoeMaterialPanelUp,
+          status: shoeData.status,
+          userName: shoeData.userName,
+          userAddress: shoeData.userAddress,
+          userEmail: shoeData.userEmail,
+        };
       }
     },
   },
