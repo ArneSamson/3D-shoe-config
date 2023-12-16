@@ -17,6 +17,9 @@ export default {
 <style scoped>
 .headerMain {
   background-color: #242424;
+  background-image: url("../media/header1.png");
+  background-size: 40%;
+  background-position: center;
   color: #000;
   display: flex;
   justify-content: space-between;
@@ -26,6 +29,17 @@ export default {
   border-width: 0 0 2px 0;
   border-style: solid;
   height: 100px;
+
+  animation: loopBackground 50s infinite alternate ease-in-out;
+}
+
+@keyframes loopBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
 }
 
 .headerMain__logo {
